@@ -27,13 +27,12 @@ namespace DresslikeaGnome.OhGnomes
         private float coolDown;
         private bool isCoR;
         [SerializeField] private bool canUseWeapon;
+        private bool canToggle;
 
         private GameControls input;
         private FishingRodMove rodAttack;
         private UmbrellaMove umbrellaAttack;
         private FireworkMove fireworkAttack;
-
-        private WaitForSeconds wait;
 
         internal Animator anim;
 
@@ -52,7 +51,6 @@ namespace DresslikeaGnome.OhGnomes
         {
             input = new GameControls();
             anim = GetComponent<Animator>();
-            wait = new WaitForSeconds(coolDown);
         }
 
         private void Start()
@@ -60,6 +58,7 @@ namespace DresslikeaGnome.OhGnomes
             rodAttack = GetComponent<FishingRodMove>();
             umbrellaAttack = GetComponent<UmbrellaMove>();
             fireworkAttack = GetComponent<FireworkMove>();
+            canToggle = true;
         }
 
 
@@ -109,6 +108,14 @@ namespace DresslikeaGnome.OhGnomes
                     UseActiveWeapon();
                 }
             }
+
+            if (canToggle)
+            {
+                if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                {
+                    ToggleFishingRod();
+                }
+            }
         }
 
         /// <summary>
@@ -128,21 +135,21 @@ namespace DresslikeaGnome.OhGnomes
                         UseFishingRod();
 
                         // cooldown before next use
-                        StartCoroutine(WeaponCooldownCo());
+                        StartCoroutine(WeaponCooldownCo(.5f));
                         break;
                     case GnomeWeapons.Umbrella:
 
                         UseUmbrella();
 
                         // cooldown before next use
-                        StartCoroutine(WeaponCooldownCo());
+                        StartCoroutine(WeaponCooldownCo(coolDown));
                         break;
                     case GnomeWeapons.Firework:
 
                         UseFirework();
 
                         // cooldown before next use
-                        StartCoroutine(WeaponCooldownCo());
+                        StartCoroutine(WeaponCooldownCo(coolDown));
                         break;
                     default:
                         break;
@@ -154,11 +161,23 @@ namespace DresslikeaGnome.OhGnomes
         /// Stops the weapons from being spammed like there is no tomorrow
         /// </summary>
         /// <returns></returns>
-        private IEnumerator WeaponCooldownCo()
+        private IEnumerator WeaponCooldownCo(float delay)
         {
             isCoR = true;
-            yield return wait;
+            yield return new WaitForSeconds(delay);
             isCoR = false;
+        }
+
+
+        /// <summary>
+        /// Stops the toggle from being spammed
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator ToggleCooldownCo()
+        {
+            canToggle = false;
+            yield return new WaitForSeconds(.35f);
+            canToggle = true;
         }
 
 
@@ -207,10 +226,38 @@ namespace DresslikeaGnome.OhGnomes
             fireworkAttack.UseAbility();
         }
 
-
+        /// <summary>
+        /// Gets the active weapon
+        /// </summary>
+        /// <returns>The active weapon</returns>
         public GnomeWeapons GetActiveWeapon()
         {
             return activeWeapon;
+        }
+
+
+        /// <summary>
+        /// Sets the active weapon to what is inputted
+        /// </summary>
+        /// <param name="newWeapon">GnomeWeapon to change to. (0 = none, 1 = rod, 2 = um, 3 = fire)</param>
+        public void SetGnomeWeapon(int newWeapon)
+        {
+            activeWeapon = (GnomeWeapons)newWeapon;
+        }
+
+
+        public void ToggleFishingRod()
+        {
+            if (rodAttack.rodAttackType.Equals(FishingRodAttack.Melee))
+            {
+                rodAttack.rodAttackType = FishingRodAttack.Ranged;
+            }
+            else
+            {
+                rodAttack.rodAttackType = FishingRodAttack.Melee;
+            }
+
+            StartCoroutine(ToggleCooldownCo());
         }
     }
 }

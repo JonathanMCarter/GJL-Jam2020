@@ -25,6 +25,8 @@ namespace DresslikeaGnome.OhGnomes
         private GameControls input;                         // ref to the input system
         private Rigidbody rb;                               // ref to the rb attached to the gnome
 
+        internal bool freezeGnome;
+
 
         private void OnEnable()
         {
@@ -46,26 +48,32 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Update()
         {
-            // if the input is pressed, either x or y axis
-            if (!input.Gnome.Movement.ReadValue<Vector2>().x.Equals(0) || !input.Gnome.Movement.ReadValue<Vector2>().y.Equals(0))
+            if (!freezeGnome)
             {
-                // player can move
-                canMove = true;
-            }
-            else
-            {
-                // otherwise player can't move :(
-                canMove = false;
+                // if the input is pressed, either x or y axis
+                if (!input.Gnome.Movement.ReadValue<Vector2>().x.Equals(0) || !input.Gnome.Movement.ReadValue<Vector2>().y.Equals(0))
+                {
+                    // player can move
+                    canMove = true;
+                }
+                else
+                {
+                    // otherwise player can't move :(
+                    canMove = false;
+                }
             }
         }
 
 
         private void FixedUpdate()
         {
-            // if the gnome can move, move it
-            if (canMove)
+            if (!freezeGnome)
             {
-                Movement(input.Gnome.Movement.ReadValue<Vector2>());
+                // if the gnome can move, move it
+                if (canMove)
+                {
+                    Movement(input.Gnome.Movement.ReadValue<Vector2>());
+                }
             }
         }
 

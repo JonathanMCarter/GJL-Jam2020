@@ -11,12 +11,14 @@ namespace CarterGames.Utilities
 {
     public static class Check
     {
+        /// ------------------------------------------------------------------------------------------------------
         /// <summary>
         /// Checks to see if the desired string is in the array of strings provided
         /// </summary>
         /// <param name="toFind">string to search for</param>
         /// <param name="strings">strings to look through</param>
         /// <returns>true or false</returns>
+        /// ------------------------------------------------------------------------------------------------------
         public static bool StringInArray(string toFind, string[] strings)
         {
             for (int i = 0; i < strings.Length; i++)
@@ -30,7 +32,7 @@ namespace CarterGames.Utilities
             return false;
         }
 
-
+        /// ------------------------------------------------------------------------------------------------------
         /// <summary>
         /// Checks to see if the current position is within a threashold of the target position
         /// </summary>
@@ -39,6 +41,7 @@ namespace CarterGames.Utilities
         /// <param name="current">the current Vector3</param>
         /// <param name="ignoreYAxis">should the Y axis be checked?</param>
         /// <returns>true or false</returns>
+        /// ------------------------------------------------------------------------------------------------------
         public static bool WithinThreashold(float threashold, Vector3 target, Vector3 current, bool ignoreYAxis = true)
         {
             if (ignoreYAxis)
@@ -77,7 +80,14 @@ namespace CarterGames.Utilities
             }
         }
 
-
+        /// ------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// Checks to see if a layer is present in the hits, true if there is, false if not
+        /// </summary>
+        /// <param name="hits">Raycasthits to check.</param>
+        /// <param name="layerToCheck">layer int to find</param>
+        /// <returns>true or false</returns>
+        /// ------------------------------------------------------------------------------------------------------
         public static bool LayerCheck(List<UnityEngine.EventSystems.RaycastResult> hits, int layerToCheck)
         {
             for (int i = 0; i < hits.Count; i++)

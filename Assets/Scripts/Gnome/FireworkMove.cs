@@ -74,10 +74,15 @@ namespace DresslikeaGnome.OhGnomes
             isCoR = true;
 
             GameObject _go = GetFireworkMissile();
-            _go.transform.position = fireworkObject.transform.position;
-            _go.transform.rotation = fireworkObject.transform.rotation;
-            _go.GetComponent<Rigidbody>().velocity += transform.forward * fireworkSpeed;
-            _go.SetActive(true);
+
+            if (_go)
+            {
+                _go.transform.position = fireworkObject.transform.position;
+                _go.transform.rotation = fireworkObject.transform.rotation;
+                _go.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                _go.GetComponent<Rigidbody>().velocity += transform.forward * fireworkSpeed;
+                _go.SetActive(true);
+            }
 
             yield return wait;
 
