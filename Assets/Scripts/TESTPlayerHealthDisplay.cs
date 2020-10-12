@@ -23,7 +23,6 @@ public class TESTPlayerHealthDisplay : MonoBehaviour
 
     void removeHealth()
     {
-        Debug.Log("hello");
             //if the player has health then just remove it
         if (playerHealth >= 1)
             playerHealth--;
