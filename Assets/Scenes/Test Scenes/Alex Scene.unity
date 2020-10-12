@@ -400,6 +400,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &871192183
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871192181}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5209528
+  m_Height: 1.079062
+  m_Direction: 1
+  m_Center: {x: -0.002993226, y: 0.008360863, z: 0}
 --- !u!4 &871192186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3120967869274993632, guid: 22c4241876f07ad448a7f45899d51e23,
@@ -839,7 +853,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805307590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0.59, z: 19.7}
+  m_LocalPosition: {x: 30, y: 1.15, z: 19.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1052331674}
@@ -1027,7 +1041,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901405511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.84, y: 1.179, z: 6.66}
+  m_LocalPosition: {x: 31.65, y: 1.91, z: 7.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2046351596}
@@ -1165,17 +1179,17 @@ PrefabInstance:
     - target: {fileID: 3120967869274993632, guid: 22c4241876f07ad448a7f45899d51e23,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.912
+      value: 1.76
       objectReference: {fileID: 0}
     - target: {fileID: 3120967869274993632, guid: 22c4241876f07ad448a7f45899d51e23,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 3120967869274993632, guid: 22c4241876f07ad448a7f45899d51e23,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.354
+      value: 2.69
       objectReference: {fileID: 0}
     - target: {fileID: 3120967869274993632, guid: 22c4241876f07ad448a7f45899d51e23,
         type: 3}
@@ -1227,5 +1241,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TEST Enemy Placeholder
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3120967869274993645, guid: 22c4241876f07ad448a7f45899d51e23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22c4241876f07ad448a7f45899d51e23, type: 3}
