@@ -17,17 +17,21 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private GameObject fireworkPrefab;
         [Range(30,100)]
         [SerializeField] private float fireworkSpeed = 50f;
-        [SerializeField] private float weaponCooldown = .75f;
+        [SerializeField] private float abilityDuration = .75f;
 
         private bool isCoR;
         private List<GameObject> fireworkPool;
         private GnomeAttacks attacks;
         private WaitForSeconds wait;
 
+        [Header("Ammo Controls")]
+        public int ammo = 3;
+        public int maxAmmo = 10;
+
 
         private void OnEnable()
         {
-            wait = new WaitForSeconds(weaponCooldown);
+            wait = new WaitForSeconds(abilityDuration);
             attacks = GetComponent<GnomeAttacks>();
             fireworkObject.SetActive(false);
         }
@@ -62,7 +66,7 @@ namespace DresslikeaGnome.OhGnomes
 
         public void UseAbility()
         {
-            if (!isCoR)
+            if (!isCoR && ammo > 0)
             {
                 StartCoroutine(FireworkAbilityCo());
             }
@@ -82,6 +86,7 @@ namespace DresslikeaGnome.OhGnomes
                 _go.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 _go.GetComponent<Rigidbody>().velocity += transform.forward * fireworkSpeed;
                 _go.SetActive(true);
+                ammo -= 1;
             }
 
             yield return wait;

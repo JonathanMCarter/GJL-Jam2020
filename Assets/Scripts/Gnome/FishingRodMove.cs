@@ -16,10 +16,17 @@ namespace DresslikeaGnome.OhGnomes
     {
         [SerializeField] internal FishingRodAttack rodAttackType;
         [SerializeField] private GameObject fishingRodObject;
-        [SerializeField] private GameObject fishingRodProjectile;
-        [SerializeField] private float abilityDuration;
 
-        private WaitForSeconds wait;
+        [Header("Melee Attack")]
+        [SerializeField] private float meleeAbilityDuration = .35f;
+
+        [Header("Ranged Attack")]
+        [SerializeField] private GameObject fishingRodProjectile;
+        [SerializeField] private float rangedAbilityDuration = 1f;
+
+
+        private WaitForSeconds meleeWait;
+
         private GnomeAttacks attacks;
         private GnomeMovement moves;
         private bool isCoR;
@@ -36,7 +43,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
-            wait = new WaitForSeconds(abilityDuration);
+            meleeWait = new WaitForSeconds(meleeAbilityDuration);
         }
 
 
@@ -91,7 +98,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             isCoR = true;
             attacks.anim.SetTrigger("MeleeRod");
-            yield return wait;
+            yield return meleeWait;
             isCoR = false;
         }
 
@@ -100,17 +107,16 @@ namespace DresslikeaGnome.OhGnomes
         {
             isCoR = true;
             attacks.anim.SetTrigger("RangedRod");
-            yield return new WaitForSeconds(abilityDuration / 2);
+            yield return new WaitForSeconds(rangedAbilityDuration / 2);
             fishingRodProjectile.GetComponents<BoxCollider>()[1].enabled = true;
-            yield return new WaitForSeconds(abilityDuration / 2);
+            yield return new WaitForSeconds(rangedAbilityDuration / 2);
             hasSwung = false;
             fishingRodObject.transform.GetChild(0).GetComponent<LineRenderer>().enabled = false;
             fishingRodProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
             fishingRodProjectile.GetComponents<BoxCollider>()[1].enabled = false;
-            //fishingRodProjectile.SetActive(false);
             fishingRodProjectile.GetComponent<Rigidbody>().useGravity = false;
             shouldReturn = true;
-            yield return new WaitForSeconds(abilityDuration / 2);
+            yield return new WaitForSeconds(rangedAbilityDuration / 2);
             shouldReturn = false;
             fishingRodProjectile.SetActive(false);
             fishingRodProjectile.GetComponent<Rigidbody>().useGravity = true;

@@ -16,7 +16,7 @@ namespace DresslikeaGnome.OhGnomes
 {
     public enum GnomeWeapons { None, FishingRod, Umbrella, Firework };
 
-    [RequireComponent(typeof(FishingRodMove), typeof(UmbrellaMove))]
+    [RequireComponent(typeof(FishingRodMove), typeof(UmbrellaMove), typeof(FireworkMove))]
     public class GnomeAttacks : MonoBehaviour
     {
         [SerializeField] private GnomeWeapons activeWeapon;
@@ -24,9 +24,11 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private GraphicRaycaster graphicsRaycaster;
 
 
-        private float coolDown;
+        [SerializeField] private float coolDown;
+        private WaitForSeconds wait;
+
         private bool isCoR;
-        [SerializeField] private bool canUseWeapon;
+        private bool canUseWeapon;
         private bool canToggle;
 
         private GameControls input;
@@ -51,6 +53,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             input = new GameControls();
             anim = GetComponent<Animator>();
+            wait = new WaitForSeconds(coolDown);
         }
 
         private void Start()
@@ -90,6 +93,7 @@ namespace DresslikeaGnome.OhGnomes
                 }
                 else
                 {
+                    // checks to see if the layer of any object is the user UI layer
                     if (!Check.LayerCheck(results, LayerMask.NameToLayer("UserUI")))
                     {
                         canUseWeapon = true;
@@ -101,19 +105,21 @@ namespace DresslikeaGnome.OhGnomes
                 }
             }
 
+
+            // if the user is not over some user UI (can use MB)
             if (canUseWeapon)
             {
                 if (input.Gnome.Attack.phase == InputActionPhase.Performed)
                 {
                     UseActiveWeapon();
                 }
-            }
 
-            if (canToggle)
-            {
-                if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                if (canToggle)
                 {
-                    ToggleFishingRod();
+                    if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                    {
+                        ToggleFishingRod();
+                    }
                 }
             }
         }
@@ -135,21 +141,21 @@ namespace DresslikeaGnome.OhGnomes
                         UseFishingRod();
 
                         // cooldown before next use
-                        StartCoroutine(WeaponCooldownCo(.5f));
+                        StartCoroutine(WeaponCooldownCo());
                         break;
                     case GnomeWeapons.Umbrella:
 
                         UseUmbrella();
 
                         // cooldown before next use
-                        StartCoroutine(WeaponCooldownCo(coolDown));
+                        StartCoroutine(WeaponCooldownCo());
                         break;
                     case GnomeWeapons.Firework:
 
                         UseFirework();
 
                         // cooldown before next use
-                        StartCoroutine(WeaponCooldownCo(coolDown));
+                        StartCoroutine(WeaponCooldownCo());
                         break;
                     default:
                         break;
@@ -161,10 +167,10 @@ namespace DresslikeaGnome.OhGnomes
         /// Stops the weapons from being spammed like there is no tomorrow
         /// </summary>
         /// <returns></returns>
-        private IEnumerator WeaponCooldownCo(float delay)
+        private IEnumerator WeaponCooldownCo()
         {
             isCoR = true;
-            yield return new WaitForSeconds(delay);
+            yield return wait;
             isCoR = false;
         }
 
