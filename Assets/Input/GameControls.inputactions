@@ -2,7 +2,7 @@
     "name": "GameControls",
     "maps": [
         {
-            "name": "GnomeMovement",
+            "name": "Gnome",
             "id": "e8488b60-b24e-46f6-9f99-0ad74a7bad80",
             "actions": [
                 {
@@ -12,6 +12,54 @@
                     "expectedControlType": "Axis",
                     "processors": "Normalize(max=1)",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "PassThrough",
+                    "id": "4fe57633-2cdf-4d8b-b73c-c1a46341f8e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "ToggleWeaponOne",
+                    "type": "Button",
+                    "id": "34a818cd-e1eb-40ad-b0fb-4b101998471b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "ToggleWeaponTwo",
+                    "type": "Button",
+                    "id": "19cc90a6-0385-4b1c-8674-04ff09fad8a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "ToggleWeaponThree",
+                    "type": "Button",
+                    "id": "5c42a412-ee54-419f-aec1-5f58157bfda6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "ToggleWeaponScroll",
+                    "type": "PassThrough",
+                    "id": "23539e03-7f75-47a3-b48d-a13527b3085f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "UseTrap",
+                    "type": "PassThrough",
+                    "id": "d6530d4a-e813-4a3f-aa41-bd588ee13978",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -124,6 +172,110 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "57305179-1321-4fd8-a497-60b52e3e4084",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54d5ae3d-7e67-4ea4-b584-5a00599765a3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "UseTrap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd9d2994-731e-4c2e-b382-f67e51e6e214",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "UseTrap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "371c7ba7-eaf5-44bd-9c86-184b898c6e7e",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ToggleWeaponOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce191ffa-f07e-4b14-9172-5a88a50c6394",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ToggleWeaponScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f97ddbf4-3ab5-4137-97e7-62e542cdbc39",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ToggleWeaponTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9754a70-5c68-4797-a0b4-2c3495d052cd",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ToggleWeaponThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "57d9340b-a198-4b7d-b417-6132b20e1bd5",
+            "actions": [
+                {
+                    "name": "PauseGame",
+                    "type": "PassThrough",
+                    "id": "3898dce9-5b1a-4063-9a86-931e48cdb800",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c7089620-0735-49ee-b070-0be4de3aa24a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
