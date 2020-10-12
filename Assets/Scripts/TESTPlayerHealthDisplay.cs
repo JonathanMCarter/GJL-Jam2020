@@ -20,4 +20,24 @@ public class TESTPlayerHealthDisplay : MonoBehaviour
     {
         healthText.text = playerHealth.ToString();
     }
+
+    void removeHealth()
+    {
+        Debug.Log("hello");
+            //if the player has health then just remove it
+        if (playerHealth >= 1)
+            playerHealth--;
+        else
+            Destroy(gameObject);
+            //otherwise deaded
+
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        //when the colider of the enemy attack enters then do this
+        if(other.gameObject.tag == "EnemyAttack")
+        {
+            removeHealth();
+        }
+    }
 }
