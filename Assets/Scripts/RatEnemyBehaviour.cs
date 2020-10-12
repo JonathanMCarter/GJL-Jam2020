@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class RatEnemyBehaviour : BaseEnemyBehaviour
 {
-    // Start is called before the first frame update
+    // Update is called once per frame
+    protected override void Update(){
+        //just using the basic update method from the parent
+        base.Update();
+    }
 }
+

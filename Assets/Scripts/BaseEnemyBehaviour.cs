@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+[SerializeField]
 public class BaseEnemyBehaviour : MonoBehaviour
 {
 
@@ -10,6 +10,10 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField] private GameObject playerTarget;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float distantToTargetPlayer = 4f;
+    [SerializeField] private float distantToAttackTarget = 1.4f;
+
+    private Animator animator;
+    private bool isAnimating = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+
         //in case we're missing anythign then hunt for it here
         if (sunTarget == null)
         {
@@ -34,7 +40,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         //the enemy should go for the sun initially
         checkPlayerDistance();
@@ -49,16 +55,28 @@ public class BaseEnemyBehaviour : MonoBehaviour
         if ( playerDistance < distantToTargetPlayer)
         {
             agent.SetDestination(playerTarget.transform.position);
+            checkCurrentTargetDistance(playerTarget);
         }
         else
         {
             agent.SetDestination(sunTarget.transform.position);
-        }
-        
+            checkCurrentTargetDistance(sunTarget);
+
+        }        
     }
 
-    private void OnDrawGizmos() {
-        //for testing show the area when the enemy will target the player
-        Gizmos.DrawSphere(transform.position, distantToTargetPlayer);
+    private void checkCurrentTargetDistance(GameObject Target)
+    {
+        float TargetDistance = Vector3.Distance (transform.position, Target.transform.position);
+
+        if ( TargetDistance < distantToAttackTarget)
+        {
+            animator.SetTrigger("Attack");
+        }
     }
+
+    // private void OnDrawGizmos() {
+    //     //for testing show the area when the enemy will target the player
+    //     Gizmos.DrawSphere(transform.position, distantToTargetPlayer);
+    // }
 }
