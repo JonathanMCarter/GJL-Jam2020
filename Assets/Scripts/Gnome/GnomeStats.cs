@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -12,6 +13,8 @@ namespace DresslikeaGnome.OhGnomes
     public class GnomeStats : MonoBehaviour
     {
         [SerializeField] private float invunTime = .5f;
+        [SerializeField] private Slider gnomeHealthbar;
+
         private WaitForSeconds healthCooldown;
         private bool isInvun = false;
 
@@ -25,6 +28,16 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             healthCooldown = new WaitForSeconds(invunTime);
+            gnomeHealthbar.value = gnomeHealth;
+            gnomeHealthbar.maxValue = gnomeHealth;
+        }
+
+        private void Update()
+        {
+            if (!gnomeHealthbar.value.Equals(gnomeHealth))
+            {
+                gnomeHealthbar.value = gnomeHealth;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
