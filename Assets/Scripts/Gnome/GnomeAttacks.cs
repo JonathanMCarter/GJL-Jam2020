@@ -1,7 +1,10 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using CarterGames.Utilities;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -17,9 +20,13 @@ namespace DresslikeaGnome.OhGnomes
     public class GnomeAttacks : MonoBehaviour
     {
         [SerializeField] private GnomeWeapons activeWeapon;
+        [SerializeField] private Camera cam;
+        [SerializeField] private GraphicRaycaster graphicsRaycaster;
+
 
         private float coolDown;
         private bool isCoR;
+        [SerializeField] private bool canUseWeapon;
 
         private GameControls input;
         private FishingRodMove rodAttack;
@@ -55,11 +62,53 @@ namespace DresslikeaGnome.OhGnomes
             fireworkAttack = GetComponent<FireworkMove>();
         }
 
+
         private void Update()
         {
             ToggleActiveWeapon();
 
-            input.Gnome.Attack.performed += ctx => UseActiveWeapon();
+            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                //Code to be place in a MonoBehaviour with a GraphicRaycaster component
+                GraphicRaycaster gr = graphicsRaycaster;
+                //Create the PointerEventData with null for the EventSystem
+                PointerEventData ped = new PointerEventData(null);
+                //Set required parameters, in this case, mouse position
+                ped.position = Mouse.current.position.ReadValue();
+                //Create list to receive all results
+                List<RaycastResult> results = new List<RaycastResult>();
+                //Raycast it
+                gr.Raycast(ped, results);
+
+                Debug.Log(results.Count);
+
+                if (results.Count.Equals(0))
+                {
+                    canUseWeapon = true;
+                }
+                else
+                {
+                    if (!Check.LayerCheck(results, LayerMask.NameToLayer("UserUI")))
+                    {
+                        canUseWeapon = true;
+                    }
+                    else
+                    {
+                        canUseWeapon = false;
+                    }
+                }
+            }
+
+            if (canUseWeapon)
+            {
+                if (input.Gnome.Attack.phase == InputActionPhase.Performed)
+                {
+                    UseActiveWeapon();
+                }
+            }
         }
 
         /// <summary>
