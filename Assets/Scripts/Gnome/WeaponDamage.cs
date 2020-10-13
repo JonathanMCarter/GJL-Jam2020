@@ -18,6 +18,8 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private int dmg;
         [SerializeField] private bool canDamage;
 
+        private DamageIndicator ind;
+
 
         private void OnEnable()
         {
@@ -55,6 +57,8 @@ namespace DresslikeaGnome.OhGnomes
                         break;
                 }
             }
+
+            ind = FindObjectOfType<DamageIndicator>();
         }
 
 
@@ -66,6 +70,9 @@ namespace DresslikeaGnome.OhGnomes
                 {
                     // deals damage to enemy
                     other.gameObject.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(dmg);
+
+                    // dmg indicator
+                    ind.ShowDMGIndicator(new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z), dmg, Color.green);
 
                     if (weapon.Equals(GnomeWeapons.Firework))
                     {

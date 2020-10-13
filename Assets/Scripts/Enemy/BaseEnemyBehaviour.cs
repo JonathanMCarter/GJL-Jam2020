@@ -13,6 +13,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField] private float distantToTargetPlayer = 4f;
     [SerializeField] private float distantToAttackTarget = 1.4f;
 
+    internal bool hitTrap;
+
     private Animator animator;
     protected virtual void Awake()
     {
@@ -79,18 +81,20 @@ public class BaseEnemyBehaviour : MonoBehaviour
         //find out how far the player is from the enemy
         float playerDistance = Vector3.Distance (transform.position, playerTarget.transform.position);
 
-        //If the player is close enough then target them
-        if ( playerDistance < distantToTargetPlayer)
+        if (!hitTrap)
         {
-            agent.SetDestination(playerTarget.transform.position);
-            checkCurrenttargetDistance(playerTarget);
+            //If the player is close enough then target them
+            if (playerDistance < distantToTargetPlayer)
+            {
+                agent.SetDestination(playerTarget.transform.position);
+                checkCurrenttargetDistance(playerTarget);
+            }
+            else
+            {
+                agent.SetDestination(sunTarget.transform.position);
+                checkCurrenttargetDistance(sunTarget);
+            }
         }
-        else
-        {
-            agent.SetDestination(sunTarget.transform.position);
-            checkCurrenttargetDistance(sunTarget);
-
-        }        
     }
 
     private void checkCurrenttargetDistance(GameObject Target)
