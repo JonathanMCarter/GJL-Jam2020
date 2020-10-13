@@ -59,7 +59,7 @@ namespace CarterGames.Utilities
         /// <summary>
         /// The camera to shake.
         /// </summary>
-        private Camera mainCamera;
+        private GameObject mainCamera;
 
 
         /// ------------------------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ namespace CarterGames.Utilities
         private void Start()
         {
             // Reference to the main camera
-            mainCamera = Camera.main;
+            mainCamera = gameObject;
         }
 
 
