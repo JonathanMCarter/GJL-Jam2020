@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: BBQTrap
   m_EditorClassIdentifier: 
   prefab: {fileID: 4328108457815156473, guid: 790aa6ce51e0a9240953f464e8531875, type: 3}
-  numberOfUses: 5
+  numberOfUses: 15
+  trapDMG: 1
