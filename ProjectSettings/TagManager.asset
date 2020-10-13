@@ -10,6 +10,7 @@ TagManager:
   - CableTrap
   - BBQTrap
   - EnemyAttack
+  - GnomeAttack
   layers:
   - Default
   - TransparentFX
@@ -23,9 +24,7 @@ TagManager:
   - EnemyParentObject
   - EnemyAttack
   - UserUI
-  - 
-  - 
-  - 
+  - Gnome
   - 
   - 
   - 

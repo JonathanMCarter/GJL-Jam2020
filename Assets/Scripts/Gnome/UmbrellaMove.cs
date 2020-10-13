@@ -12,12 +12,12 @@ namespace DresslikeaGnome.OhGnomes
     public class UmbrellaMove : MonoBehaviour
     {
         [Header("The Umbrealla")]
-        [Tooltip("")]
         [SerializeField] private GameObject umbrellaObject;
         [SerializeField] private float abilityDuration;
         [SerializeField] private float abilityCooldown;
 
         private WaitForSeconds wait;
+        private GnomeStats gnome;
 
         internal bool isUsingAbility = false;
         internal bool canUseAbility = true;
@@ -37,6 +37,7 @@ namespace DresslikeaGnome.OhGnomes
         private void Start()
         {
             wait = new WaitForSeconds(abilityDuration);
+            gnome = GetComponent<GnomeStats>();
         }
 
 
@@ -44,7 +45,9 @@ namespace DresslikeaGnome.OhGnomes
         {
             isUsingAbility = true;
             umbrellaObject.SetActive(true);
+            gnome.isInvun = true;
             yield return wait;
+            gnome.isInvun = false;
             umbrellaObject.SetActive(false);
             isUsingAbility = false;
             StartCoroutine(CooldownCo());

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class BaseEnemyBehaviour : MonoBehaviour
 {
+    // Jonathan added this
+    [SerializeField] private int enemyHealth;
 
     [SerializeField] private GameObject sunTarget;
     [SerializeField] private GameObject playerTarget;
@@ -64,6 +66,12 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         //the enemy should go for the sun initially
         checkPlayerDistance();
+
+        // jonathan added this
+        if (enemyHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void checkPlayerDistance()
@@ -91,7 +99,13 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
         if ( targetDistance < distantToAttackTarget)
         {
+            // jonathan (stops the NMA from pushing the gnome around xD)
+            agent.isStopped = true;
             animator.SetTrigger("Attack");
+        }
+        else
+        {
+            agent.isStopped = false;
         }
     }
 
@@ -100,8 +114,22 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //     Gizmos.DrawSphere(transform.position, distantToTargetPlayer);
     // }
 
+
+
     public GameObject getSunTarget()
     {
         return sunTarget;
+    }
+
+    // Jonathan added this
+    public int GetEnemyHealth()
+    {
+        return enemyHealth;
+    }
+
+    // Jonathan added this
+    public void ReduceEnemyHealth(int value)
+    {
+        enemyHealth -= value;
     }
 }
