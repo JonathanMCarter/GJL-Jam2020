@@ -182,12 +182,78 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "LeftJoystick",
+                    "id": "c1edf1c4-aee9-453a-91cb-abaf30a1ec8a",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "580e389d-64a1-4b76-96c2-83fec013c00b",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9d54805c-f773-430c-9672-573b986fd6ab",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "7f9ca286-44a2-40bc-9af5-e4795c8227e4",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "eecd41c0-6602-4b2e-a2c9-d586efa352ef",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "57305179-1321-4fd8-a497-60b52e3e4084",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a79988e9-1a8d-427d-b128-1f2126db71ad",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -216,11 +282,33 @@
                 },
                 {
                     "name": "",
+                    "id": "61e743e3-b4b5-4987-8d4f-98d2e69ce5fc",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "UseTrap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "371c7ba7-eaf5-44bd-9c86-184b898c6e7e",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "ToggleWeaponOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6633bc02-dd37-4135-98e4-9677f90490d6",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "ToggleWeaponOne",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -249,6 +337,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f894d540-b0d5-4031-8d02-53e3e74e8919",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ToggleWeaponTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c9754a70-5c68-4797-a0b4-2c3495d052cd",
                     "path": "<Keyboard>/3",
                     "interactions": "",
@@ -260,11 +359,33 @@
                 },
                 {
                     "name": "",
+                    "id": "eb92498a-7952-4c55-b7cc-531e3e59dde9",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ToggleWeaponThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2d029d64-69bb-42c6-b00b-1e6be3be38c1",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "WeaponToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb26fb7b-6ea1-487b-a8dc-2be67527a110",
+                    "path": "<XInputController>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "WeaponToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -292,6 +413,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69b87ada-596e-444b-be56-193ade39055f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
