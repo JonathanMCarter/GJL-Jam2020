@@ -2929,29 +2929,6 @@ Transform:
   m_Father: {fileID: 275791311}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1335485404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5888726586227973244, guid: 902f8f4ee84ac2144855934d41853615,
-    type: 3}
-  m_PrefabInstance: {fileID: 5888726584784025583}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1335485405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335485404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636f74d9844fb194eaaec27886d9abb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: 1
-  gnomeStats: {fileID: 0}
-  rodType: 0
-  dmg: 0
-  canDamage: 0
 --- !u!1 &1369908902
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,22 +5008,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5888726585502227206, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5888726586019462512, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: gnomeHealthbar
       value: 
       objectReference: {fileID: 1714544776}
-    - target: {fileID: 5888726586019462512, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: gnomeStats
-      value: 
-      objectReference: {fileID: 11400000, guid: 98be55fee9fdd5d41a2227700772793e,
-        type: 2}
     - target: {fileID: 5888726586019462516, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: fishingRodProjectile
@@ -5121,31 +5087,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '"Gnome"'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888726586019462524, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888726586227973242, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888726586227973242, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888726586227973244, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888726586227973244, guid: 902f8f4ee84ac2144855934d41853615,
-        type: 3}
-      propertyPath: m_TagString
-      value: GnomeAttack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902f8f4ee84ac2144855934d41853615, type: 3}
