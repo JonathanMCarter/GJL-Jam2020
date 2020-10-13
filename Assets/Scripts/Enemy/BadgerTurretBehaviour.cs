@@ -8,30 +8,35 @@ public class BadgerTurretBehaviour : BaseEnemyBehaviour
     [SerializeField] private float maxDistantToShootTarget = 5f;
 
     private GameObject shootTarget;
-    private Animator animator;
+    private Animator turretAnimator;
+
+    public GameObject bulletObject;
 
 
     private void Awake() 
     {
         base.Awake();
         shootTarget = base.getSunTarget();
-        animator = GetComponent<Animator>();
+        turretAnimator = GetComponent<Animator>();
 
     }
     private void Update() 
     {
+        //make the turret looktoward the target
         transform.LookAt(shootTarget.transform);
 
         float shootTargetDistance = Vector3.Distance(transform.position, shootTarget.transform.position);
 
         if((shootTargetDistance > minDistantToShootTarget) && (shootTargetDistance < maxDistantToShootTarget))
         {
-            animator.SetTrigger("FireTurret");
+            //the animation for firing then calls the function that makes the bullet
+            turretAnimator.SetTrigger("FireTurret");
         }
     }
 
     public void FireBullet()
     {
-        Debug.Log("Firing Bullet");
+        //create a new bullet
+        Instantiate(bulletObject, transform.position, Quaternion.identity);
     }
 }
