@@ -7,12 +7,14 @@ public class BaseRoundController : MonoBehaviour
     
     [SerializeField] private GameObject ratPrefab;
     [SerializeField] private GameObject badgerPrefab;
+    [SerializeField] private MainRoundController roundControllerObject;
 
     [SerializeField] private List<GameObject> spawnerLocations;
     [SerializeField] private GameObject EnemyContainerArray;
 
     private int currentWave = 0;
     private Wave currentWaveInfo;
+    private bool checkEnemyArray = false;
 
     public float spawnEverySeconds = 10.0f;
     public List<Wave> waves;
@@ -26,28 +28,56 @@ public class BaseRoundController : MonoBehaviour
         Debug.Log("start Round");
 
         //autograb the arrays needed
-        runWave();
 
+        RunWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //
+        if(checkEnemyArray)
+        {
+            CheckEnemyArray();
+        }
     }
 
-    private void runWave()
+    private void RunWave()
     {
-        //get the current wave in the specific wave
+        checkEnemyArray = false;
+
+        //get the current wave
         currentWaveInfo = waves[currentWave];
         
         StartSpawning();
     }
 
-    private void NextRound()
+    private void NextWave()
     {
-        //incriment the round count
-        currentWave++;
+        if(currentWave <= waves.Count)
+        {
+            //incriment the round count
+            currentWave++;
+
+            RunWave();
+        }
+        else
+        {
+            //completed the round!
+            EndRound();
+        }
+
+    }
+
+    private void EndWave()
+    {
+        Debug.Log("Wave complete");
+        //add a message forthe user
+    }
+
+    private void EndRound()
+    {
+        roundControllerObject.EndRound();
     }
 
     private void SpawnEnemy()
@@ -55,7 +85,7 @@ public class BaseRoundController : MonoBehaviour
         //randomly decide where the enmies will come from
         int locationId = Random.Range(0, spawnerLocations.Count);
 
-        //randomly decide which enemy to spawn
+        //randomly decide which enemy to spawn IF theres enough left to spawn
         if (Random.Range(0,2) == 1)
         {
             if (currentWaveInfo.noOfRats > 0)
@@ -83,8 +113,19 @@ public class BaseRoundController : MonoBehaviour
 
         //once all badgers + rats have been spawned theres no need to keep calling this function
         if(currentWaveInfo.noOfBadgers == 0 && currentWaveInfo.noOfRats == 0)
+        {
             StopSpawning();
+            checkEnemyArray = true;
+        }
         
+    }
+
+    private void CheckEnemyArray()
+    {
+        if(EnemyContainerArray.transform.childCount == 0)
+        {
+            EndWave();
+        }
     }
 
     private void StartSpawning() 
@@ -95,6 +136,7 @@ public class BaseRoundController : MonoBehaviour
 
     private void StopSpawning()
     {
+        //stops spawning enemies
         CancelInvoke("SpawnEnemy");
     }
 }
