@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SunTarget
   - Enemy
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
@@ -16,6 +17,8 @@ TagManager:
   - 
   - 
   - MiniMap
+  - EnemyParentObject
+  - EnemyAttack
   - UserUI
   - 
   - 
