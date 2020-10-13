@@ -19,8 +19,11 @@ namespace DresslikeaGnome.OhGnomes
         private WaitForSeconds healthCooldown;
         private int gnomeHealth;
         private DamageIndicator ind;
+        private Image barColor;
+        private Color defaultBarCol;
 
         internal bool isInvun = false;
+
 
         private void OnDisable()
         {
@@ -36,6 +39,7 @@ namespace DresslikeaGnome.OhGnomes
             gnomeHealthbar.maxValue = gnomeHealth;
 
             ind = FindObjectOfType<DamageIndicator>();
+            barColor = gnomeHealthbar.GetComponentsInChildren<Image>()[1];
         }
 
 
@@ -68,8 +72,18 @@ namespace DresslikeaGnome.OhGnomes
             isInvun = true;
             gnomeHealth -= 1;
             ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.blue);
+            StartCoroutine(HealthbarFlicker());
             yield return healthCooldown;
             isInvun = false;
+        }
+
+
+
+        private IEnumerator HealthbarFlicker()
+        {
+            barColor.color = Color.white;
+            yield return new WaitForSeconds(.1f);
+            barColor.color = defaultBarCol;
         }
 
 

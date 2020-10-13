@@ -15,6 +15,8 @@ namespace DresslikeaGnome.OhGnomes
     {
         [SerializeField] private TrapTypes trapType;
         [SerializeField] private TrapStats trap;
+
+        private GameObject tempParticles;
         private GameObject hit;
         private int usesLeft;
         private int trapDMG;
@@ -38,6 +40,12 @@ namespace DresslikeaGnome.OhGnomes
             ind = FindObjectOfType<DamageIndicator>();
             usesLeft = trap.numberOfUses;
             trapDMG = trap.trapDMG;
+
+            if (trap.extra[0])
+            {
+                tempParticles = Instantiate(trap.extra[0]);
+                tempParticles.SetActive(false);
+            }
         }
 
 
@@ -84,6 +92,8 @@ namespace DresslikeaGnome.OhGnomes
             hit.GetComponent<NavMeshAgent>().isStopped = true;
             hit.GetComponent<BaseEnemyBehaviour>().hitTrap = true;
             ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 1.5f, hit.transform.position.z), trapDMG, Color.white);
+            tempParticles.transform.position = hit.transform.position;
+            tempParticles.SetActive(true);
             yield return new WaitForSeconds(2f);
             hit.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(trapDMG);
             hit.GetComponent<NavMeshAgent>().isStopped = false;
