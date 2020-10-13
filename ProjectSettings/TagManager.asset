@@ -6,6 +6,9 @@ TagManager:
   tags:
   - SunTarget
   - Enemy
+  - TrapSquare
+  - CableTrap
+  - BBQTrap
   - EnemyAttack
   layers:
   - Default

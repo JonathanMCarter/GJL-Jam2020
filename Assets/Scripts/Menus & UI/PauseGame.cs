@@ -32,7 +32,6 @@ namespace DresslikeaGnome.OhGnomes
             StopAllCoroutines();
         }
 
-
         private void Awake()
         {
             input = new GameControls();
