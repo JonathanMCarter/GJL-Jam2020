@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1445347526114506625, guid: 64e1e771ed77e1d428c97c5a6a8b3512, type: 3}
   numberOfUses: 3
+  trapDMG: 5

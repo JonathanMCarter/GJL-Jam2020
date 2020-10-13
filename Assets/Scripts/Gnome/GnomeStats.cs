@@ -18,6 +18,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private WaitForSeconds healthCooldown;
         private int gnomeHealth;
+        private DamageIndicator ind;
 
         internal bool isInvun = false;
 
@@ -33,6 +34,8 @@ namespace DresslikeaGnome.OhGnomes
             gnomeHealth = gnomeStats.health;
             gnomeHealthbar.value = gnomeHealth;
             gnomeHealthbar.maxValue = gnomeHealth;
+
+            ind = FindObjectOfType<DamageIndicator>();
         }
 
 
@@ -64,6 +67,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             isInvun = true;
             gnomeHealth -= 1;
+            ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.blue);
             yield return healthCooldown;
             isInvun = false;
         }

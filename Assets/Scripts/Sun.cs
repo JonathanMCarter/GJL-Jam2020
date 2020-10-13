@@ -21,6 +21,7 @@ namespace DresslikeaGnome.OhGnomes
         private WaitForSeconds wait;
         private Image barColor;
         private CameraShakeScript cam;
+        private DamageIndicator ind;
 
 
         private void OnDisable()
@@ -37,6 +38,7 @@ namespace DresslikeaGnome.OhGnomes
             barColor = sunHealthBar.GetComponentsInChildren<Image>()[1];
             defaultBarCol = barColor.color;
             cam = FindObjectOfType<CameraShakeScript>();
+            ind = FindObjectOfType<DamageIndicator>();
         }
 
 
@@ -59,6 +61,7 @@ namespace DresslikeaGnome.OhGnomes
             if (other.gameObject.CompareTag("EnemyAttack"))
             {
                 DamageSun(1);
+                ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.yellow);
             }
         }
 
