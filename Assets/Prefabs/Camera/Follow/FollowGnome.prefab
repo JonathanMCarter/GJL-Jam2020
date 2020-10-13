@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef143eb7b57d7fb48af02382b4c6da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toFollow: {fileID: 0}
+  toFollow: {fileID: 5888726586019462524, guid: 902f8f4ee84ac2144855934d41853615,
+    type: 3}
