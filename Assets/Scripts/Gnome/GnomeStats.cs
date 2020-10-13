@@ -12,13 +12,14 @@ namespace DresslikeaGnome.OhGnomes
 {
     public class GnomeStats : MonoBehaviour
     {
+        [SerializeField] private Gnome gnomeStats;
         [SerializeField] private float invunTime = .5f;
         [SerializeField] private Slider gnomeHealthbar;
 
         private WaitForSeconds healthCooldown;
-        private bool isInvun = false;
+        private int gnomeHealth;
 
-        public float gnomeHealth = 10f;
+        internal bool isInvun = false;
 
         private void OnDisable()
         {
@@ -28,9 +29,12 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             healthCooldown = new WaitForSeconds(invunTime);
+
+            gnomeHealth = gnomeStats.health;
             gnomeHealthbar.value = gnomeHealth;
             gnomeHealthbar.maxValue = gnomeHealth;
         }
+
 
         private void Update()
         {
@@ -43,7 +47,7 @@ namespace DresslikeaGnome.OhGnomes
         private void OnTriggerEnter(Collider other)
         {
             // rather basic, it would need to check for the state of the enemy to know if the gnome is being attacked
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.gameObject.CompareTag("EnemyAttack"))
             {
                 if (!isInvun)
                 {
@@ -59,9 +63,19 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator InvunCo()
         {
             isInvun = true;
-            gnomeHealth -= 1f;
+            gnomeHealth -= 1;
             yield return healthCooldown;
             isInvun = false;
+        }
+
+
+        /// <summary>
+        /// Returns the gnome stats for use elsewhere.
+        /// </summary>
+        /// <returns></returns>
+        public Gnome GetGnomeStats()
+        {
+            return gnomeStats;
         }
     }
 }
