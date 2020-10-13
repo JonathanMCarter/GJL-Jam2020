@@ -22,6 +22,14 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
+                    "name": "WeaponToggle",
+                    "type": "PassThrough",
+                    "id": "7092c941-edc0-4aef-bdf8-08537bc7c71a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "ToggleWeaponOne",
                     "type": "Button",
                     "id": "34a818cd-e1eb-40ad-b0fb-4b101998471b",
@@ -249,6 +257,17 @@
                     "action": "ToggleWeaponThree",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d029d64-69bb-42c6-b00b-1e6be3be38c1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "WeaponToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -262,7 +281,7 @@
                     "id": "3898dce9-5b1a-4063-9a86-931e48cdb800",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": "Press"
                 }
             ],
             "bindings": [

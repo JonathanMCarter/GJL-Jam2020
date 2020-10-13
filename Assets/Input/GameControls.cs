@@ -37,6 +37,14 @@ namespace DresslikeaGnome.OhGnomes
                     ""interactions"": ""Press(behavior=2)""
                 },
                 {
+                    ""name"": ""WeaponToggle"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7092c941-edc0-4aef-bdf8-08537bc7c71a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
                     ""name"": ""ToggleWeaponOne"",
                     ""type"": ""Button"",
                     ""id"": ""34a818cd-e1eb-40ad-b0fb-4b101998471b"",
@@ -264,6 +272,17 @@ namespace DresslikeaGnome.OhGnomes
                     ""action"": ""ToggleWeaponThree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d029d64-69bb-42c6-b00b-1e6be3be38c1"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""WeaponToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -277,7 +296,7 @@ namespace DresslikeaGnome.OhGnomes
                     ""id"": ""3898dce9-5b1a-4063-9a86-931e48cdb800"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)""
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -329,6 +348,7 @@ namespace DresslikeaGnome.OhGnomes
             m_Gnome = asset.FindActionMap("Gnome", throwIfNotFound: true);
             m_Gnome_Movement = m_Gnome.FindAction("Movement", throwIfNotFound: true);
             m_Gnome_Attack = m_Gnome.FindAction("Attack", throwIfNotFound: true);
+            m_Gnome_WeaponToggle = m_Gnome.FindAction("WeaponToggle", throwIfNotFound: true);
             m_Gnome_ToggleWeaponOne = m_Gnome.FindAction("ToggleWeaponOne", throwIfNotFound: true);
             m_Gnome_ToggleWeaponTwo = m_Gnome.FindAction("ToggleWeaponTwo", throwIfNotFound: true);
             m_Gnome_ToggleWeaponThree = m_Gnome.FindAction("ToggleWeaponThree", throwIfNotFound: true);
@@ -388,6 +408,7 @@ namespace DresslikeaGnome.OhGnomes
         private IGnomeActions m_GnomeActionsCallbackInterface;
         private readonly InputAction m_Gnome_Movement;
         private readonly InputAction m_Gnome_Attack;
+        private readonly InputAction m_Gnome_WeaponToggle;
         private readonly InputAction m_Gnome_ToggleWeaponOne;
         private readonly InputAction m_Gnome_ToggleWeaponTwo;
         private readonly InputAction m_Gnome_ToggleWeaponThree;
@@ -399,6 +420,7 @@ namespace DresslikeaGnome.OhGnomes
             public GnomeActions(@GameControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Gnome_Movement;
             public InputAction @Attack => m_Wrapper.m_Gnome_Attack;
+            public InputAction @WeaponToggle => m_Wrapper.m_Gnome_WeaponToggle;
             public InputAction @ToggleWeaponOne => m_Wrapper.m_Gnome_ToggleWeaponOne;
             public InputAction @ToggleWeaponTwo => m_Wrapper.m_Gnome_ToggleWeaponTwo;
             public InputAction @ToggleWeaponThree => m_Wrapper.m_Gnome_ToggleWeaponThree;
@@ -419,6 +441,9 @@ namespace DresslikeaGnome.OhGnomes
                     @Attack.started -= m_Wrapper.m_GnomeActionsCallbackInterface.OnAttack;
                     @Attack.performed -= m_Wrapper.m_GnomeActionsCallbackInterface.OnAttack;
                     @Attack.canceled -= m_Wrapper.m_GnomeActionsCallbackInterface.OnAttack;
+                    @WeaponToggle.started -= m_Wrapper.m_GnomeActionsCallbackInterface.OnWeaponToggle;
+                    @WeaponToggle.performed -= m_Wrapper.m_GnomeActionsCallbackInterface.OnWeaponToggle;
+                    @WeaponToggle.canceled -= m_Wrapper.m_GnomeActionsCallbackInterface.OnWeaponToggle;
                     @ToggleWeaponOne.started -= m_Wrapper.m_GnomeActionsCallbackInterface.OnToggleWeaponOne;
                     @ToggleWeaponOne.performed -= m_Wrapper.m_GnomeActionsCallbackInterface.OnToggleWeaponOne;
                     @ToggleWeaponOne.canceled -= m_Wrapper.m_GnomeActionsCallbackInterface.OnToggleWeaponOne;
@@ -444,6 +469,9 @@ namespace DresslikeaGnome.OhGnomes
                     @Attack.started += instance.OnAttack;
                     @Attack.performed += instance.OnAttack;
                     @Attack.canceled += instance.OnAttack;
+                    @WeaponToggle.started += instance.OnWeaponToggle;
+                    @WeaponToggle.performed += instance.OnWeaponToggle;
+                    @WeaponToggle.canceled += instance.OnWeaponToggle;
                     @ToggleWeaponOne.started += instance.OnToggleWeaponOne;
                     @ToggleWeaponOne.performed += instance.OnToggleWeaponOne;
                     @ToggleWeaponOne.canceled += instance.OnToggleWeaponOne;
@@ -518,6 +546,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
+            void OnWeaponToggle(InputAction.CallbackContext context);
             void OnToggleWeaponOne(InputAction.CallbackContext context);
             void OnToggleWeaponTwo(InputAction.CallbackContext context);
             void OnToggleWeaponThree(InputAction.CallbackContext context);

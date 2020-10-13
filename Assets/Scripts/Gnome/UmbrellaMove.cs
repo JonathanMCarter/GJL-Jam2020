@@ -15,10 +15,12 @@ namespace DresslikeaGnome.OhGnomes
         [Tooltip("")]
         [SerializeField] private GameObject umbrellaObject;
         [SerializeField] private float abilityDuration;
+        [SerializeField] private float abilityCooldown;
 
         private WaitForSeconds wait;
 
         internal bool isUsingAbility = false;
+        internal bool canUseAbility = true;
 
 
         private void OnEnable()
@@ -45,15 +47,23 @@ namespace DresslikeaGnome.OhGnomes
             yield return wait;
             umbrellaObject.SetActive(false);
             isUsingAbility = false;
+            StartCoroutine(CooldownCo());
         }
 
         public void UseAbility()
         {
             // would anim into activating, for now its just gonna appear....
-            if (!isUsingAbility)
+            if (!isUsingAbility && canUseAbility)
             {
                 StartCoroutine(AbiltyCo());
             }    
+        }
+
+        private IEnumerator CooldownCo()
+        {
+            canUseAbility = false;
+            yield return new WaitForSeconds(abilityCooldown);
+            canUseAbility = true;
         }
     }
 }
