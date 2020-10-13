@@ -108,12 +108,10 @@ namespace DresslikeaGnome.OhGnomes
             isCoR = true;
             attacks.anim.SetTrigger("RangedRod");
             yield return new WaitForSeconds(rangedAbilityDuration / 2);
-            fishingRodProjectile.GetComponents<BoxCollider>()[1].enabled = true;
             yield return new WaitForSeconds(rangedAbilityDuration / 2);
             hasSwung = false;
             fishingRodObject.transform.GetChild(0).GetComponent<LineRenderer>().enabled = false;
             fishingRodProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            fishingRodProjectile.GetComponents<BoxCollider>()[1].enabled = false;
             fishingRodProjectile.GetComponent<Rigidbody>().useGravity = false;
             shouldReturn = true;
             yield return new WaitForSeconds(rangedAbilityDuration / 2);
