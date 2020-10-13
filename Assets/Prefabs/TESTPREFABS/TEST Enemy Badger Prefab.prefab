@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 1062494481}
   - component: {fileID: 1062494480}
   - component: {fileID: 1062494479}
+  - component: {fileID: 1103760209}
+  - component: {fileID: 1103760210}
   m_Layer: 9
   m_Name: TEST Bullet Spawn
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,10 +93,50 @@ BoxCollider:
   m_GameObject: {fileID: 1062494477}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1103760209
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062494477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 56623d99f3abe1b47b7bdd55e548fdcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1103760210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062494477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ece41d18e7c8484db6038b33fe1d8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunTarget: {fileID: 0}
+  playerTarget: {fileID: 0}
+  agent: {fileID: 0}
+  distantToTargetPlayer: 4
+  distantToAttackTarget: 1.4
+  minDistantToShootTarget: 15
+  maxDistantToShootTarget: 30
+  bulletObject: {fileID: 2064910969711758986, guid: c9261cec28a84d54e98e99083d9a8c86,
+    type: 3}
 --- !u!1 &7334070312763319344
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +151,7 @@ GameObject:
   - component: {fileID: 5898078481158346826}
   - component: {fileID: 5074620165201948520}
   - component: {fileID: 2519349719366261242}
+  - component: {fileID: 478200361}
   m_Layer: 9
   m_Name: TEST Enemy Badger Prefab
   m_TagString: Enemy
@@ -232,11 +275,28 @@ MonoBehaviour:
   sunTarget: {fileID: 0}
   playerTarget: {fileID: 0}
   agent: {fileID: 0}
-  distantToTargetPlayer: 4
-  distantToAttackTarget: 1.4
-  minDistantToShootTarget: 1.4
-  maxDistantToShootTarget: 5
-  shootTarget: {fileID: 0}
+  distantToTargetPlayer: 7
+  distantToAttackTarget: 2
+  attackCollider: {fileID: 7898278046500353842}
+--- !u!95 &478200361
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334070312763319344}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 226a8999d493e034a9b7f6ae101229e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7898278046500353842
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +310,7 @@ GameObject:
   - component: {fileID: 6830164390191081450}
   - component: {fileID: 5326352229550285128}
   m_Layer: 10
-  m_Name: TEST Model
+  m_Name: TESTmodel
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,8 +387,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7898278046500353842}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9999999, y: 0.2947771, z: 0.49963123}
+  m_Center: {x: 0, y: 0.01202561, z: 0.25018477}

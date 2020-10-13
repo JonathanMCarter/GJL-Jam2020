@@ -37,6 +37,6 @@ public class BadgerTurretBehaviour : BaseEnemyBehaviour
     public void FireBullet()
     {
         //create a new bullet
-        Instantiate(bulletObject, transform.position, Quaternion.identity);
+        Instantiate(bulletObject, transform.position, transform.rotation);
     }
 }

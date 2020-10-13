@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class BadgerEnemyBehaviour : BaseEnemyBehaviour
 {
+    public GameObject attackCollider;
+
     // Update is called once per frame
     protected override void Awake() {
         base.Awake();
     }
 
-    // private void OnDrawGizmos() {
-    //     Gizmos.DrawSphere(transform.position, maxDistantToShootTarget);
-    // }
+    public void activateAttack()
+    {
+        attackCollider.GetComponent<Collider>().enabled = true;
+    }
+
+    public void deactivateAttack()
+    {
+        attackCollider.GetComponent<Collider>().enabled = false;
+    }
 }
