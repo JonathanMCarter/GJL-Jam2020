@@ -9,6 +9,7 @@ TagManager:
   - TrapSquare
   - CableTrap
   - BBQTrap
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
@@ -19,6 +20,8 @@ TagManager:
   - 
   - 
   - MiniMap
+  - EnemyParentObject
+  - EnemyAttack
   - UserUI
   - 
   - 

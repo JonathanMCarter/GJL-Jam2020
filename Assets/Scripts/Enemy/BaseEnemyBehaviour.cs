@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-[SerializeField]
 public class BaseEnemyBehaviour : MonoBehaviour
 {
 
@@ -13,29 +12,50 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField] private float distantToAttackTarget = 1.4f;
 
     private Animator animator;
-    private bool isAnimating = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
 
         //in case we're missing anythign then hunt for it here
         if (sunTarget == null)
         {
-            sunTarget = GameObject.FindGameObjectWithTag("SunTarget");
+            try
+            {
+                sunTarget = GameObject.FindGameObjectWithTag("SunTarget"); 
+            }
+            catch (System.Exception)
+            {
+                Debug.Log("Theres no tagged SunTarget");
+                throw;
+            }
         }
 
         if (playerTarget == null)
         {
-            playerTarget = GameObject.FindGameObjectWithTag("Player");
+            try
+            {
+                playerTarget = GameObject.FindGameObjectWithTag("Player");
+            }
+            catch (System.Exception)
+            {
+                Debug.Log("Theres no tagged PlayerTarget");
+                throw;
+            }
         }  
         
+        if (agent == null)
+        {
+            try
+            {
+                agent = gameObject.GetComponent<NavMeshAgent>();
+                
+            }
+            catch (System.Exception)
+            {
+                Debug.Log("The enemy needs a nav mesh agent");
+                throw;
+            }
+        }  
 
     }
 
@@ -55,21 +75,21 @@ public class BaseEnemyBehaviour : MonoBehaviour
         if ( playerDistance < distantToTargetPlayer)
         {
             agent.SetDestination(playerTarget.transform.position);
-            checkCurrentTargetDistance(playerTarget);
+            checkCurrenttargetDistance(playerTarget);
         }
         else
         {
             agent.SetDestination(sunTarget.transform.position);
-            checkCurrentTargetDistance(sunTarget);
+            checkCurrenttargetDistance(sunTarget);
 
         }        
     }
 
-    private void checkCurrentTargetDistance(GameObject Target)
+    private void checkCurrenttargetDistance(GameObject Target)
     {
-        float TargetDistance = Vector3.Distance (transform.position, Target.transform.position);
+        float targetDistance = Vector3.Distance (transform.position, Target.transform.position);
 
-        if ( TargetDistance < distantToAttackTarget)
+        if ( targetDistance < distantToAttackTarget)
         {
             animator.SetTrigger("Attack");
         }
@@ -79,4 +99,9 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //     //for testing show the area when the enemy will target the player
     //     Gizmos.DrawSphere(transform.position, distantToTargetPlayer);
     // }
+
+    public GameObject getSunTarget()
+    {
+        return sunTarget;
+    }
 }
