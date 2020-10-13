@@ -83,6 +83,14 @@ namespace DresslikeaGnome.OhGnomes
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""ToggleTrap"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""27b43c71-3740-438d-ab84-32a9f6caa4cd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -404,6 +412,28 @@ namespace DresslikeaGnome.OhGnomes
                     ""action"": ""WeaponToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c7b7125-ae42-41e2-a5b2-56a1d2894fd4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""ToggleTrap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""658ce77c-ad98-493b-93a7-cfd10f8719ca"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""ToggleTrap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -486,6 +516,7 @@ namespace DresslikeaGnome.OhGnomes
             m_Gnome_ToggleWeaponThree = m_Gnome.FindAction("ToggleWeaponThree", throwIfNotFound: true);
             m_Gnome_ToggleWeaponScroll = m_Gnome.FindAction("ToggleWeaponScroll", throwIfNotFound: true);
             m_Gnome_UseTrap = m_Gnome.FindAction("UseTrap", throwIfNotFound: true);
+            m_Gnome_ToggleTrap = m_Gnome.FindAction("ToggleTrap", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_PauseGame = m_Menu.FindAction("PauseGame", throwIfNotFound: true);
@@ -546,6 +577,7 @@ namespace DresslikeaGnome.OhGnomes
         private readonly InputAction m_Gnome_ToggleWeaponThree;
         private readonly InputAction m_Gnome_ToggleWeaponScroll;
         private readonly InputAction m_Gnome_UseTrap;
+        private readonly InputAction m_Gnome_ToggleTrap;
         public struct GnomeActions
         {
             private @GameControls m_Wrapper;
@@ -558,6 +590,7 @@ namespace DresslikeaGnome.OhGnomes
             public InputAction @ToggleWeaponThree => m_Wrapper.m_Gnome_ToggleWeaponThree;
             public InputAction @ToggleWeaponScroll => m_Wrapper.m_Gnome_ToggleWeaponScroll;
             public InputAction @UseTrap => m_Wrapper.m_Gnome_UseTrap;
+            public InputAction @ToggleTrap => m_Wrapper.m_Gnome_ToggleTrap;
             public InputActionMap Get() { return m_Wrapper.m_Gnome; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -591,6 +624,9 @@ namespace DresslikeaGnome.OhGnomes
                     @UseTrap.started -= m_Wrapper.m_GnomeActionsCallbackInterface.OnUseTrap;
                     @UseTrap.performed -= m_Wrapper.m_GnomeActionsCallbackInterface.OnUseTrap;
                     @UseTrap.canceled -= m_Wrapper.m_GnomeActionsCallbackInterface.OnUseTrap;
+                    @ToggleTrap.started -= m_Wrapper.m_GnomeActionsCallbackInterface.OnToggleTrap;
+                    @ToggleTrap.performed -= m_Wrapper.m_GnomeActionsCallbackInterface.OnToggleTrap;
+                    @ToggleTrap.canceled -= m_Wrapper.m_GnomeActionsCallbackInterface.OnToggleTrap;
                 }
                 m_Wrapper.m_GnomeActionsCallbackInterface = instance;
                 if (instance != null)
@@ -619,6 +655,9 @@ namespace DresslikeaGnome.OhGnomes
                     @UseTrap.started += instance.OnUseTrap;
                     @UseTrap.performed += instance.OnUseTrap;
                     @UseTrap.canceled += instance.OnUseTrap;
+                    @ToggleTrap.started += instance.OnToggleTrap;
+                    @ToggleTrap.performed += instance.OnToggleTrap;
+                    @ToggleTrap.canceled += instance.OnToggleTrap;
                 }
             }
         }
@@ -684,6 +723,7 @@ namespace DresslikeaGnome.OhGnomes
             void OnToggleWeaponThree(InputAction.CallbackContext context);
             void OnToggleWeaponScroll(InputAction.CallbackContext context);
             void OnUseTrap(InputAction.CallbackContext context);
+            void OnToggleTrap(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

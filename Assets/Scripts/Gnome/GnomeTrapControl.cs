@@ -26,6 +26,7 @@ namespace DresslikeaGnome.OhGnomes
         // input and input lag so the controls don't toggle twice on 1 press.
         private GameControls input;
         private bool canUseInput;
+        private bool canUseToggle;
         private WaitForSeconds wait;
 
         // max ammo and ammo
@@ -76,6 +77,7 @@ namespace DresslikeaGnome.OhGnomes
             cableTraps = 3;
             bbqTrays = 2;
             canUseInput = true;
+            canUseToggle = true;
             wait = new WaitForSeconds(.2f);
         }
 
@@ -148,6 +150,25 @@ namespace DresslikeaGnome.OhGnomes
                 // input delay
                 StartCoroutine(InputDelay());
             }
+
+
+            // toggle selected trap 
+            if (input.Gnome.ToggleTrap.phase == InputActionPhase.Performed)
+            {
+                if (canUseToggle)
+                {
+                    if (selectedTrap.Equals(TrapTypes.Cable))
+                    {
+                        selectedTrap = TrapTypes.BBQ;
+                    }
+                    else
+                    {
+                        selectedTrap = TrapTypes.Cable;
+                    }
+
+                    StartCoroutine(InputToggleDelay());
+                }
+            }
         }
 
 
@@ -202,6 +223,17 @@ namespace DresslikeaGnome.OhGnomes
             canUseInput = false;
             yield return wait;
             canUseInput = true;
+        }
+
+        /// <summary>
+        /// Adds a little input lag to the toggle of trap types
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator InputToggleDelay()
+        {
+            canUseToggle = false;
+            yield return wait;
+            canUseToggle = true;
         }
 
 

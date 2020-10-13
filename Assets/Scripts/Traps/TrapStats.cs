@@ -14,5 +14,6 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] public GameObject prefab;
         [SerializeField] public int numberOfUses;
         [SerializeField] public int trapDMG;
+        [SerializeField] public GameObject[] extra;
     }
 }
