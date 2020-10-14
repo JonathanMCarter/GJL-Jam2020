@@ -14,6 +14,7 @@ namespace DresslikeaGnome.OhGnomes
         // not an ideal solution to UI but it works...
 
         private GnomeTrapControl traps;
+        private Text _text;
 
         public enum Ellys { CableTrapAmount, BBQTrapAmount };
         public Ellys element;
@@ -22,6 +23,8 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
+            _text = GetComponent<Text>();
+
             switch (element)
             {
                 case Ellys.CableTrapAmount:
@@ -46,12 +49,18 @@ namespace DresslikeaGnome.OhGnomes
             {
                 case Ellys.CableTrapAmount:
 
-                    GetComponent<Text>().text = traps.cableTraps.ToString();
+                    if (!_text.text.Equals(traps.cableTraps.ToString()))
+                    {
+                        _text.text = traps.cableTraps.ToString();
+                    }
 
                     break;
                 case Ellys.BBQTrapAmount:
 
-                    GetComponent<Text>().text = traps.bbqTrays.ToString();
+                    if (!_text.text.Equals(traps.bbqTrays.ToString()))
+                    {
+                        _text.text = traps.bbqTrays.ToString();
+                    }
 
                     break;
                 default:

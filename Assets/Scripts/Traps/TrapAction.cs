@@ -41,10 +41,13 @@ namespace DresslikeaGnome.OhGnomes
             usesLeft = trap.numberOfUses;
             trapDMG = trap.trapDMG;
 
-            if (trap.extra[0])
+            if (trap.extra.Length > 0)
             {
-                tempParticles = Instantiate(trap.extra[0]);
-                tempParticles.SetActive(false);
+                if (trap.extra[0])
+                {
+                    tempParticles = Instantiate(trap.extra[0]);
+                    tempParticles.SetActive(false);
+                }
             }
         }
 

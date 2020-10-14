@@ -23,6 +23,8 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private TrapStats[] traps;
         private List<GameObject> trapPool;
 
+        [SerializeField] private TrapTypes trapGnomeOn;
+
         // input and input lag so the controls don't toggle twice on 1 press.
         private GameControls input;
         private bool canUseInput;
@@ -122,7 +124,7 @@ namespace DresslikeaGnome.OhGnomes
                 else if (trapState.Equals(TrapStates.PickupTrap) && !trapState.Equals(TrapStates.PlaceTrap))
                 {
                     // pick up trap in area.
-                    switch (selectedTrap)
+                    switch (trapGnomeOn)
                     {
                         case TrapTypes.None:
                             break;
@@ -181,6 +183,7 @@ namespace DresslikeaGnome.OhGnomes
                 if (other.gameObject.GetComponent<TrapPlacementArea>())
                 {
                     currentTrapLocation = other.gameObject.GetComponent<TrapPlacementArea>();
+                    trapGnomeOn = currentTrapLocation.currentTrap;
                 }
             }
         }
@@ -201,6 +204,12 @@ namespace DresslikeaGnome.OhGnomes
                     // else allow the user to pickup what is there.
                     trapState = TrapStates.PickupTrap;
                 }
+
+                // updates the trap location
+                if (trapGnomeOn != currentTrapLocation.currentTrap)
+                {
+                    trapGnomeOn = currentTrapLocation.currentTrap;
+                }
             }
         }
 
@@ -212,6 +221,7 @@ namespace DresslikeaGnome.OhGnomes
             {
                 trapState = TrapStates.NoTraps;
                 currentTrapLocation = null;
+                trapGnomeOn = TrapTypes.None;
             }
         }
 
