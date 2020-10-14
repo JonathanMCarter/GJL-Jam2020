@@ -17,34 +17,25 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private string sceneName;
         [SerializeField] private GameObject UI;
 
-        [SerializeField] private Animator anim;
-
 
         private void OnTriggerEnter(Collider other)
         {
-            anim.SetTrigger("OpenDoor");
-
             if (other.gameObject.CompareTag("Player"))
             {
+                // opens a scene
                 if (shouldChangeScene)
                 {
                     SceneManager.LoadSceneAsync(sceneName);
                 }
-                else if (shouldQuitGame)
+                else if (shouldQuitGame)    // quits the game if true on the portal
                 {
                     Application.Quit();
                 }
-                else
+                else    // opens a ui element if set
                 {
                     UI.SetActive(true);
                 }
             }
-        }
-
-
-        private void OnTriggerExit(Collider other)
-        {
-            anim.SetTrigger("CloseDoor");
         }
     }
 }
