@@ -138,6 +138,7 @@ MonoBehaviour:
   maxDistantToShootTarget: 30
   bulletObject: {fileID: 2064910969711758986, guid: c9261cec28a84d54e98e99083d9a8c86,
     type: 3}
+  bulletPool: []
 --- !u!1 &4848106698725198978
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,9 +233,9 @@ GameObject:
   - component: {fileID: 3671369070397030333}
   - component: {fileID: 4379582157530532795}
   - component: {fileID: 5898078481158346826}
-  - component: {fileID: 5074620165201948520}
   - component: {fileID: 2519349719366261242}
   - component: {fileID: 478200361}
+  - component: {fileID: 4057393251698284485}
   m_Layer: 9
   m_Name: TEST Enemy Badger Prefab
   m_TagString: Enemy
@@ -330,20 +331,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &5074620165201948520
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7334070312763319344}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.2915969
-  m_Height: 3.6238942
-  m_Direction: 2
-  m_Center: {x: 0.011070251, y: 0.027678013, z: 0.016607046}
 --- !u!114 &2519349719366261242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +348,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   agent: {fileID: 0}
   distantToTargetPlayer: 7
-  distantToAttackTarget: 2
+  distantToAttackTarget: 4
   attackCollider: {fileID: 7898278046500353842}
 --- !u!95 &478200361
 Animator:
@@ -382,6 +369,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &4057393251698284485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334070312763319344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2.4, z: 3.75}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7898278046500353842
 GameObject:
   m_ObjectHideFlags: 0
