@@ -52,7 +52,7 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             input = new GameControls();
-            anim = GetComponent<Animator>();
+            anim = GetComponentInChildren<Animator>();
             wait = new WaitForSeconds(coolDown);
         }
 
@@ -84,8 +84,6 @@ namespace DresslikeaGnome.OhGnomes
                 List<RaycastResult> results = new List<RaycastResult>();
                 //Raycast it
                 gr.Raycast(ped, results);
-
-                Debug.Log(results.Count);
 
                 if (results.Count.Equals(0))
                 {

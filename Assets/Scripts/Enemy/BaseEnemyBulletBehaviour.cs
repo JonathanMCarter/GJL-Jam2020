@@ -27,8 +27,18 @@ public class BaseEnemyBulletBehaviour : MonoBehaviour
         }
     }
 
+    // jonathan edited this, so it doesn't destory, instead disables.
     private void OnCollisionEnter(Collision other) {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    // jonathan added this, so the bullets actually disapear once they have hit something... (I use triggers)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("SunTarget"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }

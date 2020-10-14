@@ -19,7 +19,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private bool canDamage;
 
         private DamageIndicator ind;
-
+        private FireworksControl fireworksControl;
 
         private void OnEnable()
         {
@@ -34,6 +34,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
+            fireworksControl = GetComponent<FireworksControl>();
             gnomeStats = FindObjectOfType<GnomeStats>().GetGnomeStats();
 
             if (weapon.Equals(GnomeWeapons.Firework))
@@ -72,10 +73,11 @@ namespace DresslikeaGnome.OhGnomes
                     other.gameObject.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(dmg);
 
                     // dmg indicator
-                    ind.ShowDMGIndicator(new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z), dmg, Color.green);
+                    ind.ShowDMGIndicator(new Vector3(other.transform.position.x, other.transform.position.y + 3f, other.transform.position.z), dmg, Color.green);
 
                     if (weapon.Equals(GnomeWeapons.Firework))
                     {
+                        fireworksControl.HitTarget(other.gameObject);
                         gameObject.SetActive(false);
                     }
 
