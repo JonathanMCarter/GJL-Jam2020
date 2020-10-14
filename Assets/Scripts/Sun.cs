@@ -37,7 +37,6 @@ namespace DresslikeaGnome.OhGnomes
             sunHealthBar.value = sunhealth;
             barColor = sunHealthBar.GetComponentsInChildren<Image>()[1];
             defaultBarCol = barColor.color;
-            cam = FindObjectOfType<CameraShakeScript>();
             ind = FindObjectOfType<DamageIndicator>();
         }
 
@@ -69,7 +68,6 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator HealthbarFlicker()
         {
             barColor.color = Color.white;
-            cam.ShakeCamera(false, .1f, .25f);
             yield return wait;
             barColor.color = defaultBarCol;
         }

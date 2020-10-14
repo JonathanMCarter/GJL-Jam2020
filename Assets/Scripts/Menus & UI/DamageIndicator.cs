@@ -14,7 +14,7 @@ namespace DresslikeaGnome.OhGnomes
     {
         [SerializeField] private int numberOfIndicators;
         [SerializeField] private GameObject indicatorPrefab;
-        [SerializeField] private Transform camera;
+        [SerializeField] private Transform cam;
 
         private List<GameObject> indicators;
 
@@ -40,7 +40,7 @@ namespace DresslikeaGnome.OhGnomes
                 if (!indicators[i].activeInHierarchy)
                 {
                     indicators[i].transform.position = _tPos;
-                    indicators[i].transform.rotation = camera.transform.rotation;
+                    indicators[i].transform.rotation = cam.transform.rotation;
                     indicators[i].GetComponent<Text>().text = dmg.ToString();
                     indicators[i].GetComponent<Text>().color = _textColour;
                     indicators[i].SetActive(true);

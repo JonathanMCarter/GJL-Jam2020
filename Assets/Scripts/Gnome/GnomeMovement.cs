@@ -24,6 +24,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private GameControls input;                         // ref to the input system
         private Rigidbody rb;                               // ref to the rb attached to the gnome
+        private Animator anim;
 
         internal bool freezeGnome;
 
@@ -42,7 +43,8 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             input = new GameControls();                     // setup ref to input system
-            rb = GetComponent<Rigidbody>();                 // setup ref to rigidbody
+            rb = GetComponentInChildren<Rigidbody>();                 // setup ref to rigidbody
+            anim = GetComponentInChildren<Animator>();
         }
 
 
@@ -54,11 +56,13 @@ namespace DresslikeaGnome.OhGnomes
                 if (!input.Gnome.Movement.ReadValue<Vector2>().x.Equals(0) || !input.Gnome.Movement.ReadValue<Vector2>().y.Equals(0))
                 {
                     // player can move
+                    anim.SetBool("IsMoving", true);
                     canMove = true;
                 }
                 else
                 {
                     // otherwise player can't move :(
+                    anim.SetBool("IsMoving", false);
                     canMove = false;
                 }
             }
@@ -76,6 +80,8 @@ namespace DresslikeaGnome.OhGnomes
                 }
             }
         }
+
+
 
 
         /// <summary>
