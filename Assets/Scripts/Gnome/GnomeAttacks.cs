@@ -85,8 +85,6 @@ namespace DresslikeaGnome.OhGnomes
                 //Raycast it
                 gr.Raycast(ped, results);
 
-                Debug.Log(results.Count);
-
                 if (results.Count.Equals(0))
                 {
                     canUseWeapon = true;
