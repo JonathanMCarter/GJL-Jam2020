@@ -35,8 +35,12 @@ namespace DresslikeaGnome.OhGnomes
             healthCooldown = new WaitForSeconds(invunTime);
 
             gnomeHealth = gnomeStats.health;
-            gnomeHealthbar.value = gnomeHealth;
-            gnomeHealthbar.maxValue = gnomeHealth;
+
+            if (gnomeHealthbar)
+            {
+                gnomeHealthbar.value = gnomeHealth;
+                gnomeHealthbar.maxValue = gnomeHealth;
+            }
 
             ind = FindObjectOfType<DamageIndicator>();
             barColor = gnomeHealthbar.GetComponentsInChildren<Image>()[1];
