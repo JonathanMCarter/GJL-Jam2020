@@ -62,7 +62,7 @@ namespace DresslikeaGnome.OhGnomes
 
             if (sunhealth <= 0)
             {
-                // sun deded......
+                gameObject.SetActive(false);
             }
 
             // changes the brightness settings
@@ -127,6 +127,16 @@ namespace DresslikeaGnome.OhGnomes
                 _light.intensity = 10f;
                 _light.range = 10f;
             }
+        }
+
+
+        /// <summary>
+        /// Returns the current health of the sun
+        /// </summary>
+        /// <returns>The sunHealth variable</returns>
+        public int GetHealth()
+        {
+            return sunhealth;
         }
     }
 }
