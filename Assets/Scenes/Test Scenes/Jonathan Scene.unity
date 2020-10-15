@@ -7373,6 +7373,16 @@ PrefabInstance:
       propertyPath: sunHealthBar
       value: 
       objectReference: {fileID: 275213013}
+    - target: {fileID: 1627317111413977392, guid: 89404cafe6389b44381a3e9a99ae06de,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627317111413977394, guid: 89404cafe6389b44381a3e9a99ae06de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe41efce40a70db4b8f3e91b7b15b351, type: 2}
     - target: {fileID: 1627317111413977396, guid: 89404cafe6389b44381a3e9a99ae06de,
         type: 3}
       propertyPath: m_LocalPosition.x
