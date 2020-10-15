@@ -7,7 +7,7 @@ namespace DresslikeaGnome.OhGnomes
 {
     public class BaseRoundController : MonoBehaviour
     {
-
+        
         [SerializeField] private GameObject ratPrefab;
         [SerializeField] private GameObject badgerPrefab;
         [SerializeField] private MainRoundController roundControllerObject;
@@ -28,7 +28,7 @@ namespace DresslikeaGnome.OhGnomes
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("start Round");
+            Debug.Log("start Round, waves: " + waves.Count);
 
             //autograb the arrays needed
 
@@ -39,7 +39,7 @@ namespace DresslikeaGnome.OhGnomes
         void Update()
         {
             //
-            if (checkEnemyArray)
+            if(checkEnemyArray)
             {
                 CheckEnemyArray();
             }
@@ -51,17 +51,18 @@ namespace DresslikeaGnome.OhGnomes
 
             //get the current wave
             currentWaveInfo = waves[currentWave];
-
+            
             StartSpawning();
         }
 
         private void NextWave()
         {
-            if (currentWave <= waves.Count)
-            {
-                //incriment the round count
-                currentWave++;
+            //incriment the round count
+            currentWave++;
 
+            //because of how arrays are counts (item 1 = array spot 0) have to look one below
+            if(currentWave < waves.Count)
+            {
                 RunWave();
             }
             else
@@ -74,8 +75,11 @@ namespace DresslikeaGnome.OhGnomes
 
         private void EndWave()
         {
-            Debug.Log("Wave complete");
+            //turn off the the array checker once the round has ended
+            checkEnemyArray = !checkEnemyArray;
             //add a message forthe user
+
+            NextWave();
         }
 
         private void EndRound()
@@ -89,13 +93,13 @@ namespace DresslikeaGnome.OhGnomes
             int locationId = Random.Range(0, spawnerLocations.Count);
 
             //randomly decide which enemy to spawn IF theres enough left to spawn
-            if (Random.Range(0, 2) == 1)
+            if (Random.Range(0,2) == 1)
             {
                 if (currentWaveInfo.noOfRats > 0)
                 {
-                    Instantiate(ratPrefab,
-                    spawnerLocations[locationId].transform.position,
-                    Quaternion.identity,
+                    Instantiate(ratPrefab, 
+                    spawnerLocations[locationId].transform.position, 
+                    Quaternion.identity, 
                     EnemyContainerArray.transform);
 
                     currentWaveInfo.noOfRats--;
@@ -103,11 +107,11 @@ namespace DresslikeaGnome.OhGnomes
             }
             else
             {
-                if (currentWaveInfo.noOfBadgers > 0)
+                if(currentWaveInfo.noOfBadgers > 0)
                 {
-                    Instantiate(badgerPrefab,
-                    spawnerLocations[locationId].transform.position,
-                    Quaternion.identity,
+                    Instantiate(badgerPrefab, 
+                    spawnerLocations[locationId].transform.position, 
+                    Quaternion.identity, 
                     EnemyContainerArray.transform);
 
                     currentWaveInfo.noOfBadgers--;
@@ -115,23 +119,23 @@ namespace DresslikeaGnome.OhGnomes
             }
 
             //once all badgers + rats have been spawned theres no need to keep calling this function
-            if (currentWaveInfo.noOfBadgers == 0 && currentWaveInfo.noOfRats == 0)
+            if(currentWaveInfo.noOfBadgers == 0 && currentWaveInfo.noOfRats == 0)
             {
                 StopSpawning();
                 checkEnemyArray = true;
             }
-
+            
         }
 
         private void CheckEnemyArray()
         {
-            if (EnemyContainerArray.transform.childCount == 0)
+            if(EnemyContainerArray.transform.childCount == 0)
             {
                 EndWave();
             }
         }
 
-        private void StartSpawning()
+        private void StartSpawning() 
         {
             //after 2 seconds will start spawning the enemy every set number of seconds
             InvokeRepeating("SpawnEnemy", 2.0f, spawnEverySeconds);
