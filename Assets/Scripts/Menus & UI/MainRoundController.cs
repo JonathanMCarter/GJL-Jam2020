@@ -2,52 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DresslikeaGnome.OhGnomes
+public class MainRoundController : MonoBehaviour
 {
-    public class MainRoundController : MonoBehaviour
+    // Start is called before the first frame update
+
+    [SerializeField]
+    private List<GameObject> roundControllerObjects;
+    
+    private int currentRound = 0;
+
+    void Start()
     {
-        // Start is called before the first frame update
+        StartRound();
+    }
 
-        [SerializeField]
-        private List<GameObject> roundControllerObjects;
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
-        private int currentRound = 0;
+    private void StartRound()
+    {
+        Debug.Log("Starting the Round");
 
-        void Start()
-        {
-            StartRound();
-        }
+        roundControllerObjects[currentRound].SetActive(true);
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
+    public void EndRound()
+    {
+        Debug.Log("Ending Round");
 
-        }
+        roundControllerObjects[currentRound].SetActive(false);
 
-        private void StartRound()
-        {
-            Debug.Log("Starting the Round");
+        currentRound++;
 
-            roundControllerObjects[currentRound].SetActive(true);
-        }
+        if(currentRound > roundControllerObjects.Count)
+            EndGame();  //all rounds completed
+    }
 
-        public void EndRound()
-        {
-            Debug.Log("Ending Round");
+    public void StartNextRound()
+    {
+        StartRound();   //onto the next round!
+    }
 
-            roundControllerObjects[currentRound].SetActive(false);
-
-            currentRound++;
-
-            if (currentRound <= roundControllerObjects.Count)
-                StartRound();   //onto the next round!
-            else
-                EndGame();  //all rounds completed
-        }
-
-        private void EndGame()
-        {
-            Debug.Log("Game Complete!");
-        }
+    private void EndGame()
+    {
+        Debug.Log("Game Complete!");
     }
 }
