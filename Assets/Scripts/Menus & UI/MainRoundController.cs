@@ -9,6 +9,8 @@ public class MainRoundController : MonoBehaviour
     [SerializeField]
     private List<GameObject> roundControllerObjects;
     
+    [SerializeField]
+    private GameObject nextRoundUI;
     private int currentRound = 0;
 
     void Start()
@@ -39,10 +41,18 @@ public class MainRoundController : MonoBehaviour
 
         if(currentRound > roundControllerObjects.Count)
             EndGame();  //all rounds completed
+
+        //still another round to go!
+        nextRoundUI.SetActive(true);
+
     }
 
     public void StartNextRound()
     {
+        nextRoundUI.SetActive(false);
+
+        Debug.Log("Starting the next Round");
+
         StartRound();   //onto the next round!
     }
 

@@ -25,7 +25,7 @@ public class BaseRoundController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("start Round");
+        Debug.Log("start Round, waves: " + waves.Count);
 
         //autograb the arrays needed
 
@@ -46,6 +46,8 @@ public class BaseRoundController : MonoBehaviour
     {
         checkEnemyArray = false;
 
+        Debug.Log("current wave is: " + currentWave);
+
         //get the current wave
         currentWaveInfo = waves[currentWave];
         
@@ -54,11 +56,12 @@ public class BaseRoundController : MonoBehaviour
 
     private void NextWave()
     {
-        if(currentWave <= waves.Count)
-        {
-            //incriment the round count
-            currentWave++;
+        //incriment the round count
+        currentWave++;
+        Debug.Log("next is " + currentWave);
 
+        if(currentWave < waves.Count)
+        {
             RunWave();
         }
         else
@@ -72,7 +75,12 @@ public class BaseRoundController : MonoBehaviour
     private void EndWave()
     {
         Debug.Log("Wave complete");
+
+        //turn off the the array checker once the round has ended
+        checkEnemyArray = !checkEnemyArray;
         //add a message forthe user
+
+        NextWave();
     }
 
     private void EndRound()
@@ -124,6 +132,8 @@ public class BaseRoundController : MonoBehaviour
     {
         if(EnemyContainerArray.transform.childCount == 0)
         {
+            Debug.Log("ending wave: " + currentWave);
+
             EndWave();
         }
     }
