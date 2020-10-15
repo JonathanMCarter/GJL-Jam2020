@@ -23,6 +23,7 @@ namespace DresslikeaGnome.OhGnomes
         private List<GameObject> fireworkPool;
         private GnomeAttacks attacks;
         private WaitForSeconds wait;
+        private LineRenderer lr;
 
         [Header("Ammo Controls")]
         public int ammo = 3;
@@ -48,6 +49,8 @@ namespace DresslikeaGnome.OhGnomes
                 _go.SetActive(false);
                 fireworkPool.Add(_go);
             }
+
+            lr = fireworkObject.GetComponent<LineRenderer>();
         }
 
 
@@ -61,6 +64,10 @@ namespace DresslikeaGnome.OhGnomes
             {
                 fireworkObject.SetActive(false);
             }
+
+            // update line renderer position
+            lr.SetPosition(0, fireworkObject.transform.position);
+            lr.SetPosition(1, fireworkObject.transform.position + transform.forward * 2);
         }
 
 

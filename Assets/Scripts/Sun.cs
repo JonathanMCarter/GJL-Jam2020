@@ -22,6 +22,9 @@ namespace DresslikeaGnome.OhGnomes
         private Image barColor;
         private CameraShakeScript cam;
         private DamageIndicator ind;
+        private Light _light;
+        private int[] healthPercentages = new int[3];
+        private Material sunMat;
 
 
         private void OnDisable()
@@ -37,8 +40,16 @@ namespace DresslikeaGnome.OhGnomes
             sunHealthBar.value = sunhealth;
             barColor = sunHealthBar.GetComponentsInChildren<Image>()[1];
             defaultBarCol = barColor.color;
-            cam = FindObjectOfType<CameraShakeScript>();
             ind = FindObjectOfType<DamageIndicator>();
+            _light = GetComponent<Light>();
+
+            // health percentages
+            healthPercentages[0] = (sunhealth / 4) * 3;
+            healthPercentages[1] = (sunhealth / 4) * 2;
+            healthPercentages[2] = (sunhealth / 4);
+
+            // sun material
+            sunMat = GetComponent<Renderer>().material;
         }
 
 
@@ -53,6 +64,9 @@ namespace DresslikeaGnome.OhGnomes
             {
                 // sun deded......
             }
+
+            // changes the brightness settings
+            ChangeBrightness();
         }
 
 
@@ -69,7 +83,6 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator HealthbarFlicker()
         {
             barColor.color = Color.white;
-            cam.ShakeCamera(false, .1f, .25f);
             yield return wait;
             barColor.color = defaultBarCol;
         }
@@ -79,6 +92,41 @@ namespace DresslikeaGnome.OhGnomes
         {
             sunhealth -= dmg;
             StartCoroutine(HealthbarFlicker());
+        }
+
+        /// <summary>
+        /// Changes the brightnesses of the sun
+        /// </summary>
+        private void ChangeBrightness()
+        {
+            // 25% health
+            if (sunhealth < healthPercentages[2])
+            {
+                sunMat.SetFloat("_brightness", 1);
+                _light.intensity = 2.5f;
+                _light.range = 2.5f;
+            }
+            // 50% health
+            else if (sunhealth < healthPercentages[1])
+            {
+                sunMat.SetFloat("_brightness", 1.75f);
+                _light.intensity = 5f;
+                _light.range = 5f;
+            }
+            // 75% health
+            else if (sunhealth < healthPercentages[0])
+            {
+                sunMat.SetFloat("_brightness", 2.25f);
+                _light.intensity = 7.5f;
+                _light.range = 7.5f;
+            }
+            // 100% health
+            else
+            {
+                sunMat.SetFloat("_brightness", 3);
+                _light.intensity = 10f;
+                _light.range = 10f;
+            }
         }
     }
 }

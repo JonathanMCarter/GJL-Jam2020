@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4195932730933879282}
   - component: {fileID: -5523534757037940637}
   - component: {fileID: 1055146272096475384}
+  - component: {fileID: 4549085731824608938}
   m_Layer: 0
   m_Name: FireworkProjectile
   m_TagString: Untagged
@@ -4937,3 +4938,17 @@ MonoBehaviour:
   rodType: 0
   dmg: 0
   canDamage: 0
+--- !u!114 &4549085731824608938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195932730933879289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e686e967fc48ca459ea8dbf2ab6cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireworkPrefab: {fileID: 6612338713114545861, guid: 4c67974a8af96fb4f9a0e97aca688259,
+    type: 3}

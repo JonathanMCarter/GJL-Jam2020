@@ -52,7 +52,7 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             input = new GameControls();
-            anim = GetComponent<Animator>();
+            anim = GetComponentInChildren<Animator>();
             wait = new WaitForSeconds(coolDown);
         }
 

@@ -15,22 +15,22 @@ namespace DresslikeaGnome.OhGnomes
     public class FishingRodMove : MonoBehaviour
     {
         [SerializeField] internal FishingRodAttack rodAttackType;
-        [SerializeField] private GameObject fishingRodObject;
+        [SerializeField] internal GameObject fishingRodObject;
 
         [Header("Melee Attack")]
         [SerializeField] private float meleeAbilityDuration = .35f;
 
         [Header("Ranged Attack")]
-        [SerializeField] private GameObject fishingRodProjectile;
+        [SerializeField] internal GameObject fishingRodProjectile;
         [SerializeField] private float rangedAbilityDuration = 1f;
 
 
         private WaitForSeconds meleeWait;
 
         private GnomeAttacks attacks;
-        private GnomeMovement moves;
+        internal GnomeMovement moves;
         private bool isCoR;
-        private bool hasSwung;
+        internal bool hasSwung;
         private bool shouldReturn;
 
         private void OnEnable()
@@ -70,7 +70,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             if (shouldReturn)
             {
-                fishingRodProjectile.transform.position = Vector3.Lerp(fishingRodProjectile.transform.position, fishingRodObject.transform.GetChild(0).transform.position, .15f);
+                fishingRodProjectile.transform.position = Vector3.Lerp(fishingRodProjectile.transform.position, fishingRodObject.transform.GetChild(0).transform.position, .65f);
             }
         }
 
@@ -107,32 +107,32 @@ namespace DresslikeaGnome.OhGnomes
         {
             isCoR = true;
             attacks.anim.SetTrigger("RangedRod");
-            yield return new WaitForSeconds(rangedAbilityDuration / 2);
-            yield return new WaitForSeconds(rangedAbilityDuration / 2);
+            yield return new WaitForSeconds(rangedAbilityDuration);
             hasSwung = false;
             fishingRodObject.transform.GetChild(0).GetComponent<LineRenderer>().enabled = false;
             fishingRodProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
             fishingRodProjectile.GetComponent<Rigidbody>().useGravity = false;
             shouldReturn = true;
-            yield return new WaitForSeconds(rangedAbilityDuration / 2);
+            moves.freezeGnome = false;
+            yield return new WaitForSeconds(rangedAbilityDuration / 4);
             shouldReturn = false;
             fishingRodProjectile.SetActive(false);
             fishingRodProjectile.GetComponent<Rigidbody>().useGravity = true;
-            moves.freezeGnome = false;
             isCoR = false;
         }
 
 
-        public void SpawnProjectile()
-        {
-            fishingRodProjectile.transform.position = fishingRodObject.transform.GetChild(0).transform.position;
-            fishingRodProjectile.transform.rotation = fishingRodObject.transform.GetChild(0).transform.rotation;
-            fishingRodProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            fishingRodProjectile.GetComponent<Rigidbody>().velocity = transform.forward * 10f;
-            fishingRodProjectile.SetActive(true);
-            fishingRodObject.transform.GetChild(0).GetComponent<LineRenderer>().enabled = true;
-            moves.freezeGnome = true;
-            hasSwung = true;
-        }
+        // Moved to AnimationEvent.cs (cause it needed to be on the same object as the animator.
+        //public void SpawnProjectile()
+        //{
+        //    fishingRodProjectile.transform.position = fishingRodObject.transform.GetChild(0).transform.position;
+        //    fishingRodProjectile.transform.rotation = fishingRodObject.transform.GetChild(0).transform.rotation;
+        //    fishingRodProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //    fishingRodProjectile.GetComponent<Rigidbody>().velocity = transform.forward * 12.5f;
+        //    fishingRodProjectile.SetActive(true);
+        //    fishingRodObject.transform.GetChild(0).GetComponent<LineRenderer>().enabled = true;
+        //    moves.freezeGnome = true;
+        //    hasSwung = true;
+        //}
     }
 }

@@ -11,7 +11,7 @@ TagManager:
   - BBQTrap
   - EnemyAttack
   - GnomeAttack
-  - Ground
+  - SceneTransition
   layers:
   - Default
   - TransparentFX
