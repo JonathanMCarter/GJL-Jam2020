@@ -16,26 +16,26 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private GameObject indicatorPrefab;
         [SerializeField] private Transform cam;
 
-        private List<GameObject> indicators;
+        private GameObject[] indicators;
 
 
         private void Start()
         {
-            indicators = new List<GameObject>();
+            indicators = new GameObject[numberOfIndicators];
 
             for (int i = 0; i < numberOfIndicators; i++)
             {
                 GameObject _go = Instantiate(indicatorPrefab, transform);
                 _go.name = "* (UI Pool) - Damage Indicator *";
                 _go.SetActive(false);
-                indicators.Add(_go);
+                indicators[i] = _go;
             }
         }
 
 
         public void ShowDMGIndicator(Vector3 _tPos, int dmg, Color _textColour)
         {
-            for (int i = 0; i < indicators.Count; i++)
+            for (int i = 0; i < indicators.Length; i++)
             {
                 if (!indicators[i].activeInHierarchy)
                 {

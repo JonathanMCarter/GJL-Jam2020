@@ -193,6 +193,12 @@ namespace DresslikeaGnome.OhGnomes
         {
             if (other.gameObject.CompareTag("TrapSquare"))
             {
+                if (other.gameObject.GetComponent<TrapPlacementArea>() && !currentTrapLocation)
+                {
+                    currentTrapLocation = other.gameObject.GetComponent<TrapPlacementArea>();
+                    trapGnomeOn = currentTrapLocation.currentTrap;
+                }
+
                 // check to if there is a trap here...
                 // if not allow the user to place a trap here....
                 if (currentTrapLocation && !other.gameObject.GetComponent<TrapPlacementArea>().hasTrap)
@@ -260,7 +266,7 @@ namespace DresslikeaGnome.OhGnomes
 
                     for (int i = 0; i < trapPool.Count; i++)
                     {
-                        if (trapPool[i].tag.Contains("Cable"))
+                        if (trapPool[i].tag.Contains("Cable") && !trapPool[i].activeInHierarchy)
                         {
                             trapPool[i].transform.position = currentTrapLocation.transform.position;
                             trapPool[i].transform.SetParent(currentTrapLocation.transform);
@@ -274,7 +280,7 @@ namespace DresslikeaGnome.OhGnomes
 
                     for (int i = 0; i < trapPool.Count; i++)
                     {
-                        if (trapPool[i].tag.Contains("BBQ"))
+                        if (trapPool[i].tag.Contains("BBQ") && !trapPool[i].activeInHierarchy)
                         {
                             trapPool[i].transform.position = currentTrapLocation.transform.position;
                             trapPool[i].transform.SetParent(currentTrapLocation.transform);

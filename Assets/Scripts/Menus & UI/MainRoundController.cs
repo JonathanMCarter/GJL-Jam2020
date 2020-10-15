@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace DresslikeaGnome.OhGnomes
 {
@@ -16,6 +17,15 @@ namespace DresslikeaGnome.OhGnomes
         private GameObject nextRoundUI;
         private int currentRound = 0;
 
+        // jonathan edit
+        [Header("Timer Text & Game UI")]
+        [SerializeField] private GameObject[] _GameUI;
+        [SerializeField] private Text _timerText;
+        [SerializeField] private float _timeLimit;
+        private float _timer;
+        private bool isTimerRunning;
+        private string _mins, _secs;
+
         private SceneTransitions trans;
 
 
@@ -23,19 +33,42 @@ namespace DresslikeaGnome.OhGnomes
         {
             trans = GameObject.FindGameObjectWithTag("SceneTransition").GetComponent<SceneTransitions>();
 
-            StartRound();
+
+            // jonathan edit
+            for (int i = 0; i < _GameUI.Length; i++)
+            {
+                _GameUI[i].SetActive(false);
+            }
+
+            _timer = _timeLimit;
+            isTimerRunning = true;
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+            // jonathan edit - round start timer...
+            if (isTimerRunning)
+            {
+                _timer -= Time.deltaTime;
+
+                if (_timer < 0)
+                {
+                    StartNextRound();
+                    _timer = 90;
+                    isTimerRunning = false;
+                }
+            }
+
+            TimerDisplay();
         }
+
 
         private void StartRound()
         {
             roundControllerObjects[currentRound].SetActive(true);
         }
+
 
         public void EndRound()
         {
@@ -50,11 +83,27 @@ namespace DresslikeaGnome.OhGnomes
             //still another round to go!
             nextRoundUI.SetActive(true);
 
+            // jonathan edit
+            for (int i = 0; i < _GameUI.Length; i++)
+            {
+                _GameUI[i].SetActive(false);
+            }
+
+            isTimerRunning = true;
         }
+
 
         public void StartNextRound()
         {
             nextRoundUI.SetActive(false);
+
+            // jonathan edit
+            for (int i = 0; i < _GameUI.Length; i++)
+            {
+                _GameUI[i].SetActive(true);
+            }
+
+            isTimerRunning = false;
 
             StartRound();   //onto the next round!
         }
@@ -63,7 +112,20 @@ namespace DresslikeaGnome.OhGnomes
         {
             trans.ChangeSceneTransition("Main Menu");
         }
-    }
 
+
+        /// <summary>
+        /// Shows the round timer
+        /// </summary>
+        private void TimerDisplay()
+        {
+            if (isTimerRunning)
+            {
+                _mins = Mathf.Floor(((_timer) % 3600) / 60).ToString("00");
+                _secs = Mathf.Floor((_timer) % 60).ToString("00");
+                _timerText.text = "Next Round In: " + _mins + ":" + _secs;
+            }
+        }
+    }
 }
 

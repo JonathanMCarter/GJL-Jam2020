@@ -12,11 +12,10 @@ namespace DresslikeaGnome.OhGnomes
 {
     public class SceneTransitions : MonoBehaviour
     {
+        [SerializeField] private bool shouldAnimIntro = true;
+
         private Animator anim;
-        private int _id;
         private AsyncOperation async;
-        private bool shouldLoad;
-        private bool isCoR;
 
 
         private void OnDisable()
@@ -24,43 +23,18 @@ namespace DresslikeaGnome.OhGnomes
             StopAllCoroutines();
         }
 
-
-        private void Awake()
-        {
-            DontDestroyOnLoad(this);
-            _id = FindObjectsOfType<SceneTransitions>().Length;
-
-            if (FindObjectsOfType<SceneTransitions>().Length > 1)
-            {
-                for (int i = 0; i < FindObjectsOfType<SceneTransitions>().Length; i++)
-                {
-                    if (!FindObjectsOfType<SceneTransitions>()[i]._id.Equals(1))
-                    {
-                        Destroy(FindObjectsOfType<SceneTransitions>()[i], .05f);
-                    }
-                }
-            }
-        }
-
         private void Start()
         {
             anim = GetComponentInChildren<Animator>();
 
-            async = SceneManager.LoadSceneAsync("Main Level");
-            async.allowSceneActivation = false;
-        }
-
-
-        private void Update()
-        {
-            if (async != null)
+            if (shouldAnimIntro)
             {
-                if (shouldLoad && !isCoR)
-                {
-                    StartCoroutine(TransitionCo());
-                }
+                anim.SetTrigger("FadeIn");
             }
+
+            async = new AsyncOperation();
         }
+
 
         public void ChangeSceneTransition(string sceneName)
         {
@@ -71,20 +45,10 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator ChangeSceneCo(string sceneName)
         {
             anim.SetTrigger("ChangeScene");
-            yield return new WaitForSeconds(.5f);
-            shouldLoad = true;
-        }
-
-
-        private IEnumerator TransitionCo()
-        {
-            isCoR = true;
+            async = SceneManager.LoadSceneAsync(sceneName);
+            async.allowSceneActivation = false;
+            yield return new WaitForSeconds(.55f);
             async.allowSceneActivation = true;
-            yield return new WaitForSeconds(.25f);
-            anim.SetTrigger("FadeIn");
-            isCoR = false;
-            yield return new WaitForSeconds(.5f);
-            shouldLoad = false;
         }
     }
 }

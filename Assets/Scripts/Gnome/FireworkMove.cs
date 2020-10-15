@@ -20,7 +20,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private float abilityDuration = .75f;
 
         private bool isCoR;
-        private List<GameObject> fireworkPool;
+        private GameObject[] fireworkPool;
         private GnomeAttacks attacks;
         private WaitForSeconds wait;
         private LineRenderer lr;
@@ -40,14 +40,14 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Awake()
         {
-            fireworkPool = new List<GameObject>();
+            fireworkPool = new GameObject[5];
 
             for (int i = 0; i < 5; i++)
             {
                 GameObject _go = Instantiate(fireworkPrefab);
                 _go.name = "* (Pool) Firework Missile *";
                 _go.SetActive(false);
-                fireworkPool.Add(_go);
+                fireworkPool[i] = _go;
             }
 
             lr = fireworkObject.GetComponent<LineRenderer>();
@@ -104,7 +104,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private GameObject GetFireworkMissile()
         {
-            for (int i = 0; i < fireworkPool.Count; i++)
+            for (int i = 0; i < fireworkPool.Length; i++)
             {
                 if (!fireworkPool[i].activeInHierarchy)
                 {
