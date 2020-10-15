@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BadgerEnemyBehaviour : BaseEnemyBehaviour
+namespace DresslikeaGnome.OhGnomes
 {
-    public GameObject attackCollider;
-
-    // Update is called once per frame
-    protected override void Awake() {
-        base.Awake();
-    }
-
-    public void activateAttack()
+    public class BadgerEnemyBehaviour : BaseEnemyBehaviour
     {
-        attackCollider.GetComponent<Collider>().enabled = true;
-    }
+        public GameObject attackCollider;
 
-    public void deactivateAttack()
-    {
-        attackCollider.GetComponent<Collider>().enabled = false;
+        // Update is called once per frame
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        public void activateAttack()
+        {
+            attackCollider.GetComponent<Collider>().enabled = true;
+        }
+
+        public void deactivateAttack()
+        {
+            attackCollider.GetComponent<Collider>().enabled = false;
+        }
     }
 }

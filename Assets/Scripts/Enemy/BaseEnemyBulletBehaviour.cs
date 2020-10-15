@@ -2,43 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemyBulletBehaviour : MonoBehaviour
+namespace DresslikeaGnome.OhGnomes
 {
-    [SerializeField] private Rigidbody bulletRigidBody;
-
-    public float bulletSpeed = 5f;
-
-    private void Start() 
+    public class BaseEnemyBulletBehaviour : MonoBehaviour
     {
-        try
+        [SerializeField] private Rigidbody bulletRigidBody;
+
+        public float bulletSpeed = 5f;
+
+        private void Start()
         {
-            if(bulletRigidBody == null)
+            try
             {
-                bulletRigidBody = gameObject.GetComponent<Rigidbody>();
+                if (bulletRigidBody == null)
+                {
+                    bulletRigidBody = gameObject.GetComponent<Rigidbody>();
+                }
+
+                bulletRigidBody.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+
             }
-
-            bulletRigidBody.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-
+            catch (System.Exception)
+            {
+                Debug.Log("The bullet needs a rigidbody!");
+                throw;
+            }
         }
-        catch (System.Exception)
-        {
-            Debug.Log("The bullet needs a rigidbody!");   
-            throw;
-        }
-    }
 
-    // jonathan edited this, so it doesn't destory, instead disables.
-    private void OnCollisionEnter(Collision other) {
-        gameObject.SetActive(false);
-    }
-
-    // jonathan added this, so the bullets actually disapear once they have hit something... (I use triggers)
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("SunTarget"))
+        // jonathan edited this, so it doesn't destory, instead disables.
+        private void OnCollisionEnter(Collision other)
         {
             gameObject.SetActive(false);
         }
-    }
 
+        // jonathan added this, so the bullets actually disapear once they have hit something... (I use triggers)
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("SunTarget"))
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
 }

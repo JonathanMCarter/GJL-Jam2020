@@ -6027,12 +6027,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5740399147742290981, guid: 5f36a80522f14a24a9f48c773d24105b,
         type: 3}
-      propertyPath: m_Follow
+      propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 1332129323}
     - target: {fileID: 5740399147742290981, guid: 5f36a80522f14a24a9f48c773d24105b,
         type: 3}
-      propertyPath: m_LookAt
+      propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1332129323}
     m_RemovedComponents: []
