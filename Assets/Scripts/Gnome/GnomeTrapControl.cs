@@ -21,7 +21,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private TrapPlacementArea currentTrapLocation; // the currect trap location to place or remove a trap from
 
         [SerializeField] private TrapStats[] traps;
-        private GameObject[] trapPool;
+        private List<GameObject> trapPool;
 
         [SerializeField] private TrapTypes trapGnomeOn;
 
@@ -58,14 +58,14 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
-            trapPool = new GameObject[maxCableTraps + maxBBqTrays];
+            trapPool = new List<GameObject>();
 
             for (int i = 0; i < maxCableTraps; i++)
             {
                 GameObject _go = Instantiate(traps[0].prefab);
                 _go.name = "* (Trap Pool) - Cable Trap *";
                 _go.SetActive(false);
-                trapPool[i] = _go;
+                trapPool.Add(_go);
             }
 
             for (int i = 0; i < maxBBqTrays; i++)
@@ -73,7 +73,7 @@ namespace DresslikeaGnome.OhGnomes
                 GameObject _go = Instantiate(traps[1].prefab);
                 _go.name = "* (Trap Pool) - BBQ Trap *";
                 _go.SetActive(false);
-                trapPool[i] = _go;
+                trapPool.Add(_go);
             }
 
             cableTraps = 3;
@@ -193,6 +193,12 @@ namespace DresslikeaGnome.OhGnomes
         {
             if (other.gameObject.CompareTag("TrapSquare"))
             {
+                if (other.gameObject.GetComponent<TrapPlacementArea>() && !currentTrapLocation)
+                {
+                    currentTrapLocation = other.gameObject.GetComponent<TrapPlacementArea>();
+                    trapGnomeOn = currentTrapLocation.currentTrap;
+                }
+
                 // check to if there is a trap here...
                 // if not allow the user to place a trap here....
                 if (currentTrapLocation && !other.gameObject.GetComponent<TrapPlacementArea>().hasTrap)
@@ -258,9 +264,9 @@ namespace DresslikeaGnome.OhGnomes
                     break;
                 case TrapTypes.Cable:
 
-                    for (int i = 0; i < trapPool.Length; i++)
+                    for (int i = 0; i < trapPool.Count; i++)
                     {
-                        if (trapPool[i].tag.Contains("Cable"))
+                        if (trapPool[i].tag.Contains("Cable") && !trapPool[i].activeInHierarchy)
                         {
                             trapPool[i].transform.position = currentTrapLocation.transform.position;
                             trapPool[i].transform.SetParent(currentTrapLocation.transform);
@@ -272,9 +278,9 @@ namespace DresslikeaGnome.OhGnomes
                     break;
                 case TrapTypes.BBQ:
 
-                    for (int i = 0; i < trapPool.Length; i++)
+                    for (int i = 0; i < trapPool.Count; i++)
                     {
-                        if (trapPool[i].tag.Contains("BBQ"))
+                        if (trapPool[i].tag.Contains("BBQ") && !trapPool[i].activeInHierarchy)
                         {
                             trapPool[i].transform.position = currentTrapLocation.transform.position;
                             trapPool[i].transform.SetParent(currentTrapLocation.transform);
