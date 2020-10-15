@@ -2,52 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainRoundController : MonoBehaviour
+
+namespace DresslikeaGnome.OhGnomes
 {
-    // Start is called before the first frame update
-
-    [SerializeField]
-    private List<GameObject> roundControllerObjects;
-    
-    private int currentRound = 0;
-
-    void Start()
+    public class MainRoundController : MonoBehaviour
     {
-        StartRound();
-    }
+        // Start is called before the first frame update
 
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField]
+        private List<GameObject> roundControllerObjects;
         
+        [SerializeField]
+        private GameObject nextRoundUI;
+        private int currentRound = 0;
+
+        private SceneTransitions trans;
+
+
+        void Start()
+        {
+            trans = GameObject.FindGameObjectWithTag("SceneTransition").GetComponent<SceneTransitions>();
+
+            StartRound();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
+
+        private void StartRound()
+        {
+            roundControllerObjects[currentRound].SetActive(true);
+        }
+
+        public void EndRound()
+        {
+            roundControllerObjects[currentRound].SetActive(false);
+
+            currentRound++;
+
+            //because of how arrays are counts (item 1 = array spot 0) have to look one below
+            if(currentRound >= roundControllerObjects.Count)
+                EndGame();  //all rounds completed
+
+            //still another round to go!
+            nextRoundUI.SetActive(true);
+
+        }
+
+        public void StartNextRound()
+        {
+            nextRoundUI.SetActive(false);
+
+            StartRound();   //onto the next round!
+        }
+
+        private void EndGame()
+        {
+            trans.ChangeSceneTransition("Main Menu");
+        }
     }
 
-    private void StartRound()
-    {
-        Debug.Log("Starting the Round");
-
-        roundControllerObjects[currentRound].SetActive(true);
-    }
-
-    public void EndRound()
-    {
-        Debug.Log("Ending Round");
-
-        roundControllerObjects[currentRound].SetActive(false);
-
-        currentRound++;
-
-        if(currentRound > roundControllerObjects.Count)
-            EndGame();  //all rounds completed
-    }
-
-    public void StartNextRound()
-    {
-        StartRound();   //onto the next round!
-    }
-
-    private void EndGame()
-    {
-        Debug.Log("Game Complete!");
-    }
 }
+
