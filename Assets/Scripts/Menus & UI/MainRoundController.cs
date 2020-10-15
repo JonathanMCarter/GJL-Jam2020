@@ -37,10 +37,13 @@ public class MainRoundController : MonoBehaviour
 
         currentRound++;
 
-        if(currentRound <= roundControllerObjects.Count)
-            StartRound();   //onto the next round!
-        else
+        if(currentRound > roundControllerObjects.Count)
             EndGame();  //all rounds completed
+    }
+
+    public void StartNextRound()
+    {
+        StartRound();   //onto the next round!
     }
 
     private void EndGame()

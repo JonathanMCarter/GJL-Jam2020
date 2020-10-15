@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7100361163124070305
 Transform:
@@ -99,8 +99,8 @@ GameObject:
   m_Name: Pot V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3574437619345077806
 Transform:
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 2504843230724574513}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 193.11, y: -0.16, z: 116.39}
-  m_LocalScale: {x: 0.70871, y: 0.70871, z: 0.70871}
+  m_LocalScale: {x: 1, y: 2.0058997, z: 1}
   m_Children:
   - {fileID: 7100361163124070305}
   m_Father: {fileID: 0}
@@ -2940,7 +2940,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ad176c3a766353f499ecf76f4a14f711, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
