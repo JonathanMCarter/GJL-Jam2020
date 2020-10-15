@@ -40,18 +40,24 @@ namespace DresslikeaGnome.OhGnomes
             {
                 gnomeHealthbar.value = gnomeHealth;
                 gnomeHealthbar.maxValue = gnomeHealth;
+                barColor = gnomeHealthbar.GetComponentsInChildren<Image>()[1];
             }
 
-            ind = FindObjectOfType<DamageIndicator>();
-            barColor = gnomeHealthbar.GetComponentsInChildren<Image>()[1];
+            if (FindObjectOfType<DamageIndicator>())
+            {
+                ind = FindObjectOfType<DamageIndicator>();
+            }
         }
 
 
         private void Update()
         {
-            if (!gnomeHealthbar.value.Equals(gnomeHealth))
+            if (gnomeHealthbar)
             {
-                gnomeHealthbar.value = gnomeHealth;
+                if (!gnomeHealthbar.value.Equals(gnomeHealth))
+                {
+                    gnomeHealthbar.value = gnomeHealth;
+                }
             }
         }
 
