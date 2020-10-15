@@ -21,7 +21,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private TrapPlacementArea currentTrapLocation; // the currect trap location to place or remove a trap from
 
         [SerializeField] private TrapStats[] traps;
-        private List<GameObject> trapPool;
+        private GameObject[] trapPool;
 
         [SerializeField] private TrapTypes trapGnomeOn;
 
@@ -58,14 +58,14 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
-            trapPool = new List<GameObject>();
+            trapPool = new GameObject[maxCableTraps + maxBBqTrays];
 
             for (int i = 0; i < maxCableTraps; i++)
             {
                 GameObject _go = Instantiate(traps[0].prefab);
                 _go.name = "* (Trap Pool) - Cable Trap *";
                 _go.SetActive(false);
-                trapPool.Add(_go);
+                trapPool[i] = _go;
             }
 
             for (int i = 0; i < maxBBqTrays; i++)
@@ -73,7 +73,7 @@ namespace DresslikeaGnome.OhGnomes
                 GameObject _go = Instantiate(traps[1].prefab);
                 _go.name = "* (Trap Pool) - BBQ Trap *";
                 _go.SetActive(false);
-                trapPool.Add(_go);
+                trapPool[i] = _go;
             }
 
             cableTraps = 3;
@@ -258,7 +258,7 @@ namespace DresslikeaGnome.OhGnomes
                     break;
                 case TrapTypes.Cable:
 
-                    for (int i = 0; i < trapPool.Count; i++)
+                    for (int i = 0; i < trapPool.Length; i++)
                     {
                         if (trapPool[i].tag.Contains("Cable"))
                         {
@@ -272,7 +272,7 @@ namespace DresslikeaGnome.OhGnomes
                     break;
                 case TrapTypes.BBQ:
 
-                    for (int i = 0; i < trapPool.Count; i++)
+                    for (int i = 0; i < trapPool.Length; i++)
                     {
                         if (trapPool[i].tag.Contains("BBQ"))
                         {

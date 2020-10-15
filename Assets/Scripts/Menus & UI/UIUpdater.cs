@@ -13,10 +13,11 @@ namespace DresslikeaGnome.OhGnomes
     {
         // not an ideal solution to UI but it works...
 
+        private FireworkMove firework;
         private GnomeTrapControl traps;
         private Text _text;
 
-        public enum Ellys { CableTrapAmount, BBQTrapAmount };
+        public enum Ellys { CableTrapAmount, BBQTrapAmount, Fireworks };
         public Ellys element;
 
 
@@ -35,6 +36,11 @@ namespace DresslikeaGnome.OhGnomes
                 case Ellys.BBQTrapAmount:
 
                     traps = GameObject.FindGameObjectWithTag("Player").GetComponent<GnomeTrapControl>();
+
+                    break;
+                case Ellys.Fireworks:
+
+                    firework = GameObject.FindGameObjectWithTag("Player").GetComponent<FireworkMove>();
 
                     break;
                 default:
@@ -60,6 +66,14 @@ namespace DresslikeaGnome.OhGnomes
                     if (!_text.text.Equals(traps.bbqTrays.ToString()))
                     {
                         _text.text = traps.bbqTrays.ToString();
+                    }
+
+                    break;
+                case Ellys.Fireworks:
+
+                    if (!_text.text.Equals(firework.ammo.ToString()))
+                    {
+                        _text.text = firework.ammo.ToString();
                     }
 
                     break;

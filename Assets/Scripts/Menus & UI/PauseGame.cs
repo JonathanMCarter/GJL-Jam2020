@@ -77,17 +77,20 @@ namespace DresslikeaGnome.OhGnomes
                 FadeInOutCanvasUI();
             }
 
-            if (Gamepad.current.enabled)
+            if (Gamepad.all.Count > 0)
             {
-                for (int i = 0; i < selectionImage.Length; i++)
+                if (Gamepad.current.enabled)
                 {
-                    if (i.Equals(pos))
+                    for (int i = 0; i < selectionImage.Length; i++)
                     {
-                        selectionImage[i].color = colours[0];
-                    }
-                    else if (!selectionImage[i].color.Equals(colours[1]))
-                    {
-                        selectionImage[i].color = colours[1];
+                        if (i.Equals(pos))
+                        {
+                            selectionImage[i].color = colours[0];
+                        }
+                        else if (!selectionImage[i].color.Equals(colours[1]))
+                        {
+                            selectionImage[i].color = colours[1];
+                        }
                     }
                 }
             }

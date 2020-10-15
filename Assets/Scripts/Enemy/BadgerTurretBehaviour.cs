@@ -16,7 +16,7 @@ namespace DresslikeaGnome.OhGnomes
         public GameObject bulletObject;
 
         // jonathan added this, makes the bullets better for performace sake.
-        public List<GameObject> bulletPool;
+        public GameObject[] bulletPool;
         private int poolAmount = 5;
 
 
@@ -27,14 +27,14 @@ namespace DresslikeaGnome.OhGnomes
             turretAnimator = GetComponent<Animator>();
 
             // jonathan added this, sets up the pool
-            bulletPool = new List<GameObject>();
+            bulletPool = new GameObject[poolAmount];
 
             for (int i = 0; i < poolAmount; i++)
             {
                 GameObject _go = Instantiate(bulletObject);
                 _go.name = "* (Pool) Badger Bullet *";
                 _go.SetActive(false);
-                bulletPool.Add(_go);
+                bulletPool[i] = _go;
             }
         }
 
