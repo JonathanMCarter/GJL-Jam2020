@@ -17,7 +17,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private Slider gnomeHealthbar;
 
         private WaitForSeconds healthCooldown;
-        private int gnomeHealth;
+        [SerializeField] private int gnomeHealth;
         private DamageIndicator ind;
         private Image barColor;
         private Color defaultBarCol;
