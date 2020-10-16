@@ -31,6 +31,7 @@ namespace DresslikeaGnome.OhGnomes
             StopAllCoroutines();
         }
 
+
         private void Awake()
         {
             healthCooldown = new WaitForSeconds(invunTime);
@@ -141,10 +142,20 @@ namespace DresslikeaGnome.OhGnomes
         /// <summary>
         /// Returns the gnome stats for use elsewhere.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Gnome | the default stats for the gnome</returns>
         public Gnome GetGnomeStats()
         {
             return gnomeStats;
+        }
+
+
+        /// <summary>
+        /// Returns the gnome health
+        /// </summary>
+        /// <returns>Int | gnome health</returns>
+        public int GetGnomeHealth()
+        {
+            return gnomeHealth;
         }
     }
 }
