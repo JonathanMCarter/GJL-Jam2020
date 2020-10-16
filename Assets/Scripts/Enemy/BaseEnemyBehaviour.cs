@@ -16,6 +16,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private float distantToTargetPlayer = 4f;
         [SerializeField] private float distantToAttackTarget = 1.4f;
 
+        private int defaultHealth;
         internal bool hitTrap;
 
         private Animator animator;
@@ -64,6 +65,7 @@ namespace DresslikeaGnome.OhGnomes
                 }
             }
 
+            defaultHealth = enemyHealth;
         }
 
         // Update is called once per frame
@@ -138,6 +140,12 @@ namespace DresslikeaGnome.OhGnomes
         public void ReduceEnemyHealth(int value)
         {
             enemyHealth -= value;
+        }
+
+        // Jonathan added this
+        public void ResetHealth()
+        {
+            enemyHealth = defaultHealth;
         }
     }
 }
