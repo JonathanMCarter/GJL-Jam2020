@@ -234,6 +234,7 @@ namespace DresslikeaGnome.OhGnomes
                 trapState = TrapStates.NoTraps;
                 currentTrapLocation = null;
                 trapGnomeOn = TrapTypes.None;
+                trapUI.HideTrapUI();
             }
         }
 
