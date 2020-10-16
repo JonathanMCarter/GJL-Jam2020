@@ -14,6 +14,7 @@ namespace DresslikeaGnome.OhGnomes
     {
         private Light[] roomLights;
         private Sun theSun;
+        private GnomeStats theGnome;
         private Animator anim;
         private bool isCoR;
 
@@ -29,12 +30,14 @@ namespace DresslikeaGnome.OhGnomes
             roomLights = FindObjectsOfType<Light>();
             anim = GetComponent<Animator>();
             theSun = GameObject.FindGameObjectWithTag("SunTarget").GetComponent<Sun>();
+            theGnome = GameObject.FindGameObjectWithTag("Player").GetComponent<GnomeStats>();
         }
 
 
         private void Update()
         {
-            if (theSun.GetHealth() <= 0)
+            // if the sun dies, or the gnome dies (game over).
+            if (theSun.GetHealth() <= 0 || theGnome.GetGnomeHealth() <= 0)
             {
                 GameOver();
             }
