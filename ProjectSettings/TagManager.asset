@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - HealingZone
   - WeaponsUI
+  - TrapUI
   layers:
   - Default
   - TransparentFX
