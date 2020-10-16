@@ -25,11 +25,15 @@ namespace DresslikeaGnome.OhGnomes
         private const string controllerPickup = "Press RT to pickup trap";
         private const string controllerToggle = "Press RB to toggle trap type";
 
+        // gnome trap
+        private GnomeTrapControl playerTraps;
 
         private void Start()
         {
             prefabInstance = Instantiate(trapUIPrefab, transform);
             prefabInstance.SetActive(false);
+
+            playerTraps = GameObject.FindGameObjectWithTag("Player").GetComponent<GnomeTrapControl>();
         }
 
 
@@ -42,6 +46,15 @@ namespace DresslikeaGnome.OhGnomes
             else
             {
                 isGamepad = false;
+            }
+
+
+            if (playerTraps.GetCurrentTrap())
+            {
+                if (playerTraps.bbqTrays.Equals(0) && playerTraps.cableTraps.Equals(0) && !playerTraps.GetCurrentTrap().hasTrap)
+                {
+                    HideTrapUI();
+                }
             }
         }
 
@@ -114,12 +127,6 @@ namespace DresslikeaGnome.OhGnomes
         public void HideTrapUI()
         {
             prefabInstance.SetActive(false);
-        }
-
-
-        public bool IsInstanceActive()
-        {
-            return prefabInstance.activeInHierarchy;
         }
     }
 }
