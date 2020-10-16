@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4328108457815156473
+--- !u!1 &774355721
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4328108457815156477}
-  - component: {fileID: 4328108457815156476}
-  - component: {fileID: 4328108457815156475}
-  - component: {fileID: 4328108457815156474}
-  - component: {fileID: 458080342}
+  - component: {fileID: 774355722}
+  - component: {fileID: 774355725}
+  - component: {fileID: 774355724}
   m_Layer: 0
-  m_Name: BBQTrap
-  m_TagString: BBQTrap
+  m_Name: ModelPlaceholder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4328108457815156477
+--- !u!4 &774355722
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4328108457815156473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1, y: -0.025, z: 4.887}
-  m_LocalScale: {x: 3, y: 0.1, z: 1.5}
-  m_Children:
-  - {fileID: 4328108459007938343}
-  - {fileID: 4328108458516829011}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4328108457815156476
+  m_GameObject: {fileID: 774355721}
+  m_LocalRotation: {x: 0.0014016471, y: 0.0050581223, z: 0.016647035, w: 0.9998477}
+  m_LocalPosition: {x: 0, y: -0.01999998, z: 0}
+  m_LocalScale: {x: 6.190756, y: 0.87749594, z: 4.2892313}
+  m_Children: []
+  m_Father: {fileID: 4328108457815156477}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0.151, y: 0.582, z: 1.908}
+--- !u!33 &774355725
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4328108457815156473}
+  m_GameObject: {fileID: 774355721}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4328108457815156475
+--- !u!23 &774355724
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4328108457815156473}
+  m_GameObject: {fileID: 774355721}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,6 +81,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4328108457815156473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4328108457815156477}
+  - component: {fileID: 4328108457815156474}
+  - component: {fileID: 458080342}
+  m_Layer: 0
+  m_Name: BBQTrap
+  m_TagString: BBQTrap
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4328108457815156477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328108457815156473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.1, y: -0.025, z: 4.887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4328108459007938343}
+  - {fileID: 4328108458516829011}
+  - {fileID: 774355722}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4328108457815156474
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -96,7 +127,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 4.6170797
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &458080342
 MonoBehaviour:
@@ -138,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 4328108458516829010}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.79, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.25, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4328108457815156477}
   m_RootOrder: 1
@@ -219,13 +250,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4328108459007938342}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4328108457815156477}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!198 &4328108459007938345
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -861,7 +892,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 3, y: 1.5, z: 1}
+    m_Scale: {x: 3, y: 5.96, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
