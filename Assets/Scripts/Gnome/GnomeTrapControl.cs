@@ -330,5 +330,11 @@ namespace DresslikeaGnome.OhGnomes
                 selectedTrap = TrapTypes.Cable;
             }
         }
+
+
+        public TrapPlacementArea GetCurrentTrap()
+        {
+            return currentTrapLocation;
+        }
     }
 }

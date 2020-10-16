@@ -21,12 +21,21 @@ namespace DresslikeaGnome.OhGnomes
 
         private void OnTriggerEnter(Collider other)
         {
-            GetComponent<MeshRenderer>().enabled = true;
+            if (other.gameObject.CompareTag("Player"))
+            {
+                if (other.gameObject.GetComponent<GnomeTrapControl>().bbqTrays > 0 || other.gameObject.GetComponent<GnomeTrapControl>().cableTraps > 0 || hasTrap)
+                {
+                    GetComponent<MeshRenderer>().enabled = true;
+                }
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            GetComponent<MeshRenderer>().enabled = false;
+            if (GetComponent<MeshRenderer>())
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
         }
     }
 }
