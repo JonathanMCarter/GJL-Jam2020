@@ -35,6 +35,8 @@ namespace DresslikeaGnome.OhGnomes
         private FishingRodMove rodAttack;
         private UmbrellaMove umbrellaAttack;
         private FireworkMove fireworkAttack;
+        [SerializeField] private WeaponUI weaponUI;
+
 
         internal Animator anim;
 
@@ -204,6 +206,12 @@ namespace DresslikeaGnome.OhGnomes
             {
                 activeWeapon = GnomeWeapons.Firework;
             }
+
+            // update the weapon stats
+            if (weaponUI)
+            {
+                weaponUI.SendUpdatedWeaponStats();
+            }
         }
 
         /// <summary>
@@ -261,6 +269,7 @@ namespace DresslikeaGnome.OhGnomes
                 rodAttack.rodAttackType = FishingRodAttack.Melee;
             }
 
+            weaponUI.ForceWeaponUIUpdate();
             StartCoroutine(ToggleCooldownCo());
         }
     }
