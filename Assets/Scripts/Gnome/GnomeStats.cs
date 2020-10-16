@@ -18,6 +18,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private WaitForSeconds healthCooldown;
         [SerializeField] private int gnomeHealth;
+        private int maxGnomeHealth;
         private DamageIndicator ind;
         [SerializeField] private Image barColor;
         [SerializeField] private Color defaultBarCol;
@@ -36,6 +37,7 @@ namespace DresslikeaGnome.OhGnomes
             healthCooldown = new WaitForSeconds(invunTime);
 
             gnomeHealth = gnomeStats.health;
+            maxGnomeHealth = gnomeStats.health;
 
             if (gnomeHealthbar)
             {
@@ -65,7 +67,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void OnTriggerEnter(Collider other)
         {
-            // rather basic, it would need to check for the state of the enemy to know if the gnome is being attacked
+            // The enemy attack collider is only activated during the attack animation so we can safely say when the enemy is actually hitting ht egnome
             if (other.gameObject.CompareTag("EnemyAttack"))
             {
                 if (!isInvun)
@@ -73,7 +75,22 @@ namespace DresslikeaGnome.OhGnomes
                     StartCoroutine(InvunCo());
                 }
             }
+            
+            //easier to have the gnome decide if he's being healed rather than having to reach from the healing zone to here
+            if (other.gameObject.CompareTag("HealingZone"))
+            {
+                StartHealing();
+            }
         }
+
+        private void OnTriggerExit(Collider other) 
+        {
+            if (other.gameObject.CompareTag("HealingZone"))
+            {
+                StopHealing();
+            }
+        }
+        
 
         /// <summary>
         /// Reduces player health by 1 and makes it so the gnome can't get hit again until some time has passed.
@@ -83,12 +100,34 @@ namespace DresslikeaGnome.OhGnomes
         {
             isInvun = true;
             gnomeHealth -= 1;
-            ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.blue);
+            ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.red);
             StartCoroutine(HealthbarFlicker());
             yield return healthCooldown;
             isInvun = false;
         }
 
+
+        private void HealingCo()
+        {
+            gnomeHealth += 1;
+            ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.green);
+            StartCoroutine(HealthbarFlicker());
+        }
+
+        //we want to heal the gnome BUT not too much
+        private void StartHealing()
+        {
+            if (gnomeHealth < maxGnomeHealth)
+                InvokeRepeating("HealingCo", 0.1f, 1);
+            else
+                CancelInvoke("HealingCo");
+
+        }
+
+        private void StopHealing()
+        {
+            CancelInvoke("HealingCo");
+        }
 
 
         private IEnumerator HealthbarFlicker()
@@ -97,6 +136,7 @@ namespace DresslikeaGnome.OhGnomes
             yield return new WaitForSeconds(.1f);
             barColor.color = defaultBarCol;
         }
+
 
 
         /// <summary>

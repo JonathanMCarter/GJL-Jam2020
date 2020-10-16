@@ -12,6 +12,8 @@ TagManager:
   - EnemyAttack
   - GnomeAttack
   - SceneTransition
+  - Ground
+  - HealingZone
   layers:
   - Default
   - TransparentFX
