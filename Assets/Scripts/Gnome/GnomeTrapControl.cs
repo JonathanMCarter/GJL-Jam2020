@@ -30,6 +30,7 @@ namespace DresslikeaGnome.OhGnomes
         private bool canUseInput;
         private bool canUseToggle;
         private WaitForSeconds wait;
+        private TrapUI trapUI;
 
         // max ammo and ammo
         internal int maxCableTraps = 3;
@@ -81,6 +82,7 @@ namespace DresslikeaGnome.OhGnomes
             canUseInput = true;
             canUseToggle = true;
             wait = new WaitForSeconds(.2f);
+            trapUI = GameObject.FindGameObjectWithTag("TrapUI").GetComponent<TrapUI>();
         }
 
 
@@ -184,6 +186,8 @@ namespace DresslikeaGnome.OhGnomes
                 {
                     currentTrapLocation = other.gameObject.GetComponent<TrapPlacementArea>();
                     trapGnomeOn = currentTrapLocation.currentTrap;
+                    trapUI.UpdateTrapUIDetails(trapState, trapGnomeOn, selectedTrap);
+                    trapUI.DisplayTrapUI(currentTrapLocation.transform.GetChild(0).transform);
                 }
             }
         }
@@ -193,6 +197,8 @@ namespace DresslikeaGnome.OhGnomes
         {
             if (other.gameObject.CompareTag("TrapSquare"))
             {
+                trapUI.UpdateTrapUIDetails(trapState, trapGnomeOn, selectedTrap);
+
                 if (other.gameObject.GetComponent<TrapPlacementArea>() && !currentTrapLocation)
                 {
                     currentTrapLocation = other.gameObject.GetComponent<TrapPlacementArea>();
@@ -228,6 +234,7 @@ namespace DresslikeaGnome.OhGnomes
                 trapState = TrapStates.NoTraps;
                 currentTrapLocation = null;
                 trapGnomeOn = TrapTypes.None;
+                trapUI.HideTrapUI();
             }
         }
 
@@ -301,8 +308,11 @@ namespace DresslikeaGnome.OhGnomes
         /// </summary>
         private void PickupTrap()
         {
-            currentTrapLocation.transform.GetChild(0).gameObject.SetActive(false);
-            currentTrapLocation.transform.GetChild(0).SetParent(null);
+            if (currentTrapLocation.transform.GetChild(1))
+            {
+                currentTrapLocation.transform.GetChild(1).gameObject.SetActive(false);
+                currentTrapLocation.transform.GetChild(1).SetParent(null);
+            }
         }
 
 
