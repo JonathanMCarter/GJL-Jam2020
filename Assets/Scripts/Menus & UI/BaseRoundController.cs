@@ -22,9 +22,6 @@ namespace DresslikeaGnome.OhGnomes
         public float spawnEverySeconds = 10.0f;
         public List<Wave> waves;
 
-        public List<GameObject> spawners;
-
-
         // Start is called before the first frame update
         void Start()
         {
