@@ -161,7 +161,11 @@ namespace DresslikeaGnome.OhGnomes
 
                 animator.SetTrigger("Attack");
                 animator.SetBool("IsMoving", false);
-                transform.LookAt(playerTarget.transform);
+
+                if (Target.gameObject.CompareTag("Player"))
+                {
+                    transform.LookAt(playerTarget.transform);
+                }
             }
             else
             {

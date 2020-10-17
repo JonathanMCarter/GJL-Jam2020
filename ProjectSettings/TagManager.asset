@@ -17,6 +17,7 @@ TagManager:
   - WeaponsUI
   - TrapUI
   - AudioManager
+  - Scene
   layers:
   - Default
   - TransparentFX
