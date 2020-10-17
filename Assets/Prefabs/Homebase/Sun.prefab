@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 1627317111413977394}
   - component: {fileID: 1627317111413977392}
   - component: {fileID: 1772590713}
-  - component: {fileID: 1772590712}
   m_Layer: 0
   m_Name: Sun
   m_TagString: SunTarget
@@ -241,20 +240,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 5, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1772590712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627317111413977407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2dd963f25fced429b32aa88a2ca688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sunhealth: 30
-  sunHealthBar: {fileID: 0}
 --- !u!1 &8131104192960314567
 GameObject:
   m_ObjectHideFlags: 0
