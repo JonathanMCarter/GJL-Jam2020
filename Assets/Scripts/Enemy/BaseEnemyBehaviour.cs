@@ -20,9 +20,11 @@ namespace DresslikeaGnome.OhGnomes
         internal bool hitTrap;
 
         private Animator animator;
+
+
         protected virtual void Awake()
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
 
             //in case we're missing anythign then hunt for it here
             if (sunTarget == null)
@@ -71,6 +73,7 @@ namespace DresslikeaGnome.OhGnomes
         // Update is called once per frame
         protected virtual void Update()
         {
+
             //the enemy should go for the sun initially
             checkPlayerDistance();
 
@@ -111,10 +114,12 @@ namespace DresslikeaGnome.OhGnomes
                 // jonathan (stops the NMA from pushing the gnome around xD)
                 agent.isStopped = true;
                 animator.SetTrigger("Attack");
+                animator.SetBool("IsMoving", false);
             }
             else
             {
                 agent.isStopped = false;
+                animator.SetBool("IsMoving", true);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CarterGames.Assets.AudioManager;
+using UnityEngine;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -11,11 +12,13 @@ namespace DresslikeaGnome.OhGnomes
     public class AnimationEvent : MonoBehaviour
     {
         private FishingRodMove rodMove;
+        //private AudioManager am;
 
 
         private void Start()
         {
             rodMove = GetComponentInParent<FishingRodMove>();
+            //am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         }
 
 
@@ -30,5 +33,11 @@ namespace DresslikeaGnome.OhGnomes
             rodMove.moves.freezeGnome = true;
             rodMove.hasSwung = true;
         }
+
+
+        //public void PlayFootstep()
+        //{
+        //    am.Play("");
+        //}
     }
 }

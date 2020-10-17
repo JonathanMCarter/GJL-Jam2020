@@ -16,6 +16,7 @@ TagManager:
   - HealingZone
   - WeaponsUI
   - TrapUI
+  - AudioManager
   layers:
   - Default
   - TransparentFX
