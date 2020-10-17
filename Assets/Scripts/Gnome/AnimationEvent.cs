@@ -13,6 +13,7 @@ namespace DresslikeaGnome.OhGnomes
     {
         private FishingRodMove rodMove;
         [SerializeField] private BoxCollider attackCollider;
+        [SerializeField] private BadgerTurretBehaviour turret;
         //private AudioManager am;
 
 
@@ -50,6 +51,12 @@ namespace DresslikeaGnome.OhGnomes
         public void DeactivateAttack()
         {
             attackCollider.GetComponent<Collider>().enabled = false;
+        }
+
+
+        public void FireBullet()
+        {
+            turret.FireBullet();
         }
     }
 }

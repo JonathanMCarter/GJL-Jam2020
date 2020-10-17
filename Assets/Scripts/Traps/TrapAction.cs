@@ -99,6 +99,7 @@ namespace DresslikeaGnome.OhGnomes
             hit.GetComponent<NavMeshAgent>().isStopped = true;
             hit.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             hit.GetComponent<BaseEnemyBehaviour>().hitTrap = true;
+            hit.GetComponentInChildren<Animator>().SetBool("IsMoving", false);
             ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
             tempParticles.transform.position = hit.transform.position;
             tempParticles.SetActive(true);

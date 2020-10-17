@@ -32,6 +32,11 @@ namespace DresslikeaGnome.OhGnomes
         private void OnEnable()
         {
             IsCoR = false;
+
+            if (agent)
+            {
+                agent.enabled = true;
+            }
         }
 
 
@@ -96,8 +101,15 @@ namespace DresslikeaGnome.OhGnomes
                 if (!IsCoR)
                 {
                     animator.SetTrigger("IsDead");
+                    agent.enabled = false;
+                    agent.isStopped = true;
                     StartCoroutine(Despawn());
                 }
+            }
+
+            if (agent.isStopped)
+            {
+                animator.SetBool("IsMoving", false);
             }
         }
 
@@ -111,12 +123,20 @@ namespace DresslikeaGnome.OhGnomes
                 //If the player is close enough then target them
                 if (playerDistance < distantToTargetPlayer)
                 {
-                    agent.SetDestination(playerTarget.transform.position);
+                    if (agent && agent.enabled)
+                    {
+                        agent.SetDestination(playerTarget.transform.position);
+                    }
+
                     checkCurrenttargetDistance(playerTarget);
                 }
                 else
                 {
-                    agent.SetDestination(sunTarget.transform.position);
+                    if (agent && agent.enabled)
+                    {
+                        agent.SetDestination(sunTarget.transform.position);
+                    }
+
                     checkCurrenttargetDistance(sunTarget);
                 }
             }
@@ -129,13 +149,22 @@ namespace DresslikeaGnome.OhGnomes
             if (targetDistance < distantToAttackTarget)
             {
                 // jonathan (stops the NMA from pushing the gnome around xD)
-                agent.isStopped = true;
+                if (agent && agent.enabled)
+                {
+                    agent.isStopped = true;
+                }
+
                 animator.SetTrigger("Attack");
                 animator.SetBool("IsMoving", false);
+                transform.LookAt(playerTarget.transform);
             }
             else
             {
-                agent.isStopped = false;
+                if (agent && agent.enabled)
+                {
+                    agent.isStopped = false;
+                }
+            
                 animator.SetBool("IsMoving", true);
             }
         }

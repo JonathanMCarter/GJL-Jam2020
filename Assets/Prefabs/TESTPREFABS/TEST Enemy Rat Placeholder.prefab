@@ -13,6 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 8021738456183105573}
+  turret: {fileID: 0}
+--- !u!114 &6526599479046090582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454385420193227915}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865d86f25bb1d1c47849a73bee544479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3352401746322911914
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,8 +247,8 @@ Rigidbody:
   m_GameObject: {fileID: 8021738455493123424}
   serializedVersion: 2
   m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 100
+  m_AngularDrag: 100
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -434,6 +447,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 84588efdd78bad640bc4640c85cacc2b, type: 2}
+    - target: {fileID: 8743813690021804245, guid: 40ee278c11fe9d54e9fe3fa3a6702ead,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77ca8374ac36e8b45a21e8819a506587, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40ee278c11fe9d54e9fe3fa3a6702ead, type: 3}
 --- !u!1 &2454385420193227915 stripped
