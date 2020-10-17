@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 *  W: https://jonathan.carter.games/
 */
 
-namespace DresslikeaGnome.OhGnomes
+namespace DresslikeaGnome.OhGnomes.Audio
 {
     public class MusicCrossfade : MonoBehaviour
     {
