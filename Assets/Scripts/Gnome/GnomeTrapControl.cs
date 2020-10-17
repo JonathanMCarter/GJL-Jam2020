@@ -35,6 +35,8 @@ namespace DresslikeaGnome.OhGnomes
         // max ammo and ammo
         internal int maxCableTraps = 10;
         internal int maxBBqTrays = 10;
+        internal int cablePlaced;
+        internal int bbqPlaced;
         internal int cableTraps;
         internal int bbqTrays;
 
@@ -105,6 +107,7 @@ namespace DresslikeaGnome.OhGnomes
                                 currentTrapLocation.hasTrap = true;
                                 currentTrapLocation.currentTrap = TrapTypes.Cable;
                                 cableTraps -= 1;
+                                cablePlaced += 1;
                             }
 
                             break;
@@ -116,6 +119,7 @@ namespace DresslikeaGnome.OhGnomes
                                 currentTrapLocation.hasTrap = true;
                                 currentTrapLocation.currentTrap = TrapTypes.BBQ;
                                 bbqTrays -= 1;
+                                bbqPlaced += 1;
                             }
 
                             break;
@@ -136,6 +140,7 @@ namespace DresslikeaGnome.OhGnomes
                             currentTrapLocation.hasTrap = false;
                             currentTrapLocation.currentTrap = TrapTypes.None;
                             cableTraps += 1;
+                            cablePlaced -= 1;
 
                             break;
                         case TrapTypes.BBQ:
@@ -144,6 +149,7 @@ namespace DresslikeaGnome.OhGnomes
                             currentTrapLocation.hasTrap = false;
                             currentTrapLocation.currentTrap = TrapTypes.None;
                             bbqTrays += 1;
+                            bbqPlaced -= 1;
 
                             break;
                         default:
