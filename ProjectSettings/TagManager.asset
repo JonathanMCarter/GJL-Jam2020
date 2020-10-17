@@ -11,6 +11,11 @@ TagManager:
   - BBQTrap
   - EnemyAttack
   - GnomeAttack
+  - SceneTransition
+  - Ground
+  - HealingZone
+  - WeaponsUI
+  - TrapUI
   layers:
   - Default
   - TransparentFX

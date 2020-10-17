@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -11,13 +13,20 @@ namespace DresslikeaGnome.OhGnomes
     public class FireworksControl : MonoBehaviour
     {
         [SerializeField] private GameObject fireworkPrefab;
+        [SerializeField] private GameObject[] fireworkPool;
 
-        private GameObject instance;
 
         private void Start()
         {
-            instance = Instantiate(fireworkPrefab);
-            instance.SetActive(false);
+            fireworkPool = new GameObject[3];
+
+            for (int i = 0; i < fireworkPool.Length; i++)
+            {
+                GameObject _go = Instantiate(fireworkPrefab);
+                _go.name = "* (Pool) Firework Hit *";
+                _go.SetActive(false);
+                fireworkPool[i] = _go;
+            }
         }
 
         /// <summary>
@@ -25,8 +34,15 @@ namespace DresslikeaGnome.OhGnomes
         /// </summary>
         public void HitTarget(GameObject hit)
         {
-            instance.transform.position = hit.transform.position;
-            instance.SetActive(true);
+            for (int i = 0; i < fireworkPool.Length; i++)
+            {
+                if (!fireworkPool[i].activeInHierarchy)
+                {
+                    fireworkPool[i].transform.position = hit.transform.position;
+                    fireworkPool[i].SetActive(true);
+                    break;
+                }
+            }
         }
     }
 }

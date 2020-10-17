@@ -12,9 +12,16 @@ namespace DresslikeaGnome.OhGnomes
     {
         [SerializeField] private GameObject toFollow;
 
+        [SerializeField] private bool updateRotation = false;
+
         private void Update()
         {
             transform.position = toFollow.transform.position;
+
+            if (updateRotation)
+            {
+                transform.rotation = toFollow.transform.rotation;
+            }
         }
     }
 }

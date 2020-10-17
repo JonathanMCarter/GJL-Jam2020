@@ -1,50 +1,131 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MainRoundController : MonoBehaviour
+namespace DresslikeaGnome.OhGnomes
 {
-    // Start is called before the first frame update
-
-    [SerializeField]
-    private List<GameObject> roundControllerObjects;
-    
-    private int currentRound = 0;
-
-    void Start()
+    public class MainRoundController : MonoBehaviour
     {
-        StartRound();
-    }
+        // Start is called before the first frame update
 
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField]
+        private List<GameObject> roundControllerObjects;
         
-    }
+        [SerializeField]
+        private GameObject nextRoundUI;
+        private int currentRound = 0;
 
-    private void StartRound()
-    {
-        Debug.Log("Starting the Round");
+        // jonathan edit
+        [Header("Timer Text & Game UI")]
+        [SerializeField] private GameObject[] _GameUI;
+        [SerializeField] private Text _timerText;
+        [SerializeField] private float _timeLimit;
+        private float _timer;
+        private bool isTimerRunning;
+        private string _mins, _secs;
 
-        roundControllerObjects[currentRound].SetActive(true);
-    }
+        private SceneTransitions trans;
 
-    public void EndRound()
-    {
-        Debug.Log("Ending Round");
 
-        roundControllerObjects[currentRound].SetActive(false);
+        void Start()
+        {
+            trans = GameObject.FindGameObjectWithTag("SceneTransition").GetComponent<SceneTransitions>();
 
-        currentRound++;
 
-        if(currentRound <= roundControllerObjects.Count)
+            // jonathan edit
+            for (int i = 0; i < _GameUI.Length; i++)
+            {
+                _GameUI[i].SetActive(false);
+            }
+
+            _timer = _timeLimit;
+            isTimerRunning = true;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // jonathan edit - round start timer...
+            if (isTimerRunning)
+            {
+                _timer -= Time.deltaTime;
+
+                if (_timer < 0)
+                {
+                    StartNextRound();
+                    _timer = 90;
+                    isTimerRunning = false;
+                }
+            }
+
+            TimerDisplay();
+        }
+
+
+        private void StartRound()
+        {
+            roundControllerObjects[currentRound].SetActive(true);
+        }
+
+
+        public void EndRound()
+        {
+            roundControllerObjects[currentRound].SetActive(false);
+
+            currentRound++;
+
+            //because of how arrays are counts (item 1 = array spot 0) have to look one below
+            if(currentRound >= roundControllerObjects.Count)
+                EndGame();  //all rounds completed
+
+            //still another round to go!
+            nextRoundUI.SetActive(true);
+
+            // jonathan edit
+            for (int i = 0; i < _GameUI.Length; i++)
+            {
+                _GameUI[i].SetActive(false);
+            }
+
+            isTimerRunning = true;
+        }
+
+
+        public void StartNextRound()
+        {
+            nextRoundUI.SetActive(false);
+
+            // jonathan edit
+            for (int i = 0; i < _GameUI.Length; i++)
+            {
+                _GameUI[i].SetActive(true);
+            }
+
+            isTimerRunning = false;
+
             StartRound();   //onto the next round!
-        else
-            EndGame();  //all rounds completed
-    }
+        }
 
-    private void EndGame()
-    {
-        Debug.Log("Game Complete!");
+        private void EndGame()
+        {
+            trans.ChangeSceneTransition("Main Menu");
+        }
+
+
+        /// <summary>
+        /// Shows the round timer
+        /// </summary>
+        private void TimerDisplay()
+        {
+            if (isTimerRunning)
+            {
+                _mins = Mathf.Floor(((_timer) % 3600) / 60).ToString("00");
+                _secs = Mathf.Floor((_timer) % 60).ToString("00");
+                _timerText.text = "Next Round In: " + _mins + ":" + _secs;
+            }
+        }
     }
 }
+

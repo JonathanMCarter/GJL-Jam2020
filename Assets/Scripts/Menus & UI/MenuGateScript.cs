@@ -16,6 +16,12 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private bool shouldQuitGame;
         [SerializeField] private string sceneName;
         [SerializeField] private GameObject UI;
+        private SceneTransitions trans;
+
+        private void Start()
+        {
+            trans = GameObject.FindGameObjectWithTag("SceneTransition").GetComponent<SceneTransitions>();
+        }
 
 
         private void OnTriggerEnter(Collider other)
@@ -25,7 +31,7 @@ namespace DresslikeaGnome.OhGnomes
                 // opens a scene
                 if (shouldChangeScene)
                 {
-                    SceneManager.LoadSceneAsync(sceneName);
+                    trans.ChangeSceneTransition(sceneName);
                 }
                 else if (shouldQuitGame)    // quits the game if true on the portal
                 {

@@ -34,8 +34,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _MaxDistance: 4.6
-    - _MinDistance: 7
+    - _MaxDistance: 4.29
+    - _MinDistance: 7.7
     m_Colors:
-    - _Colour: {r: 0.24768601, g: 0.2802104, b: 0.4339623, a: 0.02745098}
+    - _Colour: {r: 0.06888572, g: 0.11400849, b: 0.33962262, a: 0.21176471}
   m_BuildTextureStacks: []

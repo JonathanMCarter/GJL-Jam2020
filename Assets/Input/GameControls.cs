@@ -306,7 +306,7 @@ namespace DresslikeaGnome.OhGnomes
                 {
                     ""name"": """",
                     ""id"": ""61e743e3-b4b5-4987-8d4f-98d2e69ce5fc"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<XInputController>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
@@ -448,6 +448,22 @@ namespace DresslikeaGnome.OhGnomes
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MenuUD"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""72f5409a-27ce-48ef-bdff-81be7e0ba4f3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MenuUse"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ebddb2ce-59ba-46a2-98b2-ab8abaafc5b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -470,6 +486,50 @@ namespace DresslikeaGnome.OhGnomes
                     ""processors"": """",
                     ""groups"": ""Controller"",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f693744b-0605-4b35-8c14-2029f3322f99"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUD"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""948c3646-1635-4d87-99a8-23b4b8c92db5"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9f021123-ba12-4359-8ea3-53ea9337e126"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18afe464-62e6-4951-88c6-e0c81a0c29b2"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -520,6 +580,8 @@ namespace DresslikeaGnome.OhGnomes
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_PauseGame = m_Menu.FindAction("PauseGame", throwIfNotFound: true);
+            m_Menu_MenuUD = m_Menu.FindAction("MenuUD", throwIfNotFound: true);
+            m_Menu_MenuUse = m_Menu.FindAction("MenuUse", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -667,11 +729,15 @@ namespace DresslikeaGnome.OhGnomes
         private readonly InputActionMap m_Menu;
         private IMenuActions m_MenuActionsCallbackInterface;
         private readonly InputAction m_Menu_PauseGame;
+        private readonly InputAction m_Menu_MenuUD;
+        private readonly InputAction m_Menu_MenuUse;
         public struct MenuActions
         {
             private @GameControls m_Wrapper;
             public MenuActions(@GameControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @PauseGame => m_Wrapper.m_Menu_PauseGame;
+            public InputAction @MenuUD => m_Wrapper.m_Menu_MenuUD;
+            public InputAction @MenuUse => m_Wrapper.m_Menu_MenuUse;
             public InputActionMap Get() { return m_Wrapper.m_Menu; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -684,6 +750,12 @@ namespace DresslikeaGnome.OhGnomes
                     @PauseGame.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnPauseGame;
                     @PauseGame.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnPauseGame;
                     @PauseGame.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnPauseGame;
+                    @MenuUD.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuUD;
+                    @MenuUD.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuUD;
+                    @MenuUD.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuUD;
+                    @MenuUse.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuUse;
+                    @MenuUse.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuUse;
+                    @MenuUse.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuUse;
                 }
                 m_Wrapper.m_MenuActionsCallbackInterface = instance;
                 if (instance != null)
@@ -691,6 +763,12 @@ namespace DresslikeaGnome.OhGnomes
                     @PauseGame.started += instance.OnPauseGame;
                     @PauseGame.performed += instance.OnPauseGame;
                     @PauseGame.canceled += instance.OnPauseGame;
+                    @MenuUD.started += instance.OnMenuUD;
+                    @MenuUD.performed += instance.OnMenuUD;
+                    @MenuUD.canceled += instance.OnMenuUD;
+                    @MenuUse.started += instance.OnMenuUse;
+                    @MenuUse.performed += instance.OnMenuUse;
+                    @MenuUse.canceled += instance.OnMenuUse;
                 }
             }
         }
@@ -728,6 +806,8 @@ namespace DresslikeaGnome.OhGnomes
         public interface IMenuActions
         {
             void OnPauseGame(InputAction.CallbackContext context);
+            void OnMenuUD(InputAction.CallbackContext context);
+            void OnMenuUse(InputAction.CallbackContext context);
         }
     }
 }
