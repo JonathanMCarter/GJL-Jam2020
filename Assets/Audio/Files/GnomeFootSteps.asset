@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584927ece21b73c4eb9ad14d28cb06af, type: 3}
+  m_Name: GnomeFootSteps
+  m_EditorClassIdentifier: 
+  clipName:
+  - Gnome_Step_1
+  - Gnome_Step_2
+  - Gnome_Step_3
+  - Gnome_Step_4
+  - Gnome_Step_5
+  - Gnome_Step_6
+  - Gnome_Step_7
+  - Gnome_Step_8
+  audioClip:
+  - {fileID: 8300000, guid: 4d7a7b09a2651744b964b5e1f2f02665, type: 3}
+  - {fileID: 8300000, guid: a747244d87f412845933bb801249cf16, type: 3}
+  - {fileID: 8300000, guid: 903f80c44590ac3468cbc8c6fa61655d, type: 3}
+  - {fileID: 8300000, guid: 145936a3d6ef4cd41bc59cb5dbe7d118, type: 3}
+  - {fileID: 8300000, guid: 98e610d07fb825d4699b0af7fe2be4d9, type: 3}
+  - {fileID: 8300000, guid: 34f8144563322e348b6fbc3594766f38, type: 3}
+  - {fileID: 8300000, guid: 187c8fb83bd9e9a49ba0a4f5ecb49294, type: 3}
+  - {fileID: 8300000, guid: 3f29832c6413a1e459337240bded5c9b, type: 3}
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  isPopulated: 0
+  hasDirectories: 1
+  directory:
+  - SFX/Footsteps/Gnome Steps

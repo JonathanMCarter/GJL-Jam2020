@@ -33,8 +33,8 @@ namespace DresslikeaGnome.OhGnomes
         private TrapUI trapUI;
 
         // max ammo and ammo
-        internal int maxCableTraps = 3;
-        internal int maxBBqTrays = 3;
+        internal int maxCableTraps = 10;
+        internal int maxBBqTrays = 10;
         internal int cableTraps;
         internal int bbqTrays;
 

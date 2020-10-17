@@ -22,6 +22,7 @@ namespace DresslikeaGnome.OhGnomes
         private DamageIndicator ind;
         [SerializeField] private Image barColor;
         [SerializeField] private Color defaultBarCol;
+        private Animator anim;
 
         internal bool isInvun = false;
 
@@ -51,6 +52,8 @@ namespace DresslikeaGnome.OhGnomes
             {
                 ind = FindObjectOfType<DamageIndicator>();
             }
+
+            anim = GetComponentInChildren<Animator>();
         }
 
 
@@ -63,6 +66,11 @@ namespace DresslikeaGnome.OhGnomes
                     gnomeHealthbar.value = gnomeHealth;
                 }
             }
+
+            if (gnomeHealth <= 0)
+            {
+                anim.SetTrigger("IsDead");
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -70,6 +78,8 @@ namespace DresslikeaGnome.OhGnomes
             // The enemy attack collider is only activated during the attack animation so we can safely say when the enemy is actually hitting ht egnome
             if (other.gameObject.CompareTag("EnemyAttack"))
             {
+                anim.SetTrigger("IsHit");
+                
                 if (!isInvun)
                 {
                     StartCoroutine(InvunCo());

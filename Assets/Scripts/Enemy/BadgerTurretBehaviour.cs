@@ -11,7 +11,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private float maxDistantToShootTarget = 5f;
 
         private GameObject shootTarget;
-        private Animator turretAnimator;
+        [SerializeField] private Animator turretAnimator;
 
         public GameObject bulletObject;
 
@@ -23,8 +23,7 @@ namespace DresslikeaGnome.OhGnomes
         private new void Awake()
         {
             base.Awake();
-            shootTarget = base.getSunTarget();
-            turretAnimator = GetComponent<Animator>();
+            shootTarget = getSunTarget();
 
             // jonathan added this, sets up the pool
             bulletPool = new GameObject[poolAmount];
@@ -42,7 +41,7 @@ namespace DresslikeaGnome.OhGnomes
         private new void Update()
         {
             //make the turret looktoward the target
-            transform.LookAt(shootTarget.transform);
+            //transform.LookAt(shootTarget.transform);
 
             float shootTargetDistance = Vector3.Distance(transform.position, shootTarget.transform.position);
 

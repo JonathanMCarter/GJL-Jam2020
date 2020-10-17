@@ -17,7 +17,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private GameObject pickupPrefab;
 
         private GameObject[] pickupsPool;
-        private TrapPlacementArea[] placementPoints;
+        [SerializeField] private TrapPlacementArea[] placementPoints;
         private bool isCoR;
 
         private void OnDisable()

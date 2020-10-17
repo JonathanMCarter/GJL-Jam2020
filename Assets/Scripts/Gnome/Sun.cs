@@ -54,7 +54,7 @@ namespace DresslikeaGnome.OhGnomes
 
             music = FindObjectOfType<MusicCrossfade>();
 
-            
+            music.ResetIntensity();
         }
 
 

@@ -16,12 +16,12 @@ namespace DresslikeaGnome.OhGnomes
             base.Update();
         }
 
-        public void activateAttack()
+        public void ActivateAttack()
         {
             attackCollider.GetComponent<Collider>().enabled = true;
         }
 
-        public void deactivateAttack()
+        public void DeactivateAttack()
         {
             attackCollider.GetComponent<Collider>().enabled = false;
         }
