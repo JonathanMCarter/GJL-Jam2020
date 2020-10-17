@@ -12,6 +12,7 @@ namespace DresslikeaGnome.OhGnomes
     public class AnimationEvent : MonoBehaviour
     {
         private FishingRodMove rodMove;
+        [SerializeField] private BoxCollider attackCollider;
         //private AudioManager am;
 
 
@@ -39,5 +40,16 @@ namespace DresslikeaGnome.OhGnomes
         //{
         //    am.Play("");
         //}
+
+
+        public void ActivateAttack()
+        {
+            attackCollider.GetComponent<Collider>().enabled = true;
+        }
+
+        public void DeactivateAttack()
+        {
+            attackCollider.GetComponent<Collider>().enabled = false;
+        }
     }
 }

@@ -20,6 +20,19 @@ namespace DresslikeaGnome.OhGnomes
         internal bool hitTrap;
 
         private Animator animator;
+        private bool IsCoR;
+
+
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+        }
+
+        private void OnEnable()
+        {
+            IsCoR = false;
+        }
 
 
         protected virtual void Awake()
@@ -80,7 +93,11 @@ namespace DresslikeaGnome.OhGnomes
             // jonathan added this
             if (enemyHealth <= 0)
             {
-                gameObject.SetActive(false);
+                if (!IsCoR)
+                {
+                    animator.SetTrigger("IsDead");
+                    StartCoroutine(Despawn());
+                }
             }
         }
 
@@ -129,6 +146,13 @@ namespace DresslikeaGnome.OhGnomes
         // }
 
 
+        private IEnumerator Despawn()
+        {
+            IsCoR = true;
+            yield return new WaitForSeconds(2.5f);
+            gameObject.SetActive(false);
+        }
+
 
         public GameObject getSunTarget()
         {
@@ -145,6 +169,7 @@ namespace DresslikeaGnome.OhGnomes
         public void ReduceEnemyHealth(int value)
         {
             enemyHealth -= value;
+            animator.SetTrigger("IsHit");
         }
 
         // Jonathan added this

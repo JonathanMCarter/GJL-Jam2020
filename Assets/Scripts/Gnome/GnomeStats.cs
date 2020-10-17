@@ -66,6 +66,11 @@ namespace DresslikeaGnome.OhGnomes
                     gnomeHealthbar.value = gnomeHealth;
                 }
             }
+
+            if (gnomeHealth <= 0)
+            {
+                anim.SetTrigger("IsDead");
+            }
         }
 
         private void OnTriggerEnter(Collider other)
