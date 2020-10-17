@@ -25,6 +25,7 @@ namespace DresslikeaGnome.OhGnomes
         private Light _light;
         private int[] healthPercentages = new int[3];
         private Material sunMat;
+        private MusicCrossfade music;
 
 
         private void OnDisable()
@@ -50,6 +51,10 @@ namespace DresslikeaGnome.OhGnomes
 
             // sun material
             sunMat = GetComponent<Renderer>().material;
+
+            music = FindObjectOfType<MusicCrossfade>();
+
+            
         }
 
 
@@ -105,6 +110,7 @@ namespace DresslikeaGnome.OhGnomes
                 sunMat.SetFloat("_brightness", 1);
                 _light.intensity = 2.5f;
                 _light.range = 2.5f;
+                music.IncreaseIntensity();
             }
             // 50% health
             else if (sunhealth < healthPercentages[1])
@@ -119,6 +125,7 @@ namespace DresslikeaGnome.OhGnomes
                 sunMat.SetFloat("_brightness", 2.25f);
                 _light.intensity = 7.5f;
                 _light.range = 7.5f;
+                music.IncreaseIntensity();
             }
             // 100% health
             else
