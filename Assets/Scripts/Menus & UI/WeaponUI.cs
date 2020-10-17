@@ -36,6 +36,8 @@ namespace DresslikeaGnome.OhGnomes
             gnome = GameObject.FindGameObjectWithTag("Player").GetComponent<GnomeAttacks>();
             activeWeapon = gnome.GetActiveWeapon();
             activeRodAttackType = gnome.gameObject.GetComponent<FishingRodMove>().rodAttackType;
+
+            UpdateWeapon(weapons[0]);
         }
 
 
