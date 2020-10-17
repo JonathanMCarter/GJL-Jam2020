@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using CarterGames.Utilities;
+using DresslikeaGnome.OhGnomes.Audio;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -54,7 +55,7 @@ namespace DresslikeaGnome.OhGnomes
 
             music = FindObjectOfType<MusicCrossfade>();
 
-            
+            music.ResetIntensity();
         }
 
 

@@ -14,14 +14,14 @@ namespace DresslikeaGnome.OhGnomes
             base.Awake();
         }
 
-        public void activateAttack()
+        public void ActivateAttack()
         {
-            attackCollider.GetComponent<Collider>().enabled = true;
+            attackCollider.GetComponent<BoxCollider>().enabled = true;
         }
 
-        public void deactivateAttack()
+        public void DeactivateAttack()
         {
-            attackCollider.GetComponent<Collider>().enabled = false;
+            attackCollider.GetComponent<BoxCollider>().enabled = false;
         }
     }
 }

@@ -12,9 +12,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584927ece21b73c4eb9ad14d28cb06af, type: 3}
   m_Name: Audio Manager File
   m_EditorClassIdentifier: 
-  clipName: []
-  audioClip: []
-  soundPrefab: {fileID: 0}
-  isPopulated: 0
-  hasDirectories: 0
-  directory: []
+  clipName:
+  - Gnome_Rod_Reel_1
+  - Gnome_Rod_Reel_2
+  - Gnome_Rod_Reel_3
+  - Gnome_Rod_Reel_4
+  - Gnome_Rod_Whip_1
+  - Gnome_Rod_Whip_2
+  - Gnome_Rod_Whip_3
+  - Gnome_Rod_Whip_4
+  - Gnome_Hurt_1
+  - Gnome_Hurt_2
+  - Gnome_Hurt_3
+  - Gnome_Hurt_4
+  - Gnome_Laugh_1
+  - Gnome_Laugh_2
+  - Gnome_Laugh_3
+  - Gnome_Laugh_4
+  - Gnome_Death
+  - PaperSun_Death
+  - Bat_WingFlaps
+  - Gnome_Step_1
+  - Gnome_Step_2
+  - Gnome_Step_3
+  - Gnome_Step_4
+  - Gnome_Step_5
+  - Gnome_Step_6
+  - Gnome_Step_7
+  - Gnome_Step_8
+  - Flesh_Impact_1
+  - Flesh_Impact_2
+  - Flesh_Impact_3
+  - Flesh_Impact_4
+  - Gnome_impact_1
+  - Gnome_impact_2
+  - Gnome_impact_3
+  - Gnome_impact_4
+  - PaperSun_Impact_1
+  - PaperSun_Impact_2
+  - PaperSun_Impact_3
+  - PaperSun_Impact_4
+  audioClip:
+  - {fileID: 8300000, guid: 828dd4416e35e2a47abcf2e3e2240197, type: 3}
+  - {fileID: 8300000, guid: 4c1795a16e2b7a240a6b6a593f54b579, type: 3}
+  - {fileID: 8300000, guid: e5f96d6050084a84fa4ede1be7fc00ee, type: 3}
+  - {fileID: 8300000, guid: 2512a6e0e980c014d91a353cca563350, type: 3}
+  - {fileID: 8300000, guid: aefbd33d9225e044f96bca5bd09be43a, type: 3}
+  - {fileID: 8300000, guid: 0946e813289a03944bee7850319f2ae8, type: 3}
+  - {fileID: 8300000, guid: 32b7a17a67f5cc14ca1e827fcdac77c6, type: 3}
+  - {fileID: 8300000, guid: 49b65655b4ec90b4abd21b22bb4a1393, type: 3}
+  - {fileID: 8300000, guid: 3db85bf18751a674592a25fa084615e9, type: 3}
+  - {fileID: 8300000, guid: c22655ddbff96fa4ea037968f6d77707, type: 3}
+  - {fileID: 8300000, guid: 6811e0e6a76e270419fb3a114c19f221, type: 3}
+  - {fileID: 8300000, guid: 1ded2dc8ad4e0ba47974ed00dc723c9f, type: 3}
+  - {fileID: 8300000, guid: e4ab0541a1a949b4aaca7114dea1c0f4, type: 3}
+  - {fileID: 8300000, guid: 50af0bb1884d5854f962aa55307cd5a4, type: 3}
+  - {fileID: 8300000, guid: a9ca528a2387eaa47acf489b1b9ec20b, type: 3}
+  - {fileID: 8300000, guid: 3dee0ce8417d2f04394d2704ac82ed1f, type: 3}
+  - {fileID: 8300000, guid: e548a987dd6e9b34bba3e6dbcd103332, type: 3}
+  - {fileID: 8300000, guid: 75b0be614d707a04fb2f3dbebb5f7578, type: 3}
+  - {fileID: 8300000, guid: 9ad5e4489af25b34eba916434228c9c3, type: 3}
+  - {fileID: 8300000, guid: 4d7a7b09a2651744b964b5e1f2f02665, type: 3}
+  - {fileID: 8300000, guid: a747244d87f412845933bb801249cf16, type: 3}
+  - {fileID: 8300000, guid: 903f80c44590ac3468cbc8c6fa61655d, type: 3}
+  - {fileID: 8300000, guid: 145936a3d6ef4cd41bc59cb5dbe7d118, type: 3}
+  - {fileID: 8300000, guid: 98e610d07fb825d4699b0af7fe2be4d9, type: 3}
+  - {fileID: 8300000, guid: 34f8144563322e348b6fbc3594766f38, type: 3}
+  - {fileID: 8300000, guid: 187c8fb83bd9e9a49ba0a4f5ecb49294, type: 3}
+  - {fileID: 8300000, guid: 3f29832c6413a1e459337240bded5c9b, type: 3}
+  - {fileID: 8300000, guid: b61624d6571082a4490086b33c2d17a9, type: 3}
+  - {fileID: 8300000, guid: ba789c9c3d353e24786ee6b8809428f8, type: 3}
+  - {fileID: 8300000, guid: d7e6feb55557317418a741817c287213, type: 3}
+  - {fileID: 8300000, guid: 8c800b7afa28bfe49b48fd98bcaf3502, type: 3}
+  - {fileID: 8300000, guid: 195eed0ef5603b34a8239e68067631e7, type: 3}
+  - {fileID: 8300000, guid: 08d64927783745a449d934b4c8fa1c0c, type: 3}
+  - {fileID: 8300000, guid: 29391c2b71fbda94cb87bb2cb06124dc, type: 3}
+  - {fileID: 8300000, guid: 2508004f4beac17498f6e69b8a95f450, type: 3}
+  - {fileID: 8300000, guid: 21761185e6d1d5841975bb6678186da8, type: 3}
+  - {fileID: 8300000, guid: 72fd15f772468a14681c1e66ed819582, type: 3}
+  - {fileID: 8300000, guid: 27cbc2316ba5456449d72877f037b089, type: 3}
+  - {fileID: 8300000, guid: db280be7fc83f734692857882872ae1a, type: 3}
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  isPopulated: 1
+  hasDirectories: 1
+  directory:
+  - SFX/Attacks
+  - SFX/Barks/Gnome Barks/Gnome
+  - SFX/Deaths
+  - SFX/Footsteps
+  - SFX/Impacts
+  - 
+  - SFX/Impacts/Enemy Impacts
+  - SFX/Impacts/Gnome Impacts
+  - SFX/Impacts/Paper sun impacts

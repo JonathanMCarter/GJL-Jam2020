@@ -374,14 +374,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.11666667
-    functionName: activateAttack
+    functionName: ActivateAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.2
-    functionName: deactivateAttack
+    functionName: DeactivateAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

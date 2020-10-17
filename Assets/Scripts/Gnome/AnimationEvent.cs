@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CarterGames.Assets.AudioManager;
+using UnityEngine;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -11,11 +12,15 @@ namespace DresslikeaGnome.OhGnomes
     public class AnimationEvent : MonoBehaviour
     {
         private FishingRodMove rodMove;
+        [SerializeField] private BoxCollider attackCollider;
+        [SerializeField] private BadgerTurretBehaviour turret;
+        //private AudioManager am;
 
 
         private void Start()
         {
             rodMove = GetComponentInParent<FishingRodMove>();
+            //am = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         }
 
 
@@ -29,6 +34,29 @@ namespace DresslikeaGnome.OhGnomes
             rodMove.fishingRodObject.transform.GetChild(0).GetComponent<LineRenderer>().enabled = true;
             rodMove.moves.freezeGnome = true;
             rodMove.hasSwung = true;
+        }
+
+
+        //public void PlayFootstep()
+        //{
+        //    am.Play("");
+        //}
+
+
+        public void ActivateAttack()
+        {
+            attackCollider.GetComponent<Collider>().enabled = true;
+        }
+
+        public void DeactivateAttack()
+        {
+            attackCollider.GetComponent<Collider>().enabled = false;
+        }
+
+
+        public void FireBullet()
+        {
+            turret.FireBullet();
         }
     }
 }

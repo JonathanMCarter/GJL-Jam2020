@@ -104,6 +104,14 @@ namespace DresslikeaGnome.OhGnomes
                             break;
                     }
                 }
+                else
+                {
+                    if (weapon.Equals(GnomeWeapons.Firework) && other.gameObject.CompareTag("Scene"))
+                    {
+                        fireworksControl.HitTarget(this.gameObject);
+                        gameObject.SetActive(false);
+                    }
+                }
             }
         }
 

@@ -24,7 +24,7 @@ namespace CarterGames.Assets.AudioManager
     /// <summary>
     /// Editor Class (*Not Static*) | The Audio Manager custom inspector editor script, should be placed in an /editor folder. 
     /// </summary>
-    [CustomEditor(typeof(AudioManager)), CanEditMultipleObjects]
+    [CustomEditor(typeof(AudioManager)), System.Serializable]
     public class AudioManagerEditor : Editor
     {
         // Colours for the Editor Buttons
@@ -49,234 +49,236 @@ namespace CarterGames.Assets.AudioManager
         // Overrides the Inspector of the Audio Manager Script with this stuff...
         public override void OnInspectorGUI()
         {
-            // References the Audio Manager Script
-            audioManagerScript = (AudioManager)target;
+            base.OnInspectorGUI();
 
-            // If the audio source is not attached
-            if (!isSetup)
-            {
-                // Init Setup if needed (makes an audio folder and audio manager file if not alreadt there and adds an audio source to the game object this is on so it can preview sounds)
-                FirstSetup();
+            //// References the Audio Manager Script
+            //audioManagerScript = (AudioManager)target;
 
-                // Sets the boolean values up to what they were set to last.
-                showDirectories = serializedObject.FindProperty("shouldShowDir").boolValue;
-                showClips = serializedObject.FindProperty("shouldShowClips").boolValue;
+            //// If the audio source is not attached
+            //if (!isSetup)
+            //{
+            //    // Init Setup if needed (makes an audio folder and audio manager file if not alreadt there and adds an audio source to the game object this is on so it can preview sounds)
+            //    FirstSetup();
 
-                isSetup = true;
-            }
+            //    // Sets the boolean values up to what they were set to last.
+            //    showDirectories = serializedObject.FindProperty("shouldShowDir").boolValue;
+            //    showClips = serializedObject.FindProperty("shouldShowClips").boolValue;
 
-
-            // Logo, Title & docs/discord links
-            HeaderDisplay();
-
-            EditorGUILayout.BeginVertical("Box");
-            GUILayout.Space(5f);
-
-            // Audio Manager File (AMF) field
-            EditorGUILayout.BeginHorizontal();
-            SerializedProperty fileProp = serializedObject.FindProperty("audioManagerFile");
-            EditorGUILayout.PropertyField(fileProp, new GUIContent("File In Use: "));
-            EditorGUILayout.EndHorizontal();
+            //    isSetup = true;
+            //}
 
 
-            // if file exsists
-            if (audioManagerScript.audioManagerFile)
-            {
-                // if file does not equal the last file inputted
-                if (!audioManagerScript.lastAudioManagerFile)
-                {
-                    // make the last file this file
-                    audioManagerScript.lastAudioManagerFile = audioManagerScript.audioManagerFile;
-                }
-                else if (audioManagerScript.lastAudioManagerFile != audioManagerScript.audioManagerFile)
-                {
-                    audioManagerScript.lastAudioManagerFile = audioManagerScript.audioManagerFile;
-                }
+            //// Logo, Title & docs/discord links
+            //HeaderDisplay();
 
-                EditorGUILayout.BeginHorizontal();
-                SerializedProperty prefabProp = serializedObject.FindProperty("soundPrefab");
-                EditorGUILayout.PropertyField(prefabProp, new GUIContent("Prefab: "));
+            //EditorGUILayout.BeginVertical("Box");
+            //EditorGUILayout.Space(5f);
 
-                // Saves the selection into the SO for future use...
-                if (audioManagerScript.soundPrefab)
-                {
-                    audioManagerScript.audioManagerFile.soundPrefab = audioManagerScript.soundPrefab;
-                }
-
-                EditorGUILayout.EndHorizontal();
-                GUILayout.Space(5f);
-                EditorGUILayout.EndVertical();
-
-                GUILayout.Space(10f);
+            //// Audio Manager File (AMF) field
+            //EditorGUILayout.BeginHorizontal();
+            //SerializedProperty fileProp = serializedObject.FindProperty("audioManagerFile");
+            //EditorGUILayout.PropertyField(fileProp, new GUIContent("File In Use: "));
+            //EditorGUILayout.EndHorizontal();
 
 
-                // Directories & Clips Buttons
-                if (audioManagerScript.audioManagerFile.soundPrefab != null)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    GUILayout.FlexibleSpace();
-                    if (!showDirectories)
-                    {
-                        GUI.color = Color.cyan;
-                        if (GUILayout.Button("Show Directories", GUILayout.Width(120)))
-                        {
-                            serializedObject.FindProperty("shouldShowDir").boolValue = !serializedObject.FindProperty("shouldShowDir").boolValue;
-                            showDirectories = serializedObject.FindProperty("shouldShowDir").boolValue;
-                        }
-                    }
-                    else
-                    {
-                        GUI.color = Color.white;
-                        if (GUILayout.Button("Hide Directories", GUILayout.Width(120)))
-                        {
-                            serializedObject.FindProperty("shouldShowDir").boolValue = !serializedObject.FindProperty("shouldShowDir").boolValue;
-                            showDirectories = serializedObject.FindProperty("shouldShowDir").boolValue;
-                        }
-                    }
+            //// if file exsists
+            //if (audioManagerScript.audioManagerFile)
+            //{
+            //    // if file does not equal the last file inputted
+            //    if (!audioManagerScript.lastAudioManagerFile)
+            //    {
+            //        // make the last file this file
+            //        audioManagerScript.lastAudioManagerFile = audioManagerScript.audioManagerFile;
+            //    }
+            //    else if (audioManagerScript.lastAudioManagerFile != audioManagerScript.audioManagerFile)
+            //    {
+            //        audioManagerScript.lastAudioManagerFile = audioManagerScript.audioManagerFile;
+            //    }
 
-                    if (!showClips)
-                    {
-                        GUI.color = Color.cyan;
-                        if (GUILayout.Button("Show Clips", GUILayout.Width(95)))
-                        {
-                            serializedObject.FindProperty("shouldShowClips").boolValue = !serializedObject.FindProperty("shouldShowClips").boolValue;
-                            showClips = serializedObject.FindProperty("shouldShowClips").boolValue;
-                        }
-                    }
-                    else
-                    {
-                        GUI.color = Color.white;
-                        if (GUILayout.Button("Hide Clips", GUILayout.Width(95)))
-                        {
-                            serializedObject.FindProperty("shouldShowClips").boolValue = !serializedObject.FindProperty("shouldShowClips").boolValue;
-                            showClips = serializedObject.FindProperty("shouldShowClips").boolValue;
-                        }
-                    }
-                    GUI.color = Color.white;
-                    GUILayout.FlexibleSpace();
-                    EditorGUILayout.EndHorizontal();
+            //    EditorGUILayout.BeginHorizontal();
+            //    SerializedProperty prefabProp = serializedObject.FindProperty("soundPrefab");
+            //    EditorGUILayout.PropertyField(prefabProp, new GUIContent("Prefab: "));
+
+            //    // Saves the selection into the SO for future use...
+            //    if (audioManagerScript.soundPrefab)
+            //    {
+            //        audioManagerScript.audioManagerFile.soundPrefab = audioManagerScript.soundPrefab;
+            //    }
+
+            //    EditorGUILayout.EndHorizontal();
+            //    EditorGUILayout.Space(5f);
+            //    EditorGUILayout.EndVertical();
+
+            //    EditorGUILayout.Space(10f);
 
 
-                    // Directories Display
-                    if (showDirectories)
-                    {
-                        EditorGUILayout.Space();
+            //    // Directories & Clips Buttons
+            //    if (audioManagerScript.audioManagerFile.soundPrefab != null)
+            //    {
+            //        EditorGUILayout.BeginHorizontal();
+            //        GUILayout.FlexibleSpace();
+            //        if (!showDirectories)
+            //        {
+            //            GUI.color = Color.cyan;
+            //            if (GUILayout.Button("Show Directories", GUILayout.Width(120)))
+            //            {
+            //                serializedObject.FindProperty("shouldShowDir").boolValue = !serializedObject.FindProperty("shouldShowDir").boolValue;
+            //                showDirectories = serializedObject.FindProperty("shouldShowDir").boolValue;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            GUI.color = Color.white;
+            //            if (GUILayout.Button("Hide Directories", GUILayout.Width(120)))
+            //            {
+            //                serializedObject.FindProperty("shouldShowDir").boolValue = !serializedObject.FindProperty("shouldShowDir").boolValue;
+            //                showDirectories = serializedObject.FindProperty("shouldShowDir").boolValue;
+            //            }
+            //        }
 
-                        EditorGUILayout.BeginVertical("Box");
-
-                        EditorGUILayout.BeginHorizontal();
-                        GUILayout.FlexibleSpace();
-                        EditorGUILayout.LabelField("Directories", EditorStyles.boldLabel, GUILayout.Width(75f));
-                        GUILayout.FlexibleSpace();
-                        EditorGUILayout.EndHorizontal();
-
-                        EditorGUILayout.Space();
-
-                        // controls the directories 
-                        if (audioManagerScript.audioManagerFile.hasDirectories)
-                        {
-                            DirectoriesDisplay();
-                        }
-                        else
-                        {
-                            EditorGUILayout.HelpBox("No directories on file, use the buttons below to add a new directory to scan.", MessageType.Info);
-                            EditorGUILayout.Space();
-
-                            EditorGUILayout.Space();
-                            _newPath = EditorGUILayout.TextField(new GUIContent("Path To Add:"), _newPath);
-
-                            EditorGUILayout.BeginHorizontal();
-                            GUILayout.FlexibleSpace();
-                            GUI.color = scanCol;
-
-                            if (GUILayout.Button("Continue", GUILayout.Width(80)))
-                            {
-                                audioManagerScript.audioManagerFile.directory = new List<string>();
-                                AddToDirectories(_newPath);
-                                audioManagerScript.audioManagerFile.hasDirectories = true;
-                                serializedObject.Update();
-                            }
-
-                            GUI.color = Color.white;
-                            GUILayout.FlexibleSpace();
-                            EditorGUILayout.EndHorizontal();
-                        }
-
-                        EditorGUILayout.EndVertical();
-                    }
-                }
+            //        if (!showClips)
+            //        {
+            //            GUI.color = Color.cyan;
+            //            if (GUILayout.Button("Show Clips", GUILayout.Width(95)))
+            //            {
+            //                serializedObject.FindProperty("shouldShowClips").boolValue = !serializedObject.FindProperty("shouldShowClips").boolValue;
+            //                showClips = serializedObject.FindProperty("shouldShowClips").boolValue;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            GUI.color = Color.white;
+            //            if (GUILayout.Button("Hide Clips", GUILayout.Width(95)))
+            //            {
+            //                serializedObject.FindProperty("shouldShowClips").boolValue = !serializedObject.FindProperty("shouldShowClips").boolValue;
+            //                showClips = serializedObject.FindProperty("shouldShowClips").boolValue;
+            //            }
+            //        }
+            //        GUI.color = Color.white;
+            //        GUILayout.FlexibleSpace();
+            //        EditorGUILayout.EndHorizontal();
 
 
-                // Assigns the sound prefab if there is one in the SO, this can still be edited by the user
-                if ((audioManagerScript.audioManagerFile) && (audioManagerScript.audioManagerFile.soundPrefab))
-                {
-                    audioManagerScript.soundPrefab = audioManagerScript.audioManagerFile.soundPrefab;
-                }
+            //        // Directories Display
+            //        if (showDirectories)
+            //        {
+            //            EditorGUILayout.Space();
 
-                GUILayout.Space(10f);
+            //            EditorGUILayout.BeginVertical("Box");
+
+            //            EditorGUILayout.BeginHorizontal();
+            //            GUILayout.FlexibleSpace();
+            //            EditorGUILayout.LabelField("Directories", EditorStyles.boldLabel, GUILayout.Width(75f));
+            //            GUILayout.FlexibleSpace();
+            //            EditorGUILayout.EndHorizontal();
+
+            //            EditorGUILayout.Space();
+
+            //            // controls the directories 
+            //            if (audioManagerScript.audioManagerFile.hasDirectories)
+            //            {
+            //                DirectoriesDisplay();
+            //            }
+            //            else
+            //            {
+            //                EditorGUILayout.HelpBox("No directories on file, use the buttons below to add a new directory to scan.", MessageType.Info);
+            //                EditorGUILayout.Space();
+
+            //                EditorGUILayout.Space();
+            //                _newPath = EditorGUILayout.TextField(new GUIContent("Path To Add:"), _newPath);
+
+            //                EditorGUILayout.BeginHorizontal();
+            //                GUILayout.FlexibleSpace();
+            //                GUI.color = scanCol;
+
+            //                if (GUILayout.Button("Continue", GUILayout.Width(80)))
+            //                {
+            //                    audioManagerScript.audioManagerFile.directory = new List<string>();
+            //                    AddToDirectories(_newPath);
+            //                    audioManagerScript.audioManagerFile.hasDirectories = true;
+            //                    serializedObject.Update();
+            //                }
+
+            //                GUI.color = Color.white;
+            //                GUILayout.FlexibleSpace();
+            //                EditorGUILayout.EndHorizontal();
+            //            }
+
+            //            EditorGUILayout.EndVertical();
+            //        }
+            //    }
 
 
-                // Clips Display
-                if (showClips)
-                {
-                    EditorGUILayout.BeginVertical("Box");
+            //    // Assigns the sound prefab if there is one in the SO, this can still be edited by the user
+            //    if ((audioManagerScript.audioManagerFile) && (audioManagerScript.audioManagerFile.soundPrefab))
+            //    {
+            //        audioManagerScript.soundPrefab = audioManagerScript.audioManagerFile.soundPrefab;
+            //    }
 
-                    EditorGUILayout.BeginHorizontal();
-                    GUILayout.FlexibleSpace();
-                    EditorGUILayout.LabelField("Clips", EditorStyles.boldLabel, GUILayout.Width(45f));
-                    GUILayout.FlexibleSpace();
-                    EditorGUILayout.EndHorizontal();
+            //    GUILayout.Space(10f);
 
-                    if (CheckAmount() > 0)
-                    {
-                        if (audioManagerScript.audioManagerFile.hasDirectories && CheckAmount() > audioManagerScript.GetNumberOfClips())
-                        {
-                            serializedObject.FindProperty("hasScannedOnce").boolValue = true;  // Sets the has scanned once to true so the scan button turns into the re-scan button
-                            
-                            // Init Lists
-                            audioList = new List<AudioClip>();
-                            audioStrings = new List<string>();
 
-                            // Auto filling the lists 
-                            AddAudioClips();
-                            AddStrings();
+            //    // Clips Display
+            //    if (showClips)
+            //    {
+            //        EditorGUILayout.BeginVertical("Box");
 
-                            // Updates the lists
-                            audioManagerScript.audioManagerFile.clipName = audioStrings;
-                            audioManagerScript.audioManagerFile.audioClip = audioList;
+            //        EditorGUILayout.BeginHorizontal();
+            //        GUILayout.FlexibleSpace();
+            //        EditorGUILayout.LabelField("Clips", EditorStyles.boldLabel, GUILayout.Width(45f));
+            //        GUILayout.FlexibleSpace();
+            //        EditorGUILayout.EndHorizontal();
 
-                            audioManagerScript.UpdateLibrary();
-                            serializedObject.Update();
-                        }
-                        else if (audioManagerScript.audioManagerFile.hasDirectories && CheckAmount() == audioManagerScript.GetNumberOfClips())
-                        {
-                            DisplayNames();
-                        }
-                        else
-                        {
-                            // *** Labels ***
-                            HelpLabels();
-                        }
-                    }
-                    else
-                    {
-                        EditorGUILayout.HelpBox("No audio clips found in your project.", MessageType.Warning);
-                    }
+            //        if (CheckAmount() > 0)
+            //        {
+            //            if (audioManagerScript.audioManagerFile.hasDirectories && CheckAmount() > audioManagerScript.GetNumberOfClips())
+            //            {
+            //                serializedObject.FindProperty("hasScannedOnce").boolValue = true;  // Sets the has scanned once to true so the scan button turns into the re-scan button
 
-                    EditorGUILayout.EndVertical();
-                }
-            }
-            else
-            {
-                EditorGUILayout.Space();
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.HelpBox("Please assign a Audio Manager File to use this asset.", MessageType.Info, true);
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.Space();
-            }
-            
-            // applies and changes to SO's
-            serializedObject.ApplyModifiedProperties();
+            //                // Init Lists
+            //                audioList = new List<AudioClip>();
+            //                audioStrings = new List<string>();
+
+            //                // Auto filling the lists 
+            //                AddAudioClips();
+            //                AddStrings();
+
+            //                // Updates the lists
+            //                audioManagerScript.audioManagerFile.clipName = audioStrings;
+            //                audioManagerScript.audioManagerFile.audioClip = audioList;
+
+            //                audioManagerScript.UpdateLibrary();
+            //                serializedObject.Update();
+            //            }
+            //            else if (audioManagerScript.audioManagerFile.hasDirectories && CheckAmount() == audioManagerScript.GetNumberOfClips())
+            //            {
+            //                DisplayNames();
+            //            }
+            //            else
+            //            {
+            //                // *** Labels ***
+            //                HelpLabels();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            EditorGUILayout.HelpBox("No audio clips found in your project.", MessageType.Warning);
+            //        }
+
+            //        EditorGUILayout.EndVertical();
+            //    }
+            //}
+            //else
+            //{
+            //    EditorGUILayout.Space();
+            //    EditorGUILayout.BeginHorizontal();
+            //    EditorGUILayout.HelpBox("Please assign a Audio Manager File to use this asset.", MessageType.Info, true);
+            //    EditorGUILayout.EndHorizontal();
+            //    EditorGUILayout.Space();
+            //}
+
+            //// applies and changes to SO's
+            //serializedObject.ApplyModifiedProperties();
         }
 
 
