@@ -278,6 +278,7 @@ namespace DresslikeaGnome.OhGnomes
                             trapPool[i].transform.position = currentTrapLocation.transform.position;
                             trapPool[i].transform.SetParent(currentTrapLocation.transform);
                             trapPool[i].SetActive(true);
+                            trapPool[i].GetComponent<TrapAction>().trapPlacementArea = currentTrapLocation;
                             break;
                         }
                     }
@@ -292,6 +293,7 @@ namespace DresslikeaGnome.OhGnomes
                             trapPool[i].transform.position = currentTrapLocation.transform.position;
                             trapPool[i].transform.SetParent(currentTrapLocation.transform);
                             trapPool[i].SetActive(true);
+                            trapPool[i].GetComponent<TrapAction>().trapPlacementArea = currentTrapLocation;
                             break;
                         }
                     }
