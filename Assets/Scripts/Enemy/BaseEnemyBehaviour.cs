@@ -112,7 +112,7 @@ namespace DresslikeaGnome.OhGnomes
                 }
             }
 
-            if (agent.isStopped)
+            if (agent && agent.isStopped)
             {
                 animator.SetBool("IsMoving", false);
             }

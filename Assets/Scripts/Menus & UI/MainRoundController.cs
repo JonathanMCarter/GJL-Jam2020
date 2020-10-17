@@ -111,7 +111,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void EndGame()
         {
-            trans.ChangeSceneTransition("Main Menu");
+            trans.ChangeSceneTransition("Win Scene");
         }
 
 
