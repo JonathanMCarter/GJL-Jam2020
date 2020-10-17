@@ -90,6 +90,7 @@ namespace DresslikeaGnome.OhGnomes
             }
 
             isTimerRunning = true;
+            _timer = _timeLimit;
         }
 
 

@@ -29,6 +29,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void OnEnable()
         {
+            usesLeft = trap.numberOfUses;
             isTrapReady = true;
         }
 

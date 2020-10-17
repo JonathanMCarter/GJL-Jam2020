@@ -116,5 +116,13 @@ namespace DresslikeaGnome.OhGnomes
         {
             transitionSpeed = value;
         }
+
+        /// <summary>
+        /// Resets the intensity 
+        /// </summary>
+        public void ResetIntensity()
+        {
+            stage = ActiveStage.L1;
+        }
     }
 }
