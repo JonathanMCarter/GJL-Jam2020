@@ -101,8 +101,13 @@ namespace DresslikeaGnome.OhGnomes
                 if (!IsCoR)
                 {
                     animator.SetTrigger("IsDead");
-                    agent.enabled = false;
-                    agent.isStopped = true;
+
+                    if (agent && agent.enabled)
+                    {
+                        agent.isStopped = true;
+                        agent.enabled = false;
+                    }
+
                     StartCoroutine(Despawn());
                 }
             }
