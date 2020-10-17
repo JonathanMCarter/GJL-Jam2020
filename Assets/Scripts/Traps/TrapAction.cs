@@ -24,6 +24,8 @@ namespace DresslikeaGnome.OhGnomes
         private bool isTrapReady;
         private DamageIndicator ind;
 
+        internal TrapPlacementArea trapPlacementArea;
+
 
         private void OnEnable()
         {
@@ -56,6 +58,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             if (usesLeft.Equals(0))
             {
+                trapPlacementArea.hasTrap = false;
                 gameObject.SetActive(false);
             }
         }

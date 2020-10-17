@@ -16,7 +16,7 @@ namespace DresslikeaGnome.OhGnomes
     {
         [Header("Gnome Speed")]
         [Tooltip("How fast should the gnome move?")]
-        [Range(0, 400)]
+        [Range(0, 600)]
         [SerializeField] private float moveSpeed = 200f;    // defines the move speed
         [SerializeField] private float moveDelay = .1f;
 
