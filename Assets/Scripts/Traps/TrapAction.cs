@@ -98,7 +98,7 @@ namespace DresslikeaGnome.OhGnomes
             hit.GetComponent<NavMeshAgent>().isStopped = true;
             hit.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             hit.GetComponent<BaseEnemyBehaviour>().hitTrap = true;
-            ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 1.5f, hit.transform.position.z), trapDMG, Color.white);
+            ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
             tempParticles.transform.position = hit.transform.position;
             tempParticles.SetActive(true);
             yield return new WaitForSeconds(2f);
@@ -114,7 +114,7 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator Fire()
         {
             isCoR = true;
-            ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 1.5f, hit.transform.position.z), trapDMG, Color.white);
+            ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
             yield return new WaitForSeconds(.25f);
             hit.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(trapDMG);
             isCoR = false;
