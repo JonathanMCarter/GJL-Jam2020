@@ -195,7 +195,7 @@ MonoBehaviour:
   fireworksAmmo: 0
   eTrap: 0
   bTrap: 0
-  minMax: 0000000001000000
+  minMax: 0100000005000000
   minMaxTraps: 0000000001000000
 --- !u!114 &6560511478267629677
 MonoBehaviour:
