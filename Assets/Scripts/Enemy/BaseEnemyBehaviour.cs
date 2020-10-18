@@ -216,7 +216,11 @@ namespace DresslikeaGnome.OhGnomes
         public void ReduceEnemyHealth(int value)
         {
             enemyHealth -= value;
-            animator.SetTrigger("IsHit");
+
+            if (animator)
+            {
+                animator.SetTrigger("IsHit");
+            }
         }
 
         // Jonathan added this

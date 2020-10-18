@@ -38,6 +38,7 @@ namespace DresslikeaGnome.OhGnomes
             gameObject.SetActive(false);
         }
 
+
         // jonathan added this, so the bullets actually disapear once they have hit something... (I use triggers)
         private void OnTriggerEnter(Collider other)
         {
