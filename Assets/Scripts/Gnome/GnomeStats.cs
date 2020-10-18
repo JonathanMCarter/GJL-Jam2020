@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DresslikeaGnome.OhGnomes.Audio;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,7 +80,7 @@ namespace DresslikeaGnome.OhGnomes
             if (other.gameObject.CompareTag("EnemyAttack"))
             {
                 anim.SetTrigger("IsHit");
-                
+
                 if (!isInvun)
                 {
                     StartCoroutine(InvunCo());
@@ -109,6 +110,7 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator InvunCo()
         {
             isInvun = true;
+            GetComponentInChildren<GnomeHurt>().PlayHurtSound();
             gnomeHealth -= 1;
             ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.red);
             StartCoroutine(HealthbarFlicker());

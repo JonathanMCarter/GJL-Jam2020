@@ -15,7 +15,13 @@ namespace DresslikeaGnome.OhGnomes.Audio
         public void PlayEmHit()
         {
             // base class method
-            PlayRandomFromGroup(clips);
+            PlayRandomFromGroup(clips, .15f);
+        }
+
+
+        public void PlayEmHitDelayed()
+        {
+            PlayWithDelay(clips, .3f, .2f);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DresslikeaGnome.OhGnomes.Audio
 
         public void PlayMeleeSound()
         {
-            PlayRandomFromGroup(clips);
+            PlayRandomFromGroup(clips, .6f);
         }
     }
 }

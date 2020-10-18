@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 /*
@@ -15,9 +16,11 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private GameObject umbrellaObject;
         [SerializeField] private float abilityDuration;
         [SerializeField] private float abilityCooldown;
+        [SerializeField] private Animator anim;
 
         private WaitForSeconds wait;
         private GnomeStats gnome;
+
 
         internal bool isUsingAbility = false;
         internal bool canUseAbility = true;
@@ -45,6 +48,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             isUsingAbility = true;
             umbrellaObject.SetActive(true);
+            anim.SetTrigger("UseUm");
             gnome.isInvun = true;
             yield return wait;
             gnome.isInvun = false;

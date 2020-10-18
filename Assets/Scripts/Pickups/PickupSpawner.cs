@@ -85,48 +85,14 @@ namespace DresslikeaGnome.OhGnomes
         private Transform GetSpawnPoint()
         {
             // Checks to see if there is a free spot, if not it avoids the while loop (which will cause a leak, crashing Unity)
-            if (IsFreeSpot())
+            TrapPlacementArea _trap = placementPoints[Random.Range(0, placementPoints.Length)];
+
+            while (_trap.hasTrap)
             {
-                TrapPlacementArea _trap = placementPoints[Random.Range(0, placementPoints.Length)];
-
-                while (_trap.hasTrap)
-                {
-                    _trap = placementPoints[Random.Range(0, placementPoints.Length)];
-                }
-
-                return _trap.transform;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-
-        /// <summary>
-        /// Checks to see if there is a free spot to spawn an object.
-        /// </summary>
-        /// <returns>true or false</returns>
-        private bool IsFreeSpot()
-        {
-            int _check = 0;
-
-            for (int i = 0; i < placementPoints.Length; i++)
-            {
-                if (!placementPoints[i].hasTrap)
-                {
-                    _check += 1;
-                }
+                _trap = placementPoints[Random.Range(0, placementPoints.Length)];
             }
 
-            if (_check.Equals(placementPoints.Length))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _trap.transform;
         }
     }
 }

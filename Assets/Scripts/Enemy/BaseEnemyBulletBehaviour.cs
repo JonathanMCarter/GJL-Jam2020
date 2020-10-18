@@ -10,6 +10,9 @@ namespace DresslikeaGnome.OhGnomes
 
         public float bulletSpeed = 5f;
 
+        internal Transform _target;
+
+
         private void Start()
         {
             try
@@ -34,6 +37,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             gameObject.SetActive(false);
         }
+
 
         // jonathan added this, so the bullets actually disapear once they have hit something... (I use triggers)
         private void OnTriggerEnter(Collider other)

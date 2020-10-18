@@ -9,7 +9,7 @@ using System.Collections;
 *  W: https://jonathan.carter.games/
 */
 
-namespace DresslikeaGnome.OhGnomes
+namespace DresslikeaGnome.OhGnomes.GamePad
 {
     public class GamepadMenu : MonoBehaviour
     {

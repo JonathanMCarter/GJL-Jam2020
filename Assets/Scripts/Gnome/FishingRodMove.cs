@@ -43,7 +43,8 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
-            meleeWait = new WaitForSeconds(meleeAbilityDuration);
+            rodAttackType = FishingRodAttack.Ranged;
+            //meleeWait = new WaitForSeconds(meleeAbilityDuration);
         }
 
 
@@ -80,27 +81,27 @@ namespace DresslikeaGnome.OhGnomes
             // would play an animation, for now its gonna move to a position and do something
             if (!isCoR)
             {
-                if (rodAttackType.Equals(FishingRodAttack.Melee))
-                {
-                    // melee attack
-                    StartCoroutine(SwingMeleeCo());
-                }
-                else
-                {
+                //if (rodAttackType.Equals(FishingRodAttack.Melee))
+                //{
+                //    // melee attack
+                //    StartCoroutine(SwingMeleeCo());
+                //}
+                //else
+                //{
                     // ranged attack
                     StartCoroutine(GoLongCo());
-                }
+                //}
             }
         }
 
 
-        private IEnumerator SwingMeleeCo()
-        {
-            isCoR = true;
-            attacks.anim.SetTrigger("MeleeRod");
-            yield return meleeWait;
-            isCoR = false;
-        }
+        //private IEnumerator SwingMeleeCo()
+        //{
+        //    isCoR = true;
+        //    attacks.anim.SetTrigger("MeleeRod");
+        //    yield return meleeWait;
+        //    isCoR = false;
+        //}
 
 
         private IEnumerator GoLongCo()
