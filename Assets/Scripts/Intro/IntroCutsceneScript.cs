@@ -14,6 +14,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private GameObject[] introImage;
         [SerializeField] private MainRoundController mainRound;
         [SerializeField] private GamePadButtonPress button;
+        [SerializeField] private GnomeAttacks gnomeAttack;
 
         private int introImageNo = 0;
         private int introImageCount;
@@ -25,6 +26,7 @@ namespace DresslikeaGnome.OhGnomes
             GetComponent<CanvasGroup>().alpha = 1;
             GetComponent<CanvasGroup>().interactable = true;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
+            gnomeAttack.enabled = false;
         }
 
 
@@ -73,6 +75,7 @@ namespace DresslikeaGnome.OhGnomes
                     GetComponent<CanvasGroup>().alpha = 0;
                     GetComponent<CanvasGroup>().interactable = false;
                     GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    gnomeAttack.enabled = true;
                 }
             }
         }

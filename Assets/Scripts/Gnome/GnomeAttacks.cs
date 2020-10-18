@@ -39,7 +39,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private MainRoundController roundController;
 
-        internal Animator anim;
+        [SerializeField] internal Animator anim;
 
         private void OnEnable()
         {
@@ -55,7 +55,6 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             input = new GameControls();
-            anim = GetComponentsInChildren<Animator>()[1];
             wait = new WaitForSeconds(coolDown);
             roundController = FindObjectOfType<MainRoundController>();
         }
