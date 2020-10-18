@@ -18365,6 +18365,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831045026}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &835897482 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5166435359031349286, guid: 3b119619ab12eb140b2359f7ee7c800f,
+    type: 3}
+  m_PrefabInstance: {fileID: 990829777}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836661740
 GameObject:
   m_ObjectHideFlags: 0
@@ -22468,12 +22474,17 @@ PrefabInstance:
         type: 3}
       propertyPath: roundControllerObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 345147586}
+      objectReference: {fileID: 835897482}
     - target: {fileID: 5166435360644271574, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: roundControllerObjects.Array.data[2]
       value: 
       objectReference: {fileID: 794689500}
+    - target: {fileID: 5166435360644271574, guid: 3b119619ab12eb140b2359f7ee7c800f,
+        type: 3}
+      propertyPath: roundControllerObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 345147586}
     - target: {fileID: 5166435360644271575, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40169,6 +40180,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1335485405, guid: 902f8f4ee84ac2144855934d41853615, type: 3}
+      propertyPath: rodType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5888726586019462512, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: gnomeHealthbar
@@ -40184,6 +40199,11 @@ PrefabInstance:
       propertyPath: fishingRodProjectile
       value: 
       objectReference: {fileID: 267791357}
+    - target: {fileID: 5888726586019462516, guid: 902f8f4ee84ac2144855934d41853615,
+        type: 3}
+      propertyPath: rodAttackType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5888726586019462517, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: cam

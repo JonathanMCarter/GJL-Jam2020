@@ -107,10 +107,11 @@ namespace DresslikeaGnome.OhGnomes
                 }
             }
 
+            ToggleActiveWeapon();
 
             if (!roundController.isTimerRunning)
             {
-                ToggleActiveWeapon();
+ 
 
                 // if the user is not over some user UI (can use MB)
                 if (canUseWeapon)
@@ -120,13 +121,13 @@ namespace DresslikeaGnome.OhGnomes
                         UseActiveWeapon();
                     }
 
-                    if (canToggle)
-                    {
-                        if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
-                        {
-                            ToggleFishingRod();
-                        }
-                    }
+                    //if (canToggle)
+                    //{
+                    //    if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                    //    {
+                    //        ToggleFishingRod();
+                    //    }
+                    //}
                 }
             }
         }

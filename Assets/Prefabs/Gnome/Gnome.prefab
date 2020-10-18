@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: 1
   gnomeStats: {fileID: 0}
-  rodType: 0
+  rodType: 1
   dmg: 0
   canDamage: 0
 --- !u!114 &6278594931519690754

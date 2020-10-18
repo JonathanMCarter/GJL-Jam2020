@@ -35,6 +35,8 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
+            gameObject.SetActive(true);
+
             fireworksControl = GetComponent<FireworksControl>();
             gnomeStats = FindObjectOfType<GnomeStats>().GetGnomeStats();
 
@@ -49,9 +51,9 @@ namespace DresslikeaGnome.OhGnomes
             {
                 switch (rodType)
                 {
-                    case FishingRodAttack.Melee:
-                        dmg = gnomeStats.fishingRodMeleeDamage;
-                        break;
+                    //case FishingRodAttack.Melee:
+                    //    dmg = gnomeStats.fishingRodMeleeDamage;
+                    //    break;
                     case FishingRodAttack.Ranged:
                         dmg = gnomeStats.fishingRodRangedDamage;
                         break;
@@ -74,7 +76,7 @@ namespace DresslikeaGnome.OhGnomes
                     other.gameObject.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(dmg);
 
                     // dmg indicator
-                    ind.ShowDMGIndicator(new Vector3(other.transform.position.x, other.transform.position.y + 3f, other.transform.position.z), dmg, Color.green);
+                    ind.ShowDMGIndicator(new Vector3(other.transform.position.x, other.transform.position.y + 3f, other.transform.position.z), dmg, Color.white);
 
                     if (weapon.Equals(GnomeWeapons.Firework))
                     {
@@ -90,9 +92,9 @@ namespace DresslikeaGnome.OhGnomes
 
                             switch (rodType)
                             {
-                                case FishingRodAttack.Melee:
-                                    StartCoroutine(DamageCooldown(gnomeStats.fishingRodMeleeDamageCooldown));
-                                    break;
+                                //case FishingRodAttack.Melee:
+                                //    StartCoroutine(DamageCooldown(gnomeStats.fishingRodMeleeDamageCooldown));
+                                //    break;
                                 case FishingRodAttack.Ranged:
                                     StartCoroutine(DamageCooldown(gnomeStats.fishingRodRangedDamageCooldown));
                                     break;
