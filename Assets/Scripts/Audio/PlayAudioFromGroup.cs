@@ -12,11 +12,11 @@ namespace DresslikeaGnome.OhGnomes.Audio
     {
         [SerializeField] private GameObject soundPrefab;
 
-        public void PlayRandomFromGroup(AudioClip[] clips)
+        public void PlayRandomFromGroup(AudioClip[] clips, float _volume = 1)
         {
             GameObject clip = Instantiate(soundPrefab);
             clip.GetComponent<AudioSource>().clip = clips[Random.Range(0, clips.Length)];
-            clip.GetComponent<AudioSource>().volume = Random.Range(.8f, 1f);
+            clip.GetComponent<AudioSource>().volume = _volume;
             clip.GetComponent<AudioSource>().pitch = Random.Range(.9f, 1.1f);
             clip.GetComponent<AudioSource>().Play();
             Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
@@ -26,6 +26,17 @@ namespace DresslikeaGnome.OhGnomes.Audio
         {
             GameObject clip = Instantiate(soundPrefab);
             clip.GetComponent<AudioSource>().clip = _clip;
+            clip.GetComponent<AudioSource>().volume = _volume;
+            clip.GetComponent<AudioSource>().pitch = Random.Range(.9f, 1.1f);
+            clip.GetComponent<AudioSource>().Play();
+            Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
+        }
+
+        public void PlayFromTime(AudioClip _clip, float time, float _volume = 1)
+        {
+            GameObject clip = Instantiate(soundPrefab);
+            clip.GetComponent<AudioSource>().clip = _clip;
+            clip.GetComponent<AudioSource>().time = time;
             clip.GetComponent<AudioSource>().volume = _volume;
             clip.GetComponent<AudioSource>().pitch = Random.Range(.9f, 1.1f);
             clip.GetComponent<AudioSource>().Play();

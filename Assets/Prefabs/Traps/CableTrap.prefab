@@ -147,6 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapType: 1
   trap: {fileID: 11400000, guid: ca256f53de294834e9a8d98a7aaeea20, type: 2}
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  _clip: {fileID: 8300000, guid: 6778ee388af54d143b0f4f4efe90dea3, type: 3}
 --- !u!54 &1179504658257642204
 Rigidbody:
   m_ObjectHideFlags: 0

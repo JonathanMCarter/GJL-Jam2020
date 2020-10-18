@@ -146,6 +146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapType: 2
   trap: {fileID: 11400000, guid: 23e16d8053e19e2499954df833d19894, type: 2}
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  _clip: {fileID: 8300000, guid: ba789c9c3d353e24786ee6b8809428f8, type: 3}
 --- !u!82 &253642118231420161
 AudioSource:
   m_ObjectHideFlags: 0
@@ -256,7 +259,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2cb70bf95ce81854aaab57ae9f961d87, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -300,7 +303,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

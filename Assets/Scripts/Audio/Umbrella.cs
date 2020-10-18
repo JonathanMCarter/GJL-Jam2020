@@ -8,14 +8,14 @@
 
 namespace DresslikeaGnome.OhGnomes.Audio
 {
-    public class EnemyHit : PlayAudioFromGroup
+    public class Umbrella : PlayAudioFromGroup
     {
-        [SerializeField] private AudioClip[] clips;
+        [SerializeField] private AudioClip clips;
 
-        public void PlayEmHit()
+        public void PlayUm()
         {
             // base class method
-            PlayRandomFromGroup(clips, .3f);
+            PlayClip(clips, .5f);
         }
     }
 }
