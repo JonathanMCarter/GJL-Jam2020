@@ -15,7 +15,7 @@ namespace DresslikeaGnome.OhGnomes.Audio
         public void PlayEmHit()
         {
             // base class method
-            PlayRandomFromGroup(clips, .3f);
+            PlayRandomFromGroup(clips, .15f);
         }
     }
 }

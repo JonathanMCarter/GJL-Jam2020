@@ -10,6 +10,9 @@ namespace DresslikeaGnome.OhGnomes
 
         public float bulletSpeed = 5f;
 
+        internal Transform _target;
+
+
         private void Start()
         {
             try
@@ -19,7 +22,7 @@ namespace DresslikeaGnome.OhGnomes
                     bulletRigidBody = gameObject.GetComponent<Rigidbody>();
                 }
 
-                bulletRigidBody.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                bulletRigidBody.velocity = (_target.transform.position - transform.position).normalized * bulletSpeed;
 
             }
             catch (System.Exception)

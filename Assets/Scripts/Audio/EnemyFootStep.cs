@@ -15,7 +15,7 @@ namespace DresslikeaGnome.OhGnomes.Audio
         public void FS()
         {
             // base class method
-            PlayClip(clips, .01f);
+            PlayClip(clips, .025f);
         }
     }
 }

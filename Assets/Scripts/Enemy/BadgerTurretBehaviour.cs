@@ -68,6 +68,7 @@ namespace DresslikeaGnome.OhGnomes
                 {
                     bulletPool[i].transform.position = transform.position;
                     bulletPool[i].transform.rotation = transform.rotation;
+                    bulletPool[i].GetComponent<BaseEnemyBulletBehaviour>()._target = getSunTarget().transform;
                     bulletPool[i].SetActive(true);
                     break;
                 }

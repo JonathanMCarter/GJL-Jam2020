@@ -44,7 +44,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             input = new GameControls();                     // setup ref to input system
             rb = GetComponentInChildren<Rigidbody>();                 // setup ref to rigidbody
-            anim = GetComponentInChildren<Animator>();
+            anim = GetComponentsInChildren<Animator>()[1];
         }
 
 
@@ -62,6 +62,7 @@ namespace DresslikeaGnome.OhGnomes
                 else
                 {
                     // otherwise player can't move :(
+                    Debug.LogError("jfdshfdhsfl");
                     anim.SetBool("IsMoving", false);
                     canMove = false;
                 }
