@@ -41,7 +41,6 @@ namespace DresslikeaGnome.OhGnomes
             }
 
             _timer = _timeLimit;
-            isTimerRunning = true;
         }
 
         // Update is called once per frame
