@@ -62,7 +62,6 @@ namespace DresslikeaGnome.OhGnomes
                 else
                 {
                     // otherwise player can't move :(
-                    Debug.LogError("jfdshfdhsfl");
                     anim.SetBool("IsMoving", false);
                     canMove = false;
                 }
