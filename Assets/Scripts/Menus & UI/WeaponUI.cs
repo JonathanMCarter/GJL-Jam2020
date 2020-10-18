@@ -14,80 +14,57 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private WeaponDetails[] weapons;
 
         // Things on this object to get
-        private Image weaponImage;
-        private Text weaponNameText;
-        private Text weaponDescText;
+        [SerializeField] private Image weaponImage;
+        [SerializeField] private Text weaponNameText;
+        [SerializeField] private Text weaponDescText;
 
         // Things off this object to get
-        private GnomeAttacks gnome;
+        [SerializeField] private GnomeAttacks gnome;
         private GnomeWeapons activeWeapon;
         private GnomeWeapons lastWeapon;
-        private FishingRodAttack activeRodAttackType;
 
         // manual update
         private bool shouldUpdate;
 
         private void Start()
         {
-            weaponImage = GetComponentInChildren<Image>();
-            weaponNameText = GetComponentsInChildren<Text>()[0];
-            weaponDescText = GetComponentsInChildren<Text>()[1];
-
-            gnome = GameObject.FindGameObjectWithTag("Player").GetComponent<GnomeAttacks>();
             activeWeapon = gnome.GetActiveWeapon();
-            activeRodAttackType = gnome.gameObject.GetComponent<FishingRodMove>().rodAttackType;
-
             UpdateWeapon(weapons[1]);
         }
 
 
         private void Update()
         {
-            if (!activeWeapon.Equals(lastWeapon) || shouldUpdate)
+            if (gnome)
             {
-                switch (activeWeapon)
+                if (!activeWeapon.Equals(lastWeapon) || shouldUpdate)
                 {
-                    case GnomeWeapons.None:
-                        break;
-                    case GnomeWeapons.FishingRod:
+                    switch (activeWeapon)
+                    {
+                        case GnomeWeapons.None:
+                            break;
+                        case GnomeWeapons.FishingRod:
 
-                       
-                        // update based on the attack style...
-                        switch (activeRodAttackType)
-                        {
-                            case FishingRodAttack.Melee:
+                            UpdateWeapon(weapons[1]);
+                            break;
+                        case GnomeWeapons.Umbrella:
 
-                                UpdateWeapon(weapons[0]);
+                            UpdateWeapon(weapons[2]);
 
-                                break;
-                            case FishingRodAttack.Ranged:
+                            break;
+                        case GnomeWeapons.Firework:
 
-                                UpdateWeapon(weapons[1]);
+                            UpdateWeapon(weapons[3]);
 
-                                break;
-                            default:
-                                break;
-                        }
+                            break;
+                        default:
+                            break;
+                    }
 
-
-                        break;
-                    case GnomeWeapons.Umbrella:
-
-                        UpdateWeapon(weapons[2]);
-
-                        break;
-                    case GnomeWeapons.Firework:
-
-                        UpdateWeapon(weapons[3]);
-
-                        break;
-                    default:
-                        break;
-                }
-
-                if (shouldUpdate)
-                {
-                    shouldUpdate = false;
+                    if (shouldUpdate)
+                    {
+                        shouldUpdate = false;
+                    }
                 }
             }
         }
@@ -100,7 +77,6 @@ namespace DresslikeaGnome.OhGnomes
         {
             lastWeapon = activeWeapon;
             activeWeapon = gnome.GetActiveWeapon();
-            activeRodAttackType = gnome.gameObject.GetComponent<FishingRodMove>().rodAttackType;
         }
 
 
@@ -111,7 +87,6 @@ namespace DresslikeaGnome.OhGnomes
         {
             lastWeapon = activeWeapon;
             activeWeapon = gnome.GetActiveWeapon();
-            activeRodAttackType = gnome.gameObject.GetComponent<FishingRodMove>().rodAttackType;
             shouldUpdate = true;
         }
 
@@ -122,20 +97,9 @@ namespace DresslikeaGnome.OhGnomes
         /// <param name="newWeapon">WeaponDetails | To change to</param>
         private void UpdateWeapon(WeaponDetails newWeapon)
         {
-            if (!weaponImage.sprite.Equals(newWeapon.weaponIcon))
-            {
-                weaponImage.sprite = newWeapon.weaponIcon;
-            }
-
-            if (!weaponNameText.text.Equals(newWeapon.weaponName))
-            {
-                weaponNameText.text = newWeapon.weaponName;
-            }
-
-            if (!weaponDescText.text.Equals(newWeapon.weaponDesc))
-            {
-                weaponDescText.text = newWeapon.weaponDesc;
-            }
+            weaponImage.sprite = newWeapon.weaponIcon;
+            weaponNameText.text = newWeapon.weaponName;
+            weaponDescText.text = newWeapon.weaponDesc;
         }
     }
 }
