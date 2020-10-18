@@ -39,7 +39,9 @@ namespace DresslikeaGnome.OhGnomes
 
         private MainRoundController roundController;
 
-        internal Animator anim;
+
+        internal bool isActive;
+        [SerializeField] internal Animator anim;
 
         private void OnEnable()
         {
@@ -55,7 +57,6 @@ namespace DresslikeaGnome.OhGnomes
         private void Awake()
         {
             input = new GameControls();
-            anim = GetComponentsInChildren<Animator>()[1];
             wait = new WaitForSeconds(coolDown);
             roundController = FindObjectOfType<MainRoundController>();
         }
@@ -71,63 +72,65 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Update()
         {
-
-
-            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (isActive)
             {
-                //Code to be place in a MonoBehaviour with a GraphicRaycaster component
-                GraphicRaycaster gr = graphicsRaycaster;
-                //Create the PointerEventData with null for the EventSystem
-                PointerEventData ped = new PointerEventData(null);
-                //Set required parameters, in this case, mouse position
-                ped.position = Mouse.current.position.ReadValue();
-                //Create list to receive all results
-                List<RaycastResult> results = new List<RaycastResult>();
-                //Raycast it
-                gr.Raycast(ped, results);
 
-                if (results.Count.Equals(0))
+                Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
                 {
-                    canUseWeapon = true;
-                }
-                else
-                {
-                    // checks to see if the layer of any object is the user UI layer
-                    if (!Check.LayerCheck(results, LayerMask.NameToLayer("UserUI")))
+                    //Code to be place in a MonoBehaviour with a GraphicRaycaster component
+                    GraphicRaycaster gr = graphicsRaycaster;
+                    //Create the PointerEventData with null for the EventSystem
+                    PointerEventData ped = new PointerEventData(null);
+                    //Set required parameters, in this case, mouse position
+                    ped.position = Mouse.current.position.ReadValue();
+                    //Create list to receive all results
+                    List<RaycastResult> results = new List<RaycastResult>();
+                    //Raycast it
+                    gr.Raycast(ped, results);
+
+                    if (results.Count.Equals(0))
                     {
                         canUseWeapon = true;
                     }
                     else
                     {
-                        canUseWeapon = false;
+                        // checks to see if the layer of any object is the user UI layer
+                        if (!Check.LayerCheck(results, LayerMask.NameToLayer("UserUI")))
+                        {
+                            canUseWeapon = true;
+                        }
+                        else
+                        {
+                            canUseWeapon = false;
+                        }
                     }
                 }
-            }
 
-            ToggleActiveWeapon();
+                ToggleActiveWeapon();
 
-            if (!roundController.isTimerRunning)
-            {
- 
-
-                // if the user is not over some user UI (can use MB)
-                if (canUseWeapon)
+                if (!roundController.isTimerRunning)
                 {
-                    if (input.Gnome.Attack.phase == InputActionPhase.Performed)
-                    {
-                        UseActiveWeapon();
-                    }
 
-                    //if (canToggle)
-                    //{
-                    //    if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
-                    //    {
-                    //        ToggleFishingRod();
-                    //    }
-                    //}
+
+                    // if the user is not over some user UI (can use MB)
+                    if (canUseWeapon)
+                    {
+                        if (input.Gnome.Attack.phase == InputActionPhase.Performed)
+                        {
+                            UseActiveWeapon();
+                        }
+
+                        //if (canToggle)
+                        //{
+                        //    if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                        //    {
+                        //        ToggleFishingRod();
+                        //    }
+                        //}
+                    }
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private GameControls input;                         // ref to the input system
         private Rigidbody rb;                               // ref to the rb attached to the gnome
-        private Animator anim;
+        [SerializeField] private Animator anim;
 
         internal bool freezeGnome;
 
@@ -44,7 +44,6 @@ namespace DresslikeaGnome.OhGnomes
         {
             input = new GameControls();                     // setup ref to input system
             rb = GetComponentInChildren<Rigidbody>();                 // setup ref to rigidbody
-            anim = GetComponentsInChildren<Animator>()[1];
         }
 
 

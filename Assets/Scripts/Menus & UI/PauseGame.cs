@@ -172,6 +172,8 @@ namespace DresslikeaGnome.OhGnomes
 
         public void ToMenu()
         {
+            isGamePaused = false;
+            Time.timeScale = 1;
             SceneManager.LoadSceneAsync("Main Menu");
         }
 

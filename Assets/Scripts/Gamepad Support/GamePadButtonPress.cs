@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 /*
@@ -12,7 +13,9 @@ namespace DresslikeaGnome.OhGnomes.GamePad
     public class GamePadButtonPress : MonoBehaviour
     {
         [SerializeField] private Button _toPress;
+        [SerializeField] internal bool canPress;
         private GameControls _controls;
+        private bool isCoR;
 
         private void OnEnable()
         {
@@ -22,6 +25,7 @@ namespace DresslikeaGnome.OhGnomes.GamePad
         private void OnDisable()
         {
             _controls.Disable();
+            StopAllCoroutines();
         }
 
         private void Awake()
@@ -31,10 +35,25 @@ namespace DresslikeaGnome.OhGnomes.GamePad
 
         private void Update()
         {
-            if (_controls.Menu.MenuUse.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+            if (canPress && !isCoR)
             {
-                _toPress.onClick.Invoke();
+                if (_controls.Menu.MenuUse.phase == UnityEngine.InputSystem.InputActionPhase.Performed)
+                {
+                    _toPress.onClick.Invoke();
+
+                    if (gameObject.activeInHierarchy)
+                    {
+                        StartCoroutine(InputLag());
+                    }
+                }
             }
+        }
+
+        private IEnumerator InputLag()
+        {
+            isCoR = true;
+            yield return new WaitForSeconds(.35f);
+            isCoR = false;
         }
     }
 }

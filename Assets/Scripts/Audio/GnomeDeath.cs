@@ -14,7 +14,7 @@ namespace DresslikeaGnome.OhGnomes.Audio
 
         public void PlayDeathSound()
         {
-            PlayRandomFromGroup(clips);
+            PlayRandomFromGroup(clips, .3f);
         }
     }
 }

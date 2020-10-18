@@ -26134,6 +26134,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5888726586019462517, guid: 902f8f4ee84ac2144855934d41853615,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1755867387}
     - target: {fileID: 5888726586019462518, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26194,6 +26199,11 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 5888726586019462523, guid: 902f8f4ee84ac2144855934d41853615,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1755867387}
     - target: {fileID: 5888726586019462524, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: m_Name
@@ -26211,6 +26221,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902f8f4ee84ac2144855934d41853615, type: 3}
+--- !u!95 &1755867387 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5394921443234414523, guid: 902f8f4ee84ac2144855934d41853615,
+    type: 3}
+  m_PrefabInstance: {fileID: 1755867386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1812358647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28366,7 +28382,8 @@ MonoBehaviour:
   - {fileID: 1519432585}
   - {fileID: 670171170}
   - {fileID: 1329032197}
-  sceneTransitionController: {fileID: 541268312}
+  mainRound: {fileID: 0}
+  button: {fileID: 0}
 --- !u!223 &4031324000791921276
 Canvas:
   m_ObjectHideFlags: 0
