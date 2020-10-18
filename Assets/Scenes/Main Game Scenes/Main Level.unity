@@ -5679,6 +5679,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 267791356}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &267791358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267791357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922eee1cd011a1c49a4778e4a0029c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  clips:
+  - {fileID: 8300000, guid: b61624d6571082a4490086b33c2d17a9, type: 3}
+  - {fileID: 8300000, guid: ba789c9c3d353e24786ee6b8809428f8, type: 3}
+  - {fileID: 8300000, guid: d7e6feb55557317418a741817c287213, type: 3}
+  - {fileID: 8300000, guid: 8c800b7afa28bfe49b48fd98bcaf3502, type: 3}
 --- !u!1 &277996121
 GameObject:
   m_ObjectHideFlags: 0
@@ -6432,15 +6451,11 @@ MonoBehaviour:
   spawnEverySeconds: 5
   waves:
   - noOfRats: 2
-    noOfBadgers: 4
+    noOfBadgers: 2
     noOfBats: 0
     numberOfEnemiesLeft: 0
   - noOfRats: 10
-    noOfBadgers: 2
-    noOfBats: 1
-    numberOfEnemiesLeft: 0
-  - noOfRats: 10
-    noOfBadgers: 5
+    noOfBadgers: 0
     noOfBats: 1
     numberOfEnemiesLeft: 0
   enemiesPool: []
@@ -10145,11 +10160,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506488505}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 5}
-  m_Center: {x: -0.0000038146973, y: -0.000015258789, z: 2.5}
+  m_Size: {x: 1, y: 7, z: 5}
+  m_Center: {x: -2.13, y: -0.000015258789, z: 2.55}
 --- !u!43 &512615892
 Mesh:
   m_ObjectHideFlags: 0
@@ -17421,17 +17436,13 @@ MonoBehaviour:
   EnemyContainerArray: {fileID: 307140923}
   spawnEverySeconds: 5
   waves:
-  - noOfRats: 5
+  - noOfRats: 10
     noOfBadgers: 4
     noOfBats: 1
     numberOfEnemiesLeft: 0
-  - noOfRats: 7
-    noOfBadgers: 2
-    noOfBats: 2
-    numberOfEnemiesLeft: 0
   - noOfRats: 10
-    noOfBadgers: 7
-    noOfBats: 2
+    noOfBadgers: 2
+    noOfBats: 1
     numberOfEnemiesLeft: 0
   enemiesPool: []
 --- !u!1 &797848848
@@ -22334,7 +22345,7 @@ PrefabInstance:
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: waves.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
@@ -22369,7 +22380,7 @@ PrefabInstance:
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: waves.Array.data[1].noOfRats
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
@@ -22384,7 +22395,7 @@ PrefabInstance:
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: waves.Array.data[0].noOfRats
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}

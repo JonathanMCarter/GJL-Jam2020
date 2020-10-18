@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DresslikeaGnome.OhGnomes.Audio;
+using System.Collections;
 using UnityEngine;
 
 /*
@@ -118,6 +119,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private IEnumerator DamageCooldown(float delay)
         {
+            GetComponent<EnemyHit>().PlayEmHit();
             canDamage = false;
             yield return new WaitForSeconds(delay);
             canDamage = true;
