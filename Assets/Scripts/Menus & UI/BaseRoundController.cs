@@ -109,7 +109,7 @@ namespace DresslikeaGnome.OhGnomes
                         if (!enemiesPool[i].activeInHierarchy && enemiesPool[i].name.Contains("Rat"))
                         {
                             enemiesPool[i].transform.position = spawnerLocations[locationId].transform.position;
-                            enemiesPool[i].transform.rotation = Quaternion.identity;
+                            enemiesPool[i].transform.rotation = transform.rotation;
                             enemiesPool[i].GetComponent<NavMeshAgent>().velocity = Vector3.zero;
                             enemiesPool[i].GetComponent<BaseEnemyBehaviour>().ResetHealth();
                             enemiesPool[i].SetActive(true);

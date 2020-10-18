@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e16ff7808639441be6c3ea34da9751, type: 3}
   m_Name: FishingRodMelee
   m_EditorClassIdentifier: 
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 21300000, guid: 526ae5691804eae4d8a30508318b9fba, type: 3}
   weaponName: Fishing Rod (Melee)
   weaponDesc: Close range melee weapon, beat those enemies into submission.

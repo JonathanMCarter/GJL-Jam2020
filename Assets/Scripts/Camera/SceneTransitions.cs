@@ -46,7 +46,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             anim.SetTrigger("ChangeScene");
             async = SceneManager.LoadSceneAsync(sceneName);
-            async.allowSceneActivation = false;
+            //async.allowSceneActivation = false;
             yield return new WaitForSeconds(.55f);
             async.allowSceneActivation = true;
         }

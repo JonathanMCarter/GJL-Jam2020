@@ -90,6 +90,7 @@ namespace DresslikeaGnome.OhGnomes
             }
 
             isTimerRunning = true;
+            _timer = _timeLimit;
         }
 
 
@@ -110,7 +111,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void EndGame()
         {
-            trans.ChangeSceneTransition("Main Menu");
+            trans.ChangeSceneTransition("Win Scene");
         }
 
 

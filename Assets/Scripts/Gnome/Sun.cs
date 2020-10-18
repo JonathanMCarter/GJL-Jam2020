@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using CarterGames.Utilities;
+using DresslikeaGnome.OhGnomes.Audio;
 
 /*
 *  Copyright (c) Jonathan Carter
@@ -22,15 +23,25 @@ namespace DresslikeaGnome.OhGnomes
         private Image barColor;
         private CameraShakeScript cam;
         private DamageIndicator ind;
-        private Light _light;
+        [SerializeField] private Light _light;
         private int[] healthPercentages = new int[3];
         private Material sunMat;
         private MusicCrossfade music;
+
+        [SerializeField] private GameObject soundPrefab;
+        [SerializeField] private AudioClip sunDeath;
+        private bool hasDeath;
 
 
         private void OnDisable()
         {
             StopAllCoroutines();
+        }
+
+
+        private void OnEnable()
+        {
+            hasDeath = false;
         }
 
 
@@ -42,7 +53,6 @@ namespace DresslikeaGnome.OhGnomes
             barColor = sunHealthBar.GetComponentsInChildren<Image>()[1];
             defaultBarCol = barColor.color;
             ind = FindObjectOfType<DamageIndicator>();
-            _light = GetComponent<Light>();
 
             // health percentages
             healthPercentages[0] = (sunhealth / 4) * 3;
@@ -54,7 +64,7 @@ namespace DresslikeaGnome.OhGnomes
 
             music = FindObjectOfType<MusicCrossfade>();
 
-            
+            music.ResetIntensity();
         }
 
 
@@ -68,6 +78,18 @@ namespace DresslikeaGnome.OhGnomes
             if (sunhealth <= 0)
             {
                 gameObject.SetActive(false);
+
+                // play the sound for hit
+                if (hasDeath)
+                {
+                    GameObject clip = Instantiate(soundPrefab);
+                    clip.GetComponent<AudioSource>().clip = sunDeath;
+                    clip.GetComponent<AudioSource>().volume = Random.Range(.8f, 1f);
+                    clip.GetComponent<AudioSource>().pitch = Random.Range(.9f, 1.1f);
+                    clip.GetComponent<AudioSource>().Play();
+                    Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
+                    hasDeath = true;
+                }
             }
 
             // changes the brightness settings
@@ -79,6 +101,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             if (other.gameObject.CompareTag("EnemyAttack"))
             {
+                GetComponent<SunHit>().PlaySunHit();
                 DamageSun(1);
                 ind.ShowDMGIndicator(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), 1, Color.yellow);
             }
