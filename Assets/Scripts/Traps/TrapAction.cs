@@ -112,7 +112,7 @@ namespace DresslikeaGnome.OhGnomes
             if (hit.GetComponent<BaseEnemyBehaviour>().GetEnemyHealth() > 0)
             {
                 ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
-                PlayClip(_clip, .1f);
+                PlayClip(_clip, .05f);
             }
 
             yield return new WaitForSeconds(2f);
