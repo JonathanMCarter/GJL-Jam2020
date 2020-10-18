@@ -6450,11 +6450,11 @@ MonoBehaviour:
   EnemyContainerArray: {fileID: 307140923}
   spawnEverySeconds: 5
   waves:
-  - noOfRats: 2
+  - noOfRats: 7
     noOfBadgers: 2
     noOfBats: 0
     numberOfEnemiesLeft: 0
-  - noOfRats: 10
+  - noOfRats: 7
     noOfBadgers: 0
     noOfBats: 1
     numberOfEnemiesLeft: 0
@@ -22419,6 +22419,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8021738455493123424, guid: 88f44389aa7035f42aa850148dda4d89,
         type: 3}
+    - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
+        type: 3}
+      propertyPath: waves.Array.data[0].noOfBats
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5166435360644271574, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: _GameUI.Array.size

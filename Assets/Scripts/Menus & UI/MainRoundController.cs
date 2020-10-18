@@ -23,7 +23,7 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private Text _timerText;
         [SerializeField] private float _timeLimit;
         private float _timer;
-        private bool isTimerRunning;
+        internal bool isTimerRunning;
         private string _mins, _secs;
 
         private SceneTransitions trans;

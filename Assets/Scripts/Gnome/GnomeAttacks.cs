@@ -37,6 +37,7 @@ namespace DresslikeaGnome.OhGnomes
         private FireworkMove fireworkAttack;
         [SerializeField] private WeaponUI weaponUI;
 
+        private MainRoundController roundController;
 
         internal Animator anim;
 
@@ -56,6 +57,7 @@ namespace DresslikeaGnome.OhGnomes
             input = new GameControls();
             anim = GetComponentsInChildren<Animator>()[1];
             wait = new WaitForSeconds(coolDown);
+            roundController = FindObjectOfType<MainRoundController>();
         }
 
         private void Start()
@@ -69,7 +71,7 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Update()
         {
-            ToggleActiveWeapon();
+
 
             Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
@@ -106,19 +108,24 @@ namespace DresslikeaGnome.OhGnomes
             }
 
 
-            // if the user is not over some user UI (can use MB)
-            if (canUseWeapon)
+            if (!roundController.isTimerRunning)
             {
-                if (input.Gnome.Attack.phase == InputActionPhase.Performed)
-                {
-                    UseActiveWeapon();
-                }
+                ToggleActiveWeapon();
 
-                if (canToggle)
+                // if the user is not over some user UI (can use MB)
+                if (canUseWeapon)
                 {
-                    if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                    if (input.Gnome.Attack.phase == InputActionPhase.Performed)
                     {
-                        ToggleFishingRod();
+                        UseActiveWeapon();
+                    }
+
+                    if (canToggle)
+                    {
+                        if (input.Gnome.WeaponToggle.phase == InputActionPhase.Performed && activeWeapon.Equals(GnomeWeapons.FishingRod))
+                        {
+                            ToggleFishingRod();
+                        }
                     }
                 }
             }
