@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DresslikeaGnome.OhGnomes.Audio;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ namespace DresslikeaGnome.OhGnomes
             {
                 if (!fireworkPool[i].activeInHierarchy)
                 {
+                    GetComponent<Fireworks>().PlayFireworkHit();
                     fireworkPool[i].transform.position = hit.transform.position;
                     fireworkPool[i].SetActive(true);
                     break;

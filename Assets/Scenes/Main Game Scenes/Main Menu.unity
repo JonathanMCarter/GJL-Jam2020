@@ -26486,6 +26486,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 822040003048002090, guid: 902f8f4ee84ac2144855934d41853615,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 875232536825519391, guid: 902f8f4ee84ac2144855934d41853615,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5888726586019462512, guid: 902f8f4ee84ac2144855934d41853615,
         type: 3}
       propertyPath: m_Enabled
@@ -26585,6 +26595,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845052121696706358, guid: 902f8f4ee84ac2144855934d41853615,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902f8f4ee84ac2144855934d41853615, type: 3}

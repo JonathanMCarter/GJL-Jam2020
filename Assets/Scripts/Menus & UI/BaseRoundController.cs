@@ -16,9 +16,9 @@ namespace DresslikeaGnome.OhGnomes
         [SerializeField] private List<GameObject> spawnerLocations;
         [SerializeField] private GameObject EnemyContainerArray;
 
-        private int currentWave = 0;
-        private Wave currentWaveInfo;
-        private bool checkEnemyArray = false;
+        [SerializeField] private int currentWave = 0;
+        [SerializeField] private Wave currentWaveInfo;
+        [SerializeField] private bool checkEnemyArray = false;
 
         public float spawnEverySeconds = 10.0f;
         public List<Wave> waves;
@@ -89,13 +89,14 @@ namespace DresslikeaGnome.OhGnomes
         private void EndRound()
         {
             roundControllerObject.EndRound();
+            currentWave = 0;
         }
 
         private void SpawnEnemy()
         {
             //randomly decide where the enmies will come from
             int locationId = Random.Range(0, spawnerLocations.Count);
-            int randomNumber = Random.Range(0, 2);
+            int randomNumber = Random.Range(0, 3);
 
             //randomly decide which enemy to spawn IF theres enough left to spawn
             // Jonathan edit, made it run on MOD just for a better solution, MOD 3 checks to see how close to 3 it is for 0%3 = 0 and so on...
@@ -180,7 +181,7 @@ namespace DresslikeaGnome.OhGnomes
             }
 
             //once all badgers + rats have been spawned theres no need to keep calling this function
-            if (currentWaveInfo.noOfBadgers.Equals(0) && currentWaveInfo.noOfRats.Equals(0) && currentWaveInfo.noOfBats.Equals(0))
+            if (currentWaveInfo.noOfBadgers.Equals(0) && currentWaveInfo.noOfRats.Equals(0) && currentWaveInfo.noOfBats.Equals(0) && currentWaveInfo.numberOfEnemiesLeft.Equals(0))
             {
                 StopSpawning();
                 checkEnemyArray = true;
@@ -313,6 +314,17 @@ namespace DresslikeaGnome.OhGnomes
             {
                 return false;
             }
+        }
+
+
+        public void ClearObjectPool()
+        {
+            for (int i = 0; i < enemiesPool.Length; i++)
+            {
+                Destroy(enemiesPool[i], .01f);
+            }
+
+            enemiesPool = null;
         }
     }
 

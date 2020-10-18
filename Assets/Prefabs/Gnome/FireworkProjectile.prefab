@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -5523534757037940637}
   - component: {fileID: 1055146272096475384}
   - component: {fileID: 4549085731824608938}
+  - component: {fileID: 6868344381031766570}
   m_Layer: 0
   m_Name: FireworkProjectile
   m_TagString: Untagged
@@ -163,6 +164,23 @@ MonoBehaviour:
   fireworkPrefab: {fileID: 6612338713114545861, guid: 4c67974a8af96fb4f9a0e97aca688259,
     type: 3}
   fireworkPool: []
+--- !u!114 &6868344381031766570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195932730933879289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1670708fb5c0f4486f79b44f9958c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  clips:
+  - {fileID: 8300000, guid: 41f62763cc9c3e94788a52e89479e4a9, type: 3}
+  - {fileID: 8300000, guid: f55c23f9e9099ab4a9abc2018580ab6d, type: 3}
 --- !u!1 &9019282942347929503
 GameObject:
   m_ObjectHideFlags: 0

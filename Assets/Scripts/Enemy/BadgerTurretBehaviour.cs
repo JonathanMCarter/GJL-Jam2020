@@ -17,7 +17,7 @@ namespace DresslikeaGnome.OhGnomes
 
         // jonathan added this, makes the bullets better for performace sake.
         public GameObject[] bulletPool;
-        private int poolAmount = 5;
+        private int poolAmount = 10;
 
 
         private new void Awake()
@@ -68,6 +68,7 @@ namespace DresslikeaGnome.OhGnomes
                 {
                     bulletPool[i].transform.position = transform.position;
                     bulletPool[i].transform.rotation = transform.rotation;
+                    bulletPool[i].GetComponent<BaseEnemyBulletBehaviour>()._target = getSunTarget().transform;
                     bulletPool[i].SetActive(true);
                     break;
                 }

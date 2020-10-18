@@ -15,16 +15,16 @@ namespace DresslikeaGnome.OhGnomes
         
         [SerializeField]
         private GameObject nextRoundUI;
-        private int currentRound = 0;
+        [SerializeField] private int currentRound = 0;
 
         // jonathan edit
         [Header("Timer Text & Game UI")]
         [SerializeField] private GameObject[] _GameUI;
         [SerializeField] private Text _timerText;
         [SerializeField] private float _timeLimit;
-        private float _timer;
-        private bool isTimerRunning;
-        private string _mins, _secs;
+        [SerializeField] private float _timer;
+        [SerializeField] internal bool isTimerRunning;
+        [SerializeField] private string _mins, _secs;
 
         private SceneTransitions trans;
 
@@ -72,6 +72,7 @@ namespace DresslikeaGnome.OhGnomes
 
         public void EndRound()
         {
+            roundControllerObjects[currentRound].GetComponent<BaseRoundController>().ClearObjectPool();
             roundControllerObjects[currentRound].SetActive(false);
 
             currentRound++;

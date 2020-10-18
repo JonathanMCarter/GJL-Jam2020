@@ -25,7 +25,8 @@ namespace DresslikeaGnome.OhGnomes
         private DamageIndicator ind;
 
         internal TrapPlacementArea trapPlacementArea;
-
+        [SerializeField] private GameObject soundPrefab;
+        [SerializeField] private AudioClip _clip;
 
         private void OnEnable()
         {
@@ -101,13 +102,19 @@ namespace DresslikeaGnome.OhGnomes
             {
                 hit.GetComponent<NavMeshAgent>().isStopped = true;
                 hit.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
+                hit.GetComponent<BaseEnemyBehaviour>().hitTrap = true;
+                hit.GetComponentInChildren<Animator>().SetBool("IsMoving", false);
             }
 
-            hit.GetComponent<BaseEnemyBehaviour>().hitTrap = true;
-            hit.GetComponentInChildren<Animator>().SetBool("IsMoving", false);
-            ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
             tempParticles.transform.position = hit.transform.position;
             tempParticles.SetActive(true);
+
+            if (hit.GetComponent<BaseEnemyBehaviour>().GetEnemyHealth() > 0)
+            {
+                ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
+                PlayClip(_clip, .1f);
+            }
+
             yield return new WaitForSeconds(2f);
             hit.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(trapDMG);
 
@@ -126,7 +133,13 @@ namespace DresslikeaGnome.OhGnomes
         private IEnumerator Fire()
         {
             isCoR = true;
-            ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
+
+            if (hit.GetComponent<BaseEnemyBehaviour>().GetEnemyHealth() > 0)
+            {
+                ind.ShowDMGIndicator(new Vector3(hit.transform.position.x, hit.transform.position.y + 2.5f, hit.transform.position.z), trapDMG, Color.white);
+                PlayClip(_clip, .05f);
+            }
+
             yield return new WaitForSeconds(.25f);
             hit.GetComponent<BaseEnemyBehaviour>().ReduceEnemyHealth(trapDMG);
             isCoR = false;
@@ -140,6 +153,17 @@ namespace DresslikeaGnome.OhGnomes
             isTrapReady = false;
             yield return new WaitForSeconds(delay);
             isTrapReady = true;
+        }
+
+
+        public void PlayClip(AudioClip _clip, float _volume = 1)
+        {
+            GameObject clip = Instantiate(soundPrefab);
+            clip.GetComponent<AudioSource>().clip = _clip;
+            clip.GetComponent<AudioSource>().volume = _volume;
+            clip.GetComponent<AudioSource>().pitch = Random.Range(.9f, 1.1f);
+            clip.GetComponent<AudioSource>().Play();
+            Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
         }
     }
 }

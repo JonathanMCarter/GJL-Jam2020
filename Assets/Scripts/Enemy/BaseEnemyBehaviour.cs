@@ -36,6 +36,11 @@ namespace DresslikeaGnome.OhGnomes
             if (agent)
             {
                 agent.enabled = true;
+
+                for (int i = 0; i < GetComponentsInChildren<BoxCollider>().Length; i++)
+                {
+                    GetComponentsInChildren<BoxCollider>()[i].enabled = true;
+                }
             }
         }
 
@@ -104,15 +109,19 @@ namespace DresslikeaGnome.OhGnomes
 
                     if (agent && agent.enabled)
                     {
-                        agent.isStopped = true;
                         agent.enabled = false;
+
+                        for (int i = 0; i < GetComponentsInChildren<BoxCollider>().Length; i++)
+                        {
+                            GetComponentsInChildren<BoxCollider>()[i].enabled = false;
+                        }
                     }
 
                     StartCoroutine(Despawn());
                 }
             }
 
-            if (agent && agent.isStopped)
+            if (agent.velocity.x > .15f && agent.velocity.z > .15f)
             {
                 animator.SetBool("IsMoving", false);
             }
@@ -162,7 +171,7 @@ namespace DresslikeaGnome.OhGnomes
                 animator.SetTrigger("Attack");
                 animator.SetBool("IsMoving", false);
 
-                if (Target.gameObject.CompareTag("Player"))
+                if (Target.gameObject.CompareTag("Player") && enemyHealth > 0)
                 {
                     transform.LookAt(playerTarget.transform);
                 }
@@ -207,7 +216,11 @@ namespace DresslikeaGnome.OhGnomes
         public void ReduceEnemyHealth(int value)
         {
             enemyHealth -= value;
-            animator.SetTrigger("IsHit");
+
+            if (animator)
+            {
+                animator.SetTrigger("IsHit");
+            }
         }
 
         // Jonathan added this
