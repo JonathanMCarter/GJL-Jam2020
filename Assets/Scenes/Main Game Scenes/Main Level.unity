@@ -6448,14 +6448,21 @@ MonoBehaviour:
   - {fileID: 935170786}
   - {fileID: 772685886}
   EnemyContainerArray: {fileID: 307140923}
-  spawnEverySeconds: 5
+  currentWave: 0
+  currentWaveInfo:
+    noOfRats: 0
+    noOfBadgers: 0
+    noOfBats: 0
+    numberOfEnemiesLeft: 0
+  checkEnemyArray: 0
+  spawnEverySeconds: 2
   waves:
-  - noOfRats: 7
+  - noOfRats: 4
     noOfBadgers: 2
     noOfBats: 0
     numberOfEnemiesLeft: 0
-  - noOfRats: 7
-    noOfBadgers: 0
+  - noOfRats: 5
+    noOfBadgers: 1
     noOfBats: 1
     numberOfEnemiesLeft: 0
   enemiesPool: []
@@ -17435,15 +17442,22 @@ MonoBehaviour:
   - {fileID: 935170786}
   - {fileID: 772685886}
   EnemyContainerArray: {fileID: 307140923}
-  spawnEverySeconds: 5
-  waves:
-  - noOfRats: 10
-    noOfBadgers: 4
-    noOfBats: 1
+  currentWave: 0
+  currentWaveInfo:
+    noOfRats: 0
+    noOfBadgers: 0
+    noOfBats: 0
     numberOfEnemiesLeft: 0
-  - noOfRats: 10
+  checkEnemyArray: 0
+  spawnEverySeconds: 2
+  waves:
+  - noOfRats: 2
     noOfBadgers: 2
-    noOfBats: 1
+    noOfBats: 2
+    numberOfEnemiesLeft: 0
+  - noOfRats: 7
+    noOfBadgers: 4
+    noOfBats: 3
     numberOfEnemiesLeft: 0
   enemiesPool: []
 --- !u!1 &797848848
@@ -22387,7 +22401,7 @@ PrefabInstance:
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: waves.Array.data[1].noOfRats
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5166435359031349284, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
@@ -22474,7 +22488,7 @@ PrefabInstance:
         type: 3}
       propertyPath: roundControllerObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 835897482}
+      objectReference: {fileID: 345147586}
     - target: {fileID: 5166435360644271574, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: roundControllerObjects.Array.data[2]
@@ -22484,7 +22498,7 @@ PrefabInstance:
         type: 3}
       propertyPath: roundControllerObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 345147586}
+      objectReference: {fileID: 835897482}
     - target: {fileID: 5166435360644271575, guid: 3b119619ab12eb140b2359f7ee7c800f,
         type: 3}
       propertyPath: m_LocalPosition.x

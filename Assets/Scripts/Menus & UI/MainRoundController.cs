@@ -72,6 +72,7 @@ namespace DresslikeaGnome.OhGnomes
 
         public void EndRound()
         {
+            roundControllerObjects[currentRound].GetComponent<BaseRoundController>().ClearObjectPool();
             roundControllerObjects[currentRound].SetActive(false);
 
             currentRound++;

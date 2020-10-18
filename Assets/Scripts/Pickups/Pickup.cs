@@ -21,9 +21,9 @@ namespace DresslikeaGnome.OhGnomes
 
         private void Start()
         {
-            fireworksAmmo = Random.Range(minMax[0], minMax[1]);
-            bTrap = Random.Range(minMaxTraps[0], minMaxTraps[1]);
-            eTrap = Random.Range(minMaxTraps[0], minMaxTraps[1]);
+            fireworksAmmo = Random.Range(minMax[0], minMax[1] + 1);
+            bTrap = Random.Range(minMaxTraps[0], minMaxTraps[1]+ 1);
+            eTrap = Random.Range(minMaxTraps[0], minMaxTraps[1] + 1);
         }
 
 
