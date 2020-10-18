@@ -22,7 +22,7 @@ namespace DresslikeaGnome.OhGnomes
                     bulletRigidBody = gameObject.GetComponent<Rigidbody>();
                 }
 
-                bulletRigidBody.velocity = (_target.transform.position - transform.position).normalized * bulletSpeed;
+                bulletRigidBody.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
 
             }
             catch (System.Exception)

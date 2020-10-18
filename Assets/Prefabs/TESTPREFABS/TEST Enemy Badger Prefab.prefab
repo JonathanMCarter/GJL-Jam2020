@@ -139,6 +139,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ba789c9c3d353e24786ee6b8809428f8, type: 3}
   - {fileID: 8300000, guid: d7e6feb55557317418a741817c287213, type: 3}
   - {fileID: 8300000, guid: 8c800b7afa28bfe49b48fd98bcaf3502, type: 3}
+--- !u!114 &3106497350444744971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046459341405754752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83336e46cd761da42a10677d5cc699a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  clips: {fileID: 8300000, guid: e900157f858da194687514c31ce2afd1, type: 3}
 --- !u!114 &8383508083940356338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,21 +183,6 @@ MonoBehaviour:
   soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
     type: 3}
   clips: {fileID: 8300000, guid: 1ffd3210d0b9cec42b85d83b4f59ef48, type: 3}
---- !u!114 &3106497350444744971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046459341405754752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83336e46cd761da42a10677d5cc699a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
-    type: 3}
-  clips: {fileID: 8300000, guid: e900157f858da194687514c31ce2afd1, type: 3}
 --- !u!95 &747790209799710841
 Animator:
   serializedVersion: 3
@@ -411,12 +411,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 7334070312763319344}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 3
+  m_Radius: 2
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -440,8 +440,8 @@ MonoBehaviour:
   sunTarget: {fileID: 0}
   playerTarget: {fileID: 0}
   agent: {fileID: 0}
-  distantToTargetPlayer: 7
-  distantToAttackTarget: 7
+  distantToTargetPlayer: 5
+  distantToAttackTarget: 5
   attackCollider: {fileID: 7898278046500353842}
 --- !u!65 &4057393251698284485
 BoxCollider:
@@ -454,7 +454,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 4, z: 5}
+  m_Size: {x: 2, y: 3, z: 3}
   m_Center: {x: 0, y: 1.53, z: -0.6}
 --- !u!54 &1799108229798728291
 Rigidbody:
@@ -470,7 +470,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &7898278046500353842
 GameObject:

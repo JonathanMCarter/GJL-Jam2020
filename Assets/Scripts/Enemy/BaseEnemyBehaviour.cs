@@ -36,6 +36,11 @@ namespace DresslikeaGnome.OhGnomes
             if (agent)
             {
                 agent.enabled = true;
+
+                for (int i = 0; i < GetComponentsInChildren<BoxCollider>().Length; i++)
+                {
+                    GetComponentsInChildren<BoxCollider>()[i].enabled = true;
+                }
             }
         }
 
@@ -105,6 +110,11 @@ namespace DresslikeaGnome.OhGnomes
                     if (agent && agent.enabled)
                     {
                         agent.enabled = false;
+
+                        for (int i = 0; i < GetComponentsInChildren<BoxCollider>().Length; i++)
+                        {
+                            GetComponentsInChildren<BoxCollider>()[i].enabled = false;
+                        }
                     }
 
                     StartCoroutine(Despawn());
