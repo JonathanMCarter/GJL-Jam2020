@@ -12,7 +12,7 @@ namespace DresslikeaGnome.OhGnomes.Audio
     {
         [SerializeField] private AudioClip[] clips;
 
-        public void PlayFootstep()
+        public void PlayEmHit()
         {
             // base class method
             PlayRandomFromGroup(clips);

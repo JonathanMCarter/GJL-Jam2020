@@ -23,7 +23,7 @@ namespace DresslikeaGnome.OhGnomes
         private Image barColor;
         private CameraShakeScript cam;
         private DamageIndicator ind;
-        private Light _light;
+        [SerializeField] private Light _light;
         private int[] healthPercentages = new int[3];
         private Material sunMat;
         private MusicCrossfade music;
@@ -53,7 +53,6 @@ namespace DresslikeaGnome.OhGnomes
             barColor = sunHealthBar.GetComponentsInChildren<Image>()[1];
             defaultBarCol = barColor.color;
             ind = FindObjectOfType<DamageIndicator>();
-            _light = GetComponent<Light>();
 
             // health percentages
             healthPercentages[0] = (sunhealth / 4) * 3;
