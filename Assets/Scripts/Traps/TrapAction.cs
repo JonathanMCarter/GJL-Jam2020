@@ -25,7 +25,8 @@ namespace DresslikeaGnome.OhGnomes
         private DamageIndicator ind;
 
         internal TrapPlacementArea trapPlacementArea;
-
+        private GameObject soundPrefab;
+        private AudioClip _clip;
 
         private void OnEnable()
         {

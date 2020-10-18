@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DresslikeaGnome.OhGnomes.Audio;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -92,6 +93,7 @@ namespace DresslikeaGnome.OhGnomes
                 _go.transform.rotation = fireworkObject.transform.rotation;
                 _go.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 _go.GetComponent<Rigidbody>().velocity += transform.forward * fireworkSpeed;
+                _go.GetComponent<Fireworks>().PlayFireworkShoot();
                 _go.SetActive(true);
                 ammo -= 1;
             }

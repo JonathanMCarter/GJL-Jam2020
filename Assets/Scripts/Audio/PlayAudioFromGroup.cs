@@ -21,5 +21,15 @@ namespace DresslikeaGnome.OhGnomes.Audio
             clip.GetComponent<AudioSource>().Play();
             Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
         }
+
+        public void PlayClip(AudioClip _clip, float _volume = 1)
+        {
+            GameObject clip = Instantiate(soundPrefab);
+            clip.GetComponent<AudioSource>().clip = _clip;
+            clip.GetComponent<AudioSource>().volume = _volume;
+            clip.GetComponent<AudioSource>().pitch = Random.Range(.9f, 1.1f);
+            clip.GetComponent<AudioSource>().Play();
+            Destroy(clip, clip.GetComponent<AudioSource>().clip.length);
+        }
     }
 }
