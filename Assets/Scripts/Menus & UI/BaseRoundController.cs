@@ -95,7 +95,7 @@ namespace DresslikeaGnome.OhGnomes
         {
             //randomly decide where the enmies will come from
             int locationId = Random.Range(0, spawnerLocations.Count);
-            int randomNumber = Random.Range(0, 2);
+            int randomNumber = Random.Range(0, 3);
 
             //randomly decide which enemy to spawn IF theres enough left to spawn
             // Jonathan edit, made it run on MOD just for a better solution, MOD 3 checks to see how close to 3 it is for 0%3 = 0 and so on...

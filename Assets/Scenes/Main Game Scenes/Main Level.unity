@@ -11806,12 +11806,12 @@ PrefabInstance:
     - target: {fileID: 6090685958734005964, guid: 9cdffb00e385d99489ad38378af4aa82,
         type: 3}
       propertyPath: minMaxTime.Array.data[1]
-      value: 15
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6090685958734005964, guid: 9cdffb00e385d99489ad38378af4aa82,
         type: 3}
       propertyPath: minMaxTime.Array.data[0]
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6090685958734005965, guid: 9cdffb00e385d99489ad38378af4aa82,
         type: 3}
@@ -17428,7 +17428,8 @@ MonoBehaviour:
     type: 3}
   badgerPrefab: {fileID: 7334070312763319344, guid: 10745f583a1ba984a85c5b7ca66a6a29,
     type: 3}
-  batPrefab: {fileID: 0}
+  batPrefab: {fileID: 8021738455493123424, guid: 88f44389aa7035f42aa850148dda4d89,
+    type: 3}
   roundControllerObject: {fileID: 990829778}
   spawnerLocations:
   - {fileID: 935170786}

@@ -112,10 +112,10 @@ MonoBehaviour:
   sunTarget: {fileID: 0}
   playerTarget: {fileID: 0}
   agent: {fileID: 0}
-  distantToTargetPlayer: 4
+  distantToTargetPlayer: 20
   distantToAttackTarget: 1.4
   minDistantToShootTarget: 15
-  maxDistantToShootTarget: 30
+  maxDistantToShootTarget: 40
   turretAnimator: {fileID: 747790209799710841}
   bulletObject: {fileID: 2064910969711758986, guid: c9261cec28a84d54e98e99083d9a8c86,
     type: 3}

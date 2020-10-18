@@ -42,7 +42,10 @@ namespace DresslikeaGnome.OhGnomes
                 }
                 else if (other.gameObject.GetComponent<GnomeTrapControl>().cableTraps + eTrap > other.gameObject.GetComponent<GnomeTrapControl>().cableTraps - other.gameObject.GetComponent<GnomeTrapControl>().cablePlaced)
                 {
-                    other.gameObject.GetComponent<GnomeTrapControl>().cableTraps = other.gameObject.GetComponent<GnomeTrapControl>().cableTraps - other.gameObject.GetComponent<GnomeTrapControl>().cablePlaced;
+                    if (other.gameObject.GetComponent<GnomeTrapControl>().cableTraps - other.gameObject.GetComponent<GnomeTrapControl>().cablePlaced != 0)
+                    {
+                        other.gameObject.GetComponent<GnomeTrapControl>().cableTraps = other.gameObject.GetComponent<GnomeTrapControl>().cableTraps - other.gameObject.GetComponent<GnomeTrapControl>().cablePlaced;
+                    }
                 }
 
                 if (other.gameObject.GetComponent<GnomeTrapControl>().bbqTrays + bTrap < other.gameObject.GetComponent<GnomeTrapControl>().maxBBqTrays - other.gameObject.GetComponent<GnomeTrapControl>().bbqPlaced)
@@ -51,7 +54,10 @@ namespace DresslikeaGnome.OhGnomes
                 }
                 else if (other.gameObject.GetComponent<GnomeTrapControl>().bbqTrays + bTrap > other.gameObject.GetComponent<GnomeTrapControl>().maxBBqTrays - other.gameObject.GetComponent<GnomeTrapControl>().bbqPlaced)
                 {
-                    other.gameObject.GetComponent<GnomeTrapControl>().bbqTrays = other.gameObject.GetComponent<GnomeTrapControl>().maxBBqTrays - other.gameObject.GetComponent<GnomeTrapControl>().bbqPlaced;
+                    if (other.gameObject.GetComponent<GnomeTrapControl>().maxBBqTrays - other.gameObject.GetComponent<GnomeTrapControl>().bbqPlaced != 0)
+                    {
+                        other.gameObject.GetComponent<GnomeTrapControl>().bbqTrays = other.gameObject.GetComponent<GnomeTrapControl>().maxBBqTrays - other.gameObject.GetComponent<GnomeTrapControl>().bbqPlaced;
+                    }
                 }
 
                 gameObject.SetActive(false);
