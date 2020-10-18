@@ -96,6 +96,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 8021738456183105573}
   turret: {fileID: 0}
+--- !u!114 &215260984299171605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772384882713268726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922eee1cd011a1c49a4778e4a0029c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 977031777656076914, guid: 6dd3ddfc8cc1d404f8409b632adeec1b,
+    type: 3}
+  clips:
+  - {fileID: 8300000, guid: b61624d6571082a4490086b33c2d17a9, type: 3}
+  - {fileID: 8300000, guid: ba789c9c3d353e24786ee6b8809428f8, type: 3}
+  - {fileID: 8300000, guid: d7e6feb55557317418a741817c287213, type: 3}
+  - {fileID: 8300000, guid: 8c800b7afa28bfe49b48fd98bcaf3502, type: 3}
 --- !u!1 &3352401746322911914
 GameObject:
   m_ObjectHideFlags: 0
